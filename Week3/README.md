@@ -220,7 +220,7 @@ Ngoài ra, **Multi-stage Build** cho phép tách quá trình Build Application k
 
 Vòng đời cơ bản của Container:
 
-```text
+
 Image
   ↓
 Create
@@ -346,3 +346,4 @@ RESTful API Design.
 Exception Handling và Validation.
 Pagination và Sorting.
 API Documentation với Swagger/OpenAPI.
+```text
