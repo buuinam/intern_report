@@ -31,15 +31,15 @@ Bên cạnh đó, đã tìm hiểu các khái niệm nền tảng của Docker n
 
 ## 2. Chi tiết nội dung đã học
 
-## 2.1. Concurrency trong Java
+### 2.1. Concurrency trong Java
 
-### a. Thread Lifecycle và Thread Management
+#### a. Thread Lifecycle và Thread Management
 
 Đã tìm hiểu về Thread và vòng đời của một Thread trong Java. Qua đó hiểu được các trạng thái khác nhau của Thread và cách quản lý Thread trong quá trình thực thi.
 
 Thread là một luồng thực thi trong chương trình. Một ứng dụng có thể bao gồm nhiều Thread cùng thực hiện các tác vụ khác nhau.
 
-Các trạng thái chính của Thread:
+**Các trạng thái chính của Thread:**
 
 - **NEW**: Thread được tạo nhưng chưa được bắt đầu.
 - **RUNNABLE**: Thread đã sẵn sàng để được CPU thực thi.
@@ -48,7 +48,7 @@ Các trạng thái chính của Thread:
 - **TIMED_WAITING**: Thread tạm dừng trong một khoảng thời gian xác định.
 - **TERMINATED**: Thread đã hoàn thành quá trình thực thi.
 
-Một số phương thức quản lý Thread thường được sử dụng:
+**Một số phương thức quản lý Thread thường được sử dụng:**
 
 - `start()`: Bắt đầu một Thread mới.
 - `sleep()`: Tạm dừng Thread trong một khoảng thời gian.
@@ -57,44 +57,44 @@ Một số phương thức quản lý Thread thường được sử dụng:
 
 Việc hiểu Thread Lifecycle giúp kiểm soát tốt hơn quá trình thực thi đồng thời và tránh các lỗi liên quan đến quản lý Thread.
 
-### b. ThreadPool và ExecutorService
+#### b. ThreadPool và ExecutorService
 
 Đã tìm hiểu về ThreadPool và ExecutorService trong Java. Qua đó hiểu được cách tái sử dụng Thread thay vì liên tục tạo mới Thread cho từng tác vụ.
 
 ThreadPool là một tập hợp các Thread được tạo và quản lý để thực hiện nhiều Task khác nhau. Khi một Task hoàn thành, Thread có thể được tái sử dụng cho Task tiếp theo.
 
-Việc sử dụng ThreadPool giúp:
+**Việc sử dụng ThreadPool giúp:**
 
 - Giảm chi phí tạo và hủy Thread.
 - Hạn chế số lượng Thread được tạo trong hệ thống.
 - Tăng hiệu năng của ứng dụng.
 - Quản lý việc thực thi các Task hiệu quả hơn.
 
-Một số loại ThreadPool phổ biến:
+**Một số loại ThreadPool phổ biến:**
 
 - **FixedThreadPool**: Sử dụng số lượng Thread cố định.
 - **CachedThreadPool**: Tự động tạo và tái sử dụng Thread tùy theo nhu cầu.
 - **ScheduledThreadPool**: Thực thi Task theo lịch hoặc sau một khoảng thời gian nhất định.
 
-Một số phương thức của `ExecutorService`:
+**Một số phương thức của `ExecutorService`:**
 
 - `execute()`: Thực thi một Task nhưng không trả về kết quả.
 - `submit()`: Gửi Task và có thể nhận kết quả thông qua `Future`.
 - `shutdown()`: Dừng việc nhận các Task mới và thực hiện quá trình tắt ThreadPool.
 
-### c. Synchronization và Thread Safety
+#### c. Synchronization và Thread Safety
 
 Đã tìm hiểu các vấn đề phát sinh khi nhiều Thread cùng truy cập và thay đổi dữ liệu dùng chung.
 
 Khi nhiều Thread cùng thao tác trên một dữ liệu, có thể xảy ra **Race Condition**. Đây là tình trạng kết quả của chương trình phụ thuộc vào thứ tự thực thi của các Thread.
 
-Các phương pháp đồng bộ hóa đã tìm hiểu:
+**Các phương pháp đồng bộ hóa đã tìm hiểu:**
 
 - **synchronized**: Đảm bảo tại một thời điểm chỉ một Thread được truy cập vào vùng mã hoặc dữ liệu được bảo vệ.
 - **Lock**: Cung cấp khả năng kiểm soát việc khóa và mở khóa linh hoạt hơn `synchronized`.
 - **Atomic Classes**: Cung cấp các thao tác Thread-Safe trên dữ liệu mà không cần khóa toàn bộ vùng mã.
 
-Một số Atomic Class phổ biến:
+**Một số Atomic Class phổ biến:**
 
 - `AtomicInteger`
 - `AtomicLong`
@@ -105,15 +105,15 @@ Việc sử dụng đúng cơ chế Synchronization giúp đảm bảo tính nh�
 
 ---
 
-## 2.2. CompletableFuture và Reactive Programming
+### 2.2. CompletableFuture và Reactive Programming
 
-### a. CompletableFuture
+#### a. CompletableFuture
 
 Đã tìm hiểu `CompletableFuture` và cách xử lý các tác vụ bất đồng bộ trong Java.
 
 `CompletableFuture` là một API hỗ trợ lập trình bất đồng bộ trong Java. Nó cho phép thực hiện các Task mà không cần chặn Thread hiện tại và có thể xử lý kết quả sau khi Task hoàn thành.
 
-Một số phương thức thường sử dụng:
+**Một số phương thức thường sử dụng:**
 
 - `supplyAsync()`: Thực hiện một tác vụ bất đồng bộ và trả về kết quả.
 - `runAsync()`: Thực hiện một tác vụ bất đồng bộ nhưng không trả về kết quả.
@@ -123,13 +123,13 @@ Một số phương thức thường sử dụng:
 
 `CompletableFuture` giúp xây dựng các luồng xử lý bất đồng bộ, giảm việc phải quản lý Thread thủ công và hỗ trợ kết hợp nhiều tác vụ hiệu quả.
 
-### b. Reactive Programming Basics
+#### b. Reactive Programming Basics
 
 Đã tìm hiểu các khái niệm cơ bản của Reactive Programming và cách xử lý dữ liệu theo hướng bất đồng bộ, không chặn.
 
 Reactive Programming là mô hình lập trình tập trung vào việc xử lý các luồng dữ liệu và các sự kiện bất đồng bộ.
 
-Một số đặc điểm:
+**Một số đặc điểm:**
 
 - Xử lý dữ liệu theo dạng Stream.
 - Hỗ trợ xử lý bất đồng bộ.
@@ -141,9 +141,9 @@ Reactive Programming thường được sử dụng trong các hệ thống có 
 
 ---
 
-## 2.3. Docker
+### 2.3. Docker
 
-### a. Container Concepts và Docker Architecture
+#### a. Container Concepts và Docker Architecture
 
 Đã tìm hiểu các khái niệm cơ bản của Docker, bao gồm Container, Image, Docker Engine và Docker Architecture.
 
@@ -153,13 +153,13 @@ Docker là nền tảng giúp đóng gói ứng dụng cùng với các thư vi�
 
 **Docker Container** là một Instance được tạo ra từ Docker Image và cung cấp môi trường cô lập để chạy ứng dụng.
 
-Kiến trúc Docker bao gồm:
+**Kiến trúc Docker bao gồm:**
 
 - **Docker Client**: Nhận lệnh từ người dùng.
 - **Docker Daemon**: Quản lý Image, Container, Network và Volume.
 - **Docker Registry**: Lưu trữ và phân phối Docker Image.
 
-### b. Container và Virtual Machine
+#### b. Container và Virtual Machine
 
 Đã tìm hiểu sự khác biệt giữa Container và Virtual Machine.
 
@@ -177,13 +177,13 @@ Container sử dụng chung Kernel với hệ điều hành Host nên có các �
 | Hệ điều hành | Có Guest OS riêng | Chia sẻ Kernel với Host |
 | Isolation | Mạnh hơn | Nhẹ hơn |
 
-### c. Dockerfile và Best Practices
+#### c. Dockerfile và Best Practices
 
 Đã tìm hiểu Dockerfile và cách sử dụng Dockerfile để xây dựng Docker Image.
 
 Dockerfile là một file chứa các hướng dẫn để Docker xây dựng Image.
 
-Một số Instruction thường sử dụng:
+**Một số Instruction thường sử dụng:**
 
 - `FROM`: Chọn Base Image.
 - `WORKDIR`: Thiết lập thư mục làm việc.
@@ -192,7 +192,7 @@ Một số Instruction thường sử dụng:
 - `CMD`: Xác định lệnh mặc định khi Container chạy.
 - `EXPOSE`: Khai báo Port mà ứng dụng sử dụng.
 
-Một số Best Practices:
+**Một số Best Practices:**
 
 - Sử dụng Base Image có kích thước nhỏ khi phù hợp.
 - Sử dụng file `.dockerignore` để loại bỏ các file không cần thiết.
@@ -202,7 +202,7 @@ Một số Best Practices:
 
 Việc tối ưu Dockerfile giúp giảm thời gian Build và giảm kích thước Docker Image.
 
-### d. Image Layers và Optimization
+#### d. Image Layers và Optimization
 
 Đã tìm hiểu cách Docker Image được xây dựng từ nhiều Layer.
 
@@ -214,136 +214,147 @@ Việc sắp xếp Dockerfile hợp lý giúp tận dụng Layer Cache hiệu qu
 
 Ngoài ra, **Multi-stage Build** cho phép tách quá trình Build Application khỏi môi trường Runtime, giúp tạo ra Docker Image cuối cùng có kích thước nhỏ hơn.
 
-### e. Container Lifecycle
+#### e. Container Lifecycle
 
 Đã tìm hiểu vòng đời của Container từ khi được tạo đến khi bị xóa.
 
-Vòng đời cơ bản của Container:
-
-
+**Vòng đời cơ bản của Container:**
 Image
-  ↓
+↓
 Create
-  ↓
+↓
 Created
-  ↓
+↓
 Start
-  ↓
+↓
 Running
-  ↓
+↓
 Stop
-  ↓
+↓
 Exited
-  ↓
+↓
 Remove
-Một số lệnh thường sử dụng:
 
-docker create: Tạo Container nhưng chưa chạy.
-docker start: Khởi động Container.
-docker stop: Dừng Container.
-docker restart: Khởi động lại Container.
-docker rm: Xóa Container.
+**Một số lệnh thường sử dụng:**
 
-Lệnh docker run thường kết hợp quá trình tạo và khởi động Container.
+- `docker create`: Tạo Container nhưng chưa chạy.
+- `docker start`: Khởi động Container.
+- `docker stop`: Dừng Container.
+- `docker restart`: Khởi động lại Container.
+- `docker rm`: Xóa Container.
 
-2.4. Docker Networking và Storage
-a. Container Networking
+Lệnh `docker run` thường kết hợp quá trình tạo và khởi động Container.
+
+---
+
+### 2.4. Docker Networking và Storage
+
+#### a. Container Networking
 
 Đã tìm hiểu các loại Network phổ biến trong Docker và cách các Container giao tiếp với nhau.
 
 Docker Network cho phép các Container giao tiếp với nhau hoặc giao tiếp với bên ngoài.
 
-Một số loại Network phổ biến:
+**Một số loại Network phổ biến:**
 
-Bridge Network: Network mặc định và thường được sử dụng để kết nối các Container trên cùng một Docker Host.
-Host Network: Container sử dụng trực tiếp Network của Host.
-Overlay Network: Cho phép kết nối các Container trên nhiều Docker Host khác nhau.
+- **Bridge Network**: Network mặc định và thường được sử dụng để kết nối các Container trên cùng một Docker Host.
+- **Host Network**: Container sử dụng trực tiếp Network của Host.
+- **Overlay Network**: Cho phép kết nối các Container trên nhiều Docker Host khác nhau.
 
 Trong Docker Compose, các Service thường có thể giao tiếp với nhau thông qua tên Service thay vì sử dụng localhost.
 
-Ví dụ, nếu một ứng dụng Backend cần kết nối đến Database có tên Service là mysql, có thể sử dụng:
-
+Ví dụ, nếu một ứng dụng Backend cần kết nối đến Database có tên Service là `mysql`, có thể sử dụng:
 mysql:3306
 
-Thay vì:
 
+Thay vì:
 localhost:3306
+
 
 Điều này giúp các Container có thể giao tiếp với nhau trong cùng một Docker Network.
 
-b. Docker Storage
+#### b. Docker Storage
 
 Đã tìm hiểu các phương pháp lưu trữ dữ liệu trong Docker.
 
 Dữ liệu được lưu trực tiếp bên trong Container có thể bị mất khi Container bị xóa. Vì vậy, Docker cung cấp các cơ chế Storage để lưu trữ dữ liệu lâu dài.
 
-Các loại Storage phổ biến:
+**Các loại Storage phổ biến:**
 
-Bind Mount: Liên kết trực tiếp một thư mục hoặc file trên Host với thư mục trong Container.
-Docker Volume: Do Docker quản lý và thường được sử dụng để lưu trữ dữ liệu Persistent như Database.
-Tmpfs: Lưu dữ liệu trong bộ nhớ RAM, có tốc độ cao nhưng dữ liệu sẽ mất khi Container dừng.
+- **Bind Mount**: Liên kết trực tiếp một thư mục hoặc file trên Host với thư mục trong Container.
+- **Docker Volume**: Do Docker quản lý và thường được sử dụng để lưu trữ dữ liệu Persistent như Database.
+- **Tmpfs**: Lưu dữ liệu trong bộ nhớ RAM, có tốc độ cao nhưng dữ liệu sẽ mất khi Container dừng.
 
 Docker Volume thường được sử dụng cho các hệ thống Database vì giúp dữ liệu tồn tại độc lập với vòng đời của Container.
 
-2.5. Docker Compose
+---
+
+### 2.5. Docker Compose
 
 Đã tìm hiểu Docker Compose và cách sử dụng để quản lý các ứng dụng gồm nhiều Container.
 
-Docker Compose cho phép định nghĩa nhiều Service trong một file cấu hình thường có tên là docker-compose.yml.
+Docker Compose cho phép định nghĩa nhiều Service trong một file cấu hình thường có tên là `docker-compose.yml`.
 
 Một ứng dụng có thể bao gồm:
 
-Backend Application.
-Database.
-Redis.
-Message Queue.
+- Backend Application.
+- Database.
+- Redis.
+- Message Queue.
 
 Thay vì phải chạy từng Container riêng lẻ, Docker Compose cho phép quản lý toàn bộ hệ thống bằng các lệnh đơn giản.
 
-Một số lệnh phổ biến:
+**Một số lệnh phổ biến:**
 
-docker compose up: Khởi động các Service.
-docker compose down: Dừng và xóa các Container được tạo bởi Compose.
-docker compose build: Build các Docker Image.
-docker compose logs: Xem Log của các Service.
+- `docker compose up`: Khởi động các Service.
+- `docker compose down`: Dừng và xóa các Container được tạo bởi Compose.
+- `docker compose build`: Build các Docker Image.
+- `docker compose logs`: Xem Log của các Service.
 
 Docker Compose giúp đơn giản hóa việc triển khai và quản lý các ứng dụng Multi-container.
 
-3. Kết quả đạt được
+---
+
+## 3. Kết quả đạt được
 
 Sau khi hoàn thành tuần học thứ ba, đã đạt được các kết quả sau:
 
-Hiểu khái niệm Concurrency và vai trò của Thread trong Java.
-Nắm được vòng đời của Thread và các phương thức quản lý Thread.
-Hiểu cơ chế hoạt động và lợi ích của ThreadPool.
-Biết cách sử dụng ExecutorService để quản lý và thực thi các Task.
-Hiểu các vấn đề Race Condition và Thread Safety trong môi trường đa luồng.
-Nắm được các phương pháp Synchronization bằng synchronized, Lock và Atomic Classes.
-Hiểu cách sử dụng CompletableFuture để xử lý các tác vụ bất đồng bộ.
-Nắm được các khái niệm cơ bản của Reactive Programming.
-Hiểu sự khác biệt giữa Docker Container và Virtual Machine.
-Nắm được Docker Architecture và mối quan hệ giữa Docker Image và Container.
-Hiểu cách xây dựng Docker Image bằng Dockerfile.
-Nắm được cơ chế Image Layer và Layer Caching để tối ưu quá trình Build.
-Hiểu vòng đời của Container từ Create, Start, Stop đến Remove.
-Nắm được các loại Docker Network như Bridge, Host và Overlay.
-Hiểu sự khác biệt giữa Bind Mount, Docker Volume và Tmpfs.
-Biết cách sử dụng Docker Compose để quản lý các ứng dụng Multi-container.
-Xây dựng được nền tảng về lập trình đồng thời và triển khai ứng dụng bằng Container, tạo tiền đề để tiếp tục học các kiến thức về Backend Development, Spring Boot, Microservices và Cloud Deployment.
-4. Kế hoạch tuần 4
-Tuần 4: Spring Boot & REST API
-Yêu cầu Spring Boot
-Spring Framework và Dependency Injection.
-Inversion of Control (IoC) và Application Context.
-Spring Boot Auto-configuration và Starter Dependencies.
-Spring MVC và RESTful API.
-Controller, Service, Repository và Entity.
-Spring Data JPA và Hibernate.
-Yêu cầu REST API
-HTTP Methods và Status Codes.
-Request, Response và JSON.
-RESTful API Design.
-Exception Handling và Validation.
-Pagination và Sorting.
-API Documentation với Swagger/OpenAPI.
-```text
+- Hiểu khái niệm Concurrency và vai trò của Thread trong Java.
+- Nắm được vòng đời của Thread và các phương thức quản lý Thread.
+- Hiểu cơ chế hoạt động và lợi ích của ThreadPool.
+- Biết cách sử dụng ExecutorService để quản lý và thực thi các Task.
+- Hiểu các vấn đề Race Condition và Thread Safety trong môi trường đa luồng.
+- Nắm được các phương pháp Synchronization bằng synchronized, Lock và Atomic Classes.
+- Hiểu cách sử dụng CompletableFuture để xử lý các tác vụ bất đồng bộ.
+- Nắm được các khái niệm cơ bản của Reactive Programming.
+- Hiểu sự khác biệt giữa Docker Container và Virtual Machine.
+- Nắm được Docker Architecture và mối quan hệ giữa Docker Image và Container.
+- Hiểu cách xây dựng Docker Image bằng Dockerfile.
+- Nắm được cơ chế Image Layer và Layer Caching để tối ưu quá trình Build.
+- Hiểu vòng đời của Container từ Create, Start, Stop đến Remove.
+- Nắm được các loại Docker Network như Bridge, Host và Overlay.
+- Hiểu sự khác biệt giữa Bind Mount, Docker Volume và Tmpfs.
+- Biết cách sử dụng Docker Compose để quản lý các ứng dụng Multi-container.
+- Xây dựng được nền tảng về lập trình đồng thời và triển khai ứng dụng bằng Container, tạo tiền đề để tiếp tục học các kiến thức về Backend Development, Spring Boot, Microservices và Cloud Deployment.
+
+---
+
+## 4. Kế hoạch tuần 4
+
+### Tuần 4: Spring Boot & REST API
+
+#### Yêu cầu Spring Boot
+- Spring Framework và Dependency Injection.
+- Inversion of Control (IoC) và Application Context.
+- Spring Boot Auto-configuration và Starter Dependencies.
+- Spring MVC và RESTful API.
+- Controller, Service, Repository và Entity.
+- Spring Data JPA và Hibernate.
+
+#### Yêu cầu REST API
+- HTTP Methods và Status Codes.
+- Request, Response và JSON.
+- RESTful API Design.
+- Exception Handling và Validation.
+- Pagination và Sorting.
+- API Documentation với Swagger/OpenAPI.
