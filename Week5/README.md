@@ -921,37 +921,29 @@ Sau khi hoàn thành tuần học thứ năm, đã đạt được các kết qu
 
 ## 4. Kế hoạch tuần 6
 
-### Tuần 6: Microservices, Distributed Systems & Messaging
+###Yêu cầu ORM:###
 
-#### Yêu cầu Microservices
+- JPA/Hibernate fundamentals
+- Entity mapping và relationships
+- Repository pattern implementation
+- Query optimization và performance tuning
 
-* Microservices Architecture.
-* Monolithic vs Microservices.
-* Service Discovery.
-* API Gateway.
-* Inter-service Communication.
-* Synchronous vs Asynchronous Communication.
-* Circuit Breaker.
-* Retry và Timeout.
-* Distributed Tracing.
+###Lý thuyết về ORM:###
 
-#### Yêu cầu Messaging
+- **Hibernate Architecture**: SessionFactory, Session, Transaction
+- **Entity Lifecycle**: Transient, Persistent, Detached, Removed
+- **Lazy vs Eager Loading**: Performance implications và strategies
+- **N+1 Query Problem**: Detection và solutions (batch fetching, join fetching)
+- **Caching**: First-level, Second-level, Query cache
+- **Connection Pool Integration**: Hibernate + HikariCP configuration
+- **Transaction Management**: @Transactional, propagation, isolation
 
-* Message Queue và Event-driven Architecture.
-* Kafka.
-* Producer và Consumer.
-* Topic và Partition.
-* Consumer Group.
-* Offset Management.
-* Message Delivery Semantics.
-* At-least-once và Exactly-once Processing.
+###Lý thuyết về Connection Pool:###
 
-#### Yêu cầu Distributed Systems
-
-* Distributed System Fundamentals.
-* CAP Theorem.
-* Consistency Models.
-* Fault Tolerance.
-* Distributed Transactions.
-* Eventual Consistency.
-* Scalability và High Availability.
+- **HikariCP Configuration**: Pool sizing, connection timeout, idle timeout
+- **Pool Monitoring**: Connection leaks, performance metrics
+- **Deadlock Prevention**: `pool_size = Tn × (Cm - 1) + 1`
+    - Tn = Maximum threads
+    - Cm = Max connections per thread
+    - Formula ensures minimum pool size to avoid deadlock
+- **Performance Optimization**: `(core_count * 2) + effective_spindle_count`
