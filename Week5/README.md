@@ -921,14 +921,14 @@ Sau khi hoàn thành tuần học thứ năm, đã đạt được các kết qu
 
 ## 4. Kế hoạch tuần 6
 
-###Yêu cầu ORM:###
+**Yêu cầu ORM:**
 
 - JPA/Hibernate fundamentals
 - Entity mapping và relationships
 - Repository pattern implementation
 - Query optimization và performance tuning
 
-###Lý thuyết về ORM:###
+**Lý thuyết về ORM:**
 
 - **Hibernate Architecture**: SessionFactory, Session, Transaction
 - **Entity Lifecycle**: Transient, Persistent, Detached, Removed
@@ -938,7 +938,7 @@ Sau khi hoàn thành tuần học thứ năm, đã đạt được các kết qu
 - **Connection Pool Integration**: Hibernate + HikariCP configuration
 - **Transaction Management**: @Transactional, propagation, isolation
 
-###Lý thuyết về Connection Pool:###
+**Lý thuyết về Connection Pool:**
 
 - **HikariCP Configuration**: Pool sizing, connection timeout, idle timeout
 - **Pool Monitoring**: Connection leaks, performance metrics
