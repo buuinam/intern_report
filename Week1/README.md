@@ -283,25 +283,25 @@ Sau tuần đầu tiên, em đã:
 
 Trong tuần này, em vừa đọc lý thuyết vừa thực hành một số nội dung để trực tiếp quan sát cách kiến thức hoạt động trong thực tế.
 
-Java OOP: Em xây dựng chương trình quản lý nhân viên đơn giản để áp dụng 4 tính chất OOP. Em sử dụng Encapsulation với private, tạo class con để thực hành Inheritance, override phương thức để quan sát Polymorphism và sử dụng Abstract Class để hiểu Abstraction.
+- Java OOP: Em xây dựng chương trình quản lý nhân viên đơn giản để áp dụng 4 tính chất OOP. Em sử dụng Encapsulation với private, tạo class con để thực hành Inheritance, override phương thức để quan sát Polymorphism và sử dụng Abstract Class để hiểu Abstraction.
 
-SOLID, Interface và Static: Em thử tách một chương trình quản lý nhân viên thành các class có trách nhiệm riêng để áp dụng SOLID. Em cũng tạo Interface cho các phương thức thanh toán và thử sử dụng static variable, static method để hiểu cách chúng hoạt động ở cấp class.
+- SOLID, Interface và Static: Em thử tách một chương trình quản lý nhân viên thành các class có trách nhiệm riêng để áp dụng SOLID. Em cũng tạo Interface cho các phương thức thanh toán và thử sử dụng static variable, static method để hiểu cách chúng hoạt động ở cấp class.
 
-Collections: Em tạo danh sách nhân viên bằng ArrayList, HashSet và HashMap, thực hiện các thao tác thêm, xóa, tìm kiếm và kiểm tra dữ liệu. Em cũng thử ConcurrentHashMap để hiểu sự khác biệt giữa Collection thông thường và Thread-safe Collection.
+- Collections: Em tạo danh sách nhân viên bằng ArrayList, HashSet và HashMap, thực hiện các thao tác thêm, xóa, tìm kiếm và kiểm tra dữ liệu. Em cũng thử ConcurrentHashMap để hiểu sự khác biệt giữa Collection thông thường và Thread-safe Collection.
 
-Exception Handling: Em tạo các tình huống như chia cho 0 và nhập dữ liệu không hợp lệ, sau đó sử dụng try-catch-finally để xử lý lỗi. Em cũng thử tạo Custom Exception để xử lý một trường hợp nghiệp vụ riêng.
+- Exception Handling: Em tạo các tình huống như chia cho 0 và nhập dữ liệu không hợp lệ, sau đó sử dụng try-catch-finally để xử lý lỗi. Em cũng thử tạo Custom Exception để xử lý một trường hợp nghiệp vụ riêng.
 
-Linux File System & Permissions: Em thực hành tạo file, thư mục và sử dụng ls -l để quan sát quyền. Sau đó thử chmod, chown và umask để thấy sự thay đổi về quyền truy cập và quyền sở hữu.
+- Linux File System & Permissions: Em thực hành tạo file, thư mục và sử dụng ls -l để quan sát quyền. Sau đó thử chmod, chown và umask để thấy sự thay đổi về quyền truy cập và quyền sở hữu.
 
-Process Management: Em chạy một số chương trình ở foreground và background, sử dụng ps, top, jobs và htop để quan sát process. Em dùng kill để dừng process và thử nohup để chạy chương trình trong background.
+- Process Management: Em chạy một số chương trình ở foreground và background, sử dụng ps, top, jobs và htop để quan sát process. Em dùng kill để dừng process và thử nohup để chạy chương trình trong background.
 
-Text Processing: Em tạo file log mẫu và sử dụng grep, awk, cut, sort, uniq kết hợp với pipe | để tìm kiếm, lọc và xử lý dữ liệu.
+- Text Processing: Em tạo file log mẫu và sử dụng grep, awk, cut, sort, uniq kết hợp với pipe | để tìm kiếm, lọc và xử lý dữ liệu.
 
-Network & System Monitoring: Em sử dụng ss để kiểm tra port, curl để gửi HTTP request và wget để tải file. Đồng thời thực hành df, du, free và top để kiểm tra dung lượng ổ đĩa, RAM và CPU.
+- Network & System Monitoring: Em sử dụng ss để kiểm tra port, curl để gửi HTTP request và wget để tải file. Đồng thời thực hành df, du, free và top để kiểm tra dung lượng ổ đĩa, RAM và CPU.
 
-Shell Script: Em viết một script đơn giản để hiển thị thông tin hệ thống, thực hành biến, điều kiện, vòng lặp và tham số dòng lệnh. Em cũng tìm hiểu các environment variable như PATH và JAVA_HOME.
+- Shell Script: Em viết một script đơn giản để hiển thị thông tin hệ thống, thực hành biến, điều kiện, vòng lặp và tham số dòng lệnh. Em cũng tìm hiểu các environment variable như PATH và JAVA_HOME.
 
-Linux Theory: Em thực hành I/O Redirection với >, >>, 2> và pipe |, đồng thời tìm hiểu Process Lifecycle gồm fork(), exec(), wait() và Zombie Process. Em cũng sử dụng journalctl và /var/log để quan sát system logs.
+- Linux Theory: Em thực hành I/O Redirection với >, >>, 2> và pipe |, đồng thời tìm hiểu Process Lifecycle gồm fork(), exec(), wait() và Zombie Process. Em cũng sử dụng journalctl và /var/log để quan sát system logs.
 
 Qua các bài thực hành, em đã kiểm chứng được các kiến thức lý thuyết và bước đầu làm quen với cách sử dụng Java kết hợp cùng môi trường Linux trong công việc Backend.
 
