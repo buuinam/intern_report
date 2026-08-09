@@ -217,7 +217,7 @@ Sau khi hoàn thành tuần học thứ hai, em đã:
 - ✅ Xây dựng nền tảng về thiết kế phần mềm và kiểm thử để chuẩn bị học Spring Boot và các dự án Backend thực tế.
 
 ---
-#5. Thực hành
+# 5. Thực hành
 
 Trong tuần này, em vừa đọc lý thuyết vừa thực hành một số nội dung để quan sát trực tiếp cách Collections, Design Patterns và Testing hoạt động trong chương trình.
 
@@ -229,7 +229,7 @@ Trong tuần này, em vừa đọc lý thuyết vừa thực hành một số n�
 
 - Design Patterns: Em thực hành xây dựng các ví dụ nhỏ cho Singleton, Factory, Observer và Strategy. Ví dụ với Factory, em tạo các đối tượng thanh toán khác nhau thông qua Factory; với Strategy, em thay đổi các cách tính toán mà không cần sửa phần code sử dụng thuật toán.
 
-= Unit Testing: Em tạo một class xử lý các phép tính và viết Unit Test bằng JUnit 5 cho các trường hợp thông thường và trường hợp dữ liệu không hợp lệ. Em sử dụng các annotation như @Test, @BeforeEach và các assertion để kiểm tra kết quả.
+- Unit Testing: Em tạo một class xử lý các phép tính và viết Unit Test bằng JUnit 5 cho các trường hợp thông thường và trường hợp dữ liệu không hợp lệ. Em sử dụng các annotation như @Test, @BeforeEach và các assertion để kiểm tra kết quả.
 
 - Mocking: Em thử sử dụng Mockito để tạo Mock Object thay thế cho một dependency bên ngoài. Qua đó em có thể kiểm thử logic của Service mà không cần kết nối trực tiếp tới Database hoặc một service khác.
 
