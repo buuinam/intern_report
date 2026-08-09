@@ -338,8 +338,26 @@ Sau khi hoàn thành tuần học thứ ba, đã đạt được các kết qu�
 - Xây dựng được nền tảng về lập trình đồng thời và triển khai ứng dụng bằng Container, tạo tiền đề để tiếp tục học các kiến thức về Backend Development, Spring Boot, Microservices và Cloud Deployment.
 
 ---
+# 4. Thực hành
+Trong tuần này, em vừa đọc lý thuyết vừa thực hành một số nội dung để trực tiếp quan sát cách Concurrency và Docker hoạt động trong thực tế.
 
-## 4. Kế hoạch tuần 4
+- Thread & Thread Management: Em tạo một số Thread thực hiện các tác vụ khác nhau và sử dụng start(), sleep(), join() để quan sát cách Thread được tạo, chạy, tạm dừng và kết thúc. Qua đó em hiểu rõ hơn về Thread Lifecycle và cách quản lý Thread trong Java.
+
+- ThreadPool & ExecutorService: Em sử dụng ExecutorService với FixedThreadPool để thực hiện nhiều Task đồng thời. Em quan sát việc các Task được phân phối cho các Thread trong Pool và thử shutdown() sau khi hoàn thành công việc.
+
+- Synchronization & Thread Safety: Em tạo tình huống nhiều Thread cùng cập nhật một biến dùng chung để quan sát Race Condition. Sau đó em thử synchronized, Lock và AtomicInteger để so sánh kết quả trước và sau khi đồng bộ hóa dữ liệu.
+
+- CompletableFuture: Em thử thực hiện các Task bất đồng bộ bằng supplyAsync() và runAsync(), sau đó sử dụng thenApply() và thenCombine() để xử lý và kết hợp kết quả của nhiều Task. Qua đó em hiểu cách xây dựng một luồng xử lý bất đồng bộ mà không phải tự quản lý Thread.
+
+- Docker: Em thực hành tạo Docker Image từ Dockerfile với các Instruction như FROM, WORKDIR, COPY, RUN, CMD. Sau khi Build Image, em tạo và chạy Container rồi sử dụng các lệnh docker start, docker stop, docker restart và docker rm để quan sát Container Lifecycle.
+
+- Docker Networking & Storage: Em thử kết nối các Container thông qua Docker Network và tìm hiểu cách Container giao tiếp với nhau bằng tên Service thay vì localhost. Em cũng thử sử dụng Docker Volume để lưu dữ liệu nhằm đảm bảo dữ liệu không bị mất khi Container bị xóa.
+
+- Docker Compose: Em tạo file docker-compose.yml để chạy nhiều Service cùng lúc, ví dụ Backend và Database. Em thực hành các lệnh docker compose up, down, build và logs để quản lý toàn bộ hệ thống thay vì phải khởi động từng Container riêng lẻ.
+
+Qua các bài thực hành, em đã có thể kết hợp kiến thức Concurrency trong Java với Docker, đồng thời hiểu rõ hơn cách chạy, quản lý và kết nối các thành phần của một ứng dụng trong môi trường Container.
+
+## 5. Kế hoạch tuần 4
 
 ### Tuần 4: Spring Boot & REST API
 
