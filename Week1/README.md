@@ -279,7 +279,7 @@ Sau tuần đầu tiên, em đã:
 - ✅ Xây dựng nền tảng để học Spring Boot, Docker và MySQL.
 
 
-5. Thực hành
+# 5. Thực hành
 
 Trong tuần này, em vừa đọc lý thuyết vừa thực hành một số nội dung để trực tiếp quan sát cách kiến thức hoạt động trong thực tế.
 
