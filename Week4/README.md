@@ -531,7 +531,7 @@ Sau khi hoàn thành tuần học thứ tư, đã đạt được các kết qu�
 - Xây dựng được nền tảng về Database, Logging và High-performance I/O để tiếp tục phát triển các ứng dụng Backend có hiệu năng cao và khả năng mở rộng tốt.
 
 ---
-## 5. Thực hành
+## 4. Thực hành
 
 Trong tuần này, em vừa đọc lý thuyết vừa thực hành một số nội dung để trực tiếp quan sát cách Database, Logging và Java I/O hoạt động trong thực tế.
 
