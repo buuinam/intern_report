@@ -217,8 +217,29 @@ Sau khi hoàn thành tuần học thứ hai, em đã:
 - ✅ Xây dựng nền tảng về thiết kế phần mềm và kiểm thử để chuẩn bị học Spring Boot và các dự án Backend thực tế.
 
 ---
+#5. Thực hành
 
-# 5. Kế hoạch Tuần 3
+Trong tuần này, em vừa đọc lý thuyết vừa thực hành một số nội dung để quan sát trực tiếp cách Collections, Design Patterns và Testing hoạt động trong chương trình.
+
+- HashMap, HashSet và ArrayList: Em tạo chương trình quản lý danh sách nhân viên và thử lưu dữ liệu bằng ArrayList, HashMap và HashSet. Em thực hiện thêm, xóa, tìm kiếm và kiểm tra phần tử để quan sát sự khác nhau về cách sử dụng và hiệu năng của từng Collection.
+
+- HashCode và Equals: Em tạo class Employee và override equals() cùng hashCode(). Sau đó thêm các object vào HashSet và sử dụng làm key của HashMap để kiểm tra trường hợp hai object có cùng dữ liệu. Qua đó em hiểu rõ hơn vì sao equals() và hashCode() cần tuân theo contract.
+
+- Concurrent Collections: Em thử sử dụng ConcurrentHashMap với nhiều thread cùng đọc và ghi dữ liệu. Em quan sát cách Collection xử lý truy cập đồng thời và so sánh với Collection thông thường khi có nhiều thread cùng thao tác.
+
+- Design Patterns: Em thực hành xây dựng các ví dụ nhỏ cho Singleton, Factory, Observer và Strategy. Ví dụ với Factory, em tạo các đối tượng thanh toán khác nhau thông qua Factory; với Strategy, em thay đổi các cách tính toán mà không cần sửa phần code sử dụng thuật toán.
+
+= Unit Testing: Em tạo một class xử lý các phép tính và viết Unit Test bằng JUnit 5 cho các trường hợp thông thường và trường hợp dữ liệu không hợp lệ. Em sử dụng các annotation như @Test, @BeforeEach và các assertion để kiểm tra kết quả.
+
+- Mocking: Em thử sử dụng Mockito để tạo Mock Object thay thế cho một dependency bên ngoài. Qua đó em có thể kiểm thử logic của Service mà không cần kết nối trực tiếp tới Database hoặc một service khác.
+
+- Integration Testing: Em thực hành kiểm tra sự tương tác giữa nhiều thành phần thay vì chỉ kiểm tra từng method riêng lẻ. Qua đó em hiểu sự khác biệt giữa Unit Test và Integration Test và khi nào nên sử dụng từng loại.
+
+- Test Coverage: Em chạy test và quan sát báo cáo Coverage để xem những phần code nào đã được kiểm thử và phần nào chưa được kiểm thử. Từ kết quả đó, em bổ sung thêm test case cho những nhánh logic còn thiếu.
+
+Qua các bài thực hành, em đã hiểu rõ hơn cách lựa chọn Collection phù hợp, áp dụng Design Pattern vào những tình huống cụ thể và sử dụng Testing để kiểm tra chất lượng mã nguồn.
+
+# 6. Kế hoạch Tuần 3
 
 ## Concurrency
 
