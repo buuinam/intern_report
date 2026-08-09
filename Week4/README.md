@@ -531,8 +531,27 @@ Sau khi hoàn thành tuần học thứ tư, đã đạt được các kết qu�
 - Xây dựng được nền tảng về Database, Logging và High-performance I/O để tiếp tục phát triển các ứng dụng Backend có hiệu năng cao và khả năng mở rộng tốt.
 
 ---
+#5. Thực hành
 
-## 4. Kế hoạch tuần 5
+Trong tuần này, em vừa đọc lý thuyết vừa thực hành một số nội dung để trực tiếp quan sát cách Database, Logging và Java I/O hoạt động trong thực tế.
+
+- Database & SQL: Em tạo Database và một số bảng dữ liệu, thực hiện các câu lệnh SELECT, INSERT, UPDATE, DELETE và JOIN. Em sử dụng EXPLAIN trước và sau khi thêm Index để quan sát Execution Plan, số lượng Row được quét và cách Database sử dụng Index.
+
+- Normalization & Indexing: Em thử thiết kế bảng dữ liệu theo 1NF, 2NF và 3NF để giảm dữ liệu trùng lặp. Sau đó tạo Index trên các cột thường xuyên được sử dụng trong WHERE và JOIN, rồi kiểm tra sự thay đổi trong quá trình thực thi Query.
+
+- Transaction: Em thực hành một số Transaction gồm nhiều thao tác Database và thử COMMIT hoặc ROLLBACK để quan sát cách dữ liệu được thay đổi. Em cũng tìm hiểu các Isolation Level và các vấn đề như Dirty Read, Non-repeatable Read và Phantom Read.
+
+- Logging: Em tạo ứng dụng Java sử dụng SLF4J và Logback để ghi Log với các Level DEBUG, INFO, WARN và ERROR. Em thử ghi Log ra Console và File, đồng thời quan sát cách Rolling File Appender tạo File Log mới khi đạt điều kiện cấu hình.
+
+- Structured Logging: Em thử ghi Log dưới dạng Key-Value/JSON thay vì Text thông thường, bao gồm các thông tin như timestamp, level, service và userId. Qua đó em thấy việc chuẩn hóa Log giúp việc tìm kiếm và phân tích dữ liệu thuận tiện hơn.
+
+- Java I/O & NIO.2: Em thực hành đọc và ghi File bằng Java, sau đó tìm hiểu cách xử lý bất đồng bộ với AsynchronousFileChannel. Em so sánh Blocking I/O và Non-blocking I/O để hiểu sự khác biệt về cách Thread xử lý trong khi chờ thao tác I/O hoàn thành.
+
+- Event Loop & NIO Selector: Em tìm hiểu và thử mô phỏng mô hình Event Loop, đồng thời quan sát cách NIO Selector có thể quản lý nhiều Channel trên một Thread thay vì tạo một Thread riêng cho từng Connection.
+- Memory-mapped Files & Zero-copy: Em tìm hiểu cách Memory-mapped File cho phép truy cập dữ liệu thông qua vùng nhớ và nghiên cứu cơ chế Zero-copy, đặc biệt là sendfile(), để hiểu cách giảm số lần Copy dữ liệu và cải thiện hiệu năng I/O.
+
+Qua các bài thực hành, em đã có cơ hội kiểm chứng lại kiến thức lý thuyết và hiểu rõ hơn mối liên hệ giữa Database, Logging và I/O trong việc xây dựng ứng dụng Backend có hiệu năng và khả năng theo dõi tốt.
+## 5. Kế hoạch tuần 5
 
 ### Tuần 5: Spring Boot, REST API & Database Integration
 
