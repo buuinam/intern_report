@@ -1,151 +1,253 @@
-# BÁO CÁO THỰC TẬP TUẦN 6
+# 📘 BÁO CÁO THỰC TẬP TUẦN 6
 
-## Chủ đề: ORM & Connection Pool
+## Thông tin
 
-**Intern:** Bùi Văn Nam
-**Team:** Platform - Adtech
-**Gmail:** [buivannam13032004@gmail.com](mailto:buivannam13032004@gmail.com)
-**Leader:** Nguyễn Văn Cương
-
----
-
-## 1. Mục tiêu tuần
-
-Trong tuần thứ sáu, theo roadmap mục tiêu là tìm hiểu các kiến thức về **ORM (Object-Relational Mapping)** và **Connection Pool** trong Java Backend.
-
-Nội dung học tập tập trung vào JPA/Hibernate Fundamentals, Entity Mapping và Relationships, Repository Pattern và các phương pháp Query Optimization, Performance Tuning.
-
-Đối với ORM, đã tìm hiểu kiến trúc Hibernate với các thành phần SessionFactory, Session và Transaction. Bên cạnh đó, nghiên cứu Entity Lifecycle gồm Transient, Persistent, Detached và Removed, cũng như sự khác biệt giữa Lazy Loading và Eager Loading.
-
-Ngoài ra, đã tìm hiểu vấn đề **N+1 Query Problem**, các phương pháp phát hiện và xử lý như Batch Fetching và Join Fetching. Đồng thời tìm hiểu các cơ chế Caching trong Hibernate gồm First-level Cache, Second-level Cache và Query Cache.
-
-Đối với Connection Pool, đã tìm hiểu cách Hibernate tích hợp với HikariCP, các cấu hình Pool Size, Connection Timeout và Idle Timeout. Bên cạnh đó, nghiên cứu Connection Leak, Pool Monitoring, Deadlock Prevention và các công thức lựa chọn Connection Pool Size phù hợp với hệ thống.
-
-### Lịch học Tuần 6
-
-| **Ngày** | **Nội dung học**                                    | **Kết quả đạt được**                                                                             |
-| -------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| Thứ 2    | JPA/Hibernate Fundamentals & Hibernate Architecture | Hiểu ORM, JPA/Hibernate và kiến trúc SessionFactory, Session, Transaction.                       |
-| Thứ 3    | Entity Mapping, Relationships & Entity Lifecycle    | Hiểu Entity Mapping, các Relationship và vòng đời Entity.                                        |
-| Thứ 4    | Lazy/Eager Loading, N+1 Query & Query Optimization  | Hiểu Loading Strategies, N+1 Query Problem và các phương pháp tối ưu Query.                      |
-| Thứ 5    | Hibernate Caching & Transaction Management          | Hiểu First-level, Second-level, Query Cache và `@Transactional`.                                 |
-| Thứ 6    | HikariCP & Connection Pool Optimization             | Hiểu Connection Pool Configuration, Monitoring, Deadlock Prevention và Performance Optimization. |
+* **Chủ đề:** ORM - JPA, Hibernate & Connection Pool
+* **Intern:** Bùi Văn Nam
+* **Team:** Platform - Adtech
+* **Gmail:** [buivannam13032004@gmail.com](mailto:buivannam13032004@gmail.com)
+* **Leader:** Nguyễn Văn Cương
 
 ---
 
-## 2. Chi tiết nội dung đã học
+# 1. Mục tiêu tuần
 
-## 2.1. ORM và JPA/Hibernate
+Trong tuần thứ sáu, theo roadmap, nội dung tập trung vào **ORM (Object-Relational Mapping)** với hai công nghệ chính là **JPA và Hibernate**.
 
-### a. ORM Fundamentals
+Mục tiêu là hiểu cách ánh xạ các Object trong Java với dữ liệu được lưu trữ trong Database, cách xây dựng Entity, Mapping Relationships và sử dụng Repository Pattern trong ứng dụng Backend.
 
-Đã tìm hiểu về ORM (Object-Relational Mapping) và vai trò của ORM trong các ứng dụng Java Backend.
+Bên cạnh đó, em tìm hiểu sâu hơn về kiến trúc Hibernate, Entity Lifecycle, Lazy Loading và Eager Loading, vấn đề N+1 Query, Caching, Transaction Management và tối ưu hóa Query.
 
-ORM là kỹ thuật ánh xạ các Object trong Application với các Table trong Relational Database.
+Một nội dung quan trọng khác trong tuần là **Connection Pool**, tập trung tìm hiểu HikariCP - Connection Pool phổ biến trong các ứng dụng Spring Boot.
 
-Thay vì trực tiếp thực hiện SQL cho từng thao tác Database, Developer có thể thao tác thông qua các Java Object và ORM Framework.
+Các nội dung chính:
 
-Mô hình cơ bản:
+* JPA/Hibernate Fundamentals.
+* Entity Mapping.
+* Entity Relationships.
+* Repository Pattern.
+* Hibernate Architecture.
+* Entity Lifecycle.
+* Lazy Loading và Eager Loading.
+* N+1 Query Problem.
+* Query Optimization.
+* First-level và Second-level Cache.
+* Transaction Management.
+* HikariCP.
+* Connection Pool Sizing.
+* Connection Leak.
+* Deadlock Prevention.
+* Connection Pool Performance.
+
+Mục tiêu chung là hiểu được quá trình từ **Java Object → ORM → SQL → Database** và biết cách tối ưu việc truy cập Database trong ứng dụng Backend.
+
+---
+
+# 2. Lịch học Tuần 6
+
+| Ngày      | Nội dung học                         | Kết quả đạt được                                                               |
+| --------- | ------------------------------------ | ------------------------------------------------------------------------------ |
+| **Thứ 2** | JPA & Hibernate Fundamentals         | Hiểu ORM, JPA và vai trò của Hibernate.                                        |
+| **Thứ 3** | Entity Mapping & Relationships       | Hiểu Entity và các quan hệ One-to-One, One-to-Many, Many-to-One, Many-to-Many. |
+| **Thứ 4** | Entity Lifecycle & Repository        | Hiểu Lifecycle của Entity và Repository Pattern.                               |
+| **Thứ 5** | Query Optimization, Lazy/Eager & N+1 | Biết các vấn đề Performance khi sử dụng ORM và cách tối ưu Query.              |
+| **Thứ 6** | Caching, Transaction & HikariCP      | Hiểu Cache, Transaction Management và Connection Pool.                         |
+
+---
+
+# 3. Tổng quan về ORM
+
+## 3.1. ORM là gì?
+
+ORM là viết tắt của **Object-Relational Mapping**, là kỹ thuật ánh xạ giữa Object trong ứng dụng và dữ liệu trong Relational Database.
+
+Trong Java:
 
 ```text
 Java Object
-    |
-    | ORM
-    v
-Database Table
+     |
+     ↓
+    ORM
+     |
+     ↓
+Relational Database
 ```
 
-Ví dụ:
+Ví dụ một Java Class:
+
+```java
+public class User {
+    private Long id;
+    private String name;
+    private String email;
+}
+```
+
+Có thể được ánh xạ với Database Table:
 
 ```text
-User Object
-    |
-    v
-users Table
-
-User.id       → users.id
-User.name     → users.name
-User.email    → users.email
+users
+--------------------------------
+id | name | email
+--------------------------------
+1  | Nam  | nam@example.com
 ```
 
-Một số lợi ích của ORM:
-
-* Giảm lượng SQL phải viết thủ công.
-* Mapping Object với Database.
-* Hỗ trợ quản lý Relationship giữa các Entity.
-* Hỗ trợ Transaction Management.
-* Hỗ trợ Caching.
-* Tăng khả năng tái sử dụng Code.
-
-### b. JPA và Hibernate
-
-Đã tìm hiểu sự khác biệt giữa JPA và Hibernate.
-
-**JPA (Jakarta Persistence API)** là Specification cung cấp các chuẩn để thực hiện ORM trong Java.
-
-**Hibernate** là một ORM Framework triển khai JPA và cung cấp thêm nhiều tính năng mở rộng.
-
-Mối quan hệ:
-
-```text
-JPA
- |
- | Specification
- v
-Hibernate
- |
- | Implementation
- v
-Database
-```
-
-Một số Annotation thường sử dụng:
-
-* `@Entity`
-* `@Table`
-* `@Id`
-* `@GeneratedValue`
-* `@Column`
-* `@OneToOne`
-* `@OneToMany`
-* `@ManyToOne`
-* `@ManyToMany`
+ORM giúp Developer thao tác với Database thông qua Object thay vì phải viết SQL cho mọi thao tác CRUD.
 
 ---
 
-## 2.2. Hibernate Architecture
+# 3.2. Lợi ích của ORM
 
-### a. SessionFactory
+Một số lợi ích:
 
-Đã tìm hiểu về `SessionFactory` trong Hibernate Architecture.
+* Giảm lượng SQL phải viết thủ công.
+* Mapping Object với Database.
+* Hỗ trợ CRUD.
+* Quản lý Relationship giữa các Entity.
+* Hỗ trợ Transaction.
+* Hỗ trợ Caching.
+* Tăng khả năng tái sử dụng code.
+* Tích hợp tốt với Spring Boot.
 
-`SessionFactory` là thành phần được sử dụng để tạo và quản lý các `Session`.
+Tuy nhiên, ORM không có nghĩa là Developer không cần biết SQL.
 
-Đặc điểm:
+Việc hiểu SQL vẫn rất quan trọng để:
 
-* Thường được tạo một lần trong Application.
-* Thread-safe.
-* Có thể được sử dụng bởi nhiều Thread.
-* Quản lý Metadata và Configuration của Hibernate.
+* Phân tích Query.
+* Tối ưu Performance.
+* Phát hiện N+1 Query.
+* Kiểm tra Index.
+* Phân tích Execution Plan.
+
+---
+
+# 4. JPA
+
+## 4.1. JPA là gì?
+
+JPA là viết tắt của **Jakarta Persistence API**.
+
+JPA là một Specification định nghĩa cách Java Application tương tác với Relational Database thông qua ORM.
+
+JPA cung cấp các khái niệm:
+
+* Entity.
+* EntityManager.
+* Persistence Context.
+* Relationship Mapping.
+* JPQL.
+* Transaction.
+
+JPA không phải là một ORM Implementation cụ thể.
+
+Một số Implementation:
+
+* Hibernate.
+* EclipseLink.
+* OpenJPA.
+
+Trong Spring Boot, Hibernate thường được sử dụng làm JPA Provider.
+
+---
+
+# 4.2. Hibernate
+
+Hibernate là một ORM Framework phổ biến trong Java và là một JPA Implementation.
 
 Mô hình:
 
 ```text
 Application
      |
-     v
-SessionFactory
+     ↓
+Spring Data JPA
      |
-     +---- Session
+     ↓
+JPA
      |
-     +---- Session
+     ↓
+Hibernate
      |
-     +---- Session
+     ↓
+JDBC
+     |
+     ↓
+Database
 ```
 
-### b. Session
+Hibernate chịu trách nhiệm chuyển đổi các thao tác trên Java Object thành SQL tương ứng.
 
-`Session` đại diện cho một phiên làm việc giữa Application và Database.
+---
+
+# 5. Hibernate Architecture
+
+Kiến trúc Hibernate có thể hình dung:
+
+```text
+┌──────────────────────────┐
+│      Java Application    │
+└────────────┬─────────────┘
+             ↓
+┌──────────────────────────┐
+│         JPA API          │
+└────────────┬─────────────┘
+             ↓
+┌──────────────────────────┐
+│        Hibernate         │
+│      ORM Framework       │
+└────────────┬─────────────┘
+             ↓
+┌──────────────────────────┐
+│           JDBC           │
+└────────────┬─────────────┘
+             ↓
+┌──────────────────────────┐
+│         Database         │
+└──────────────────────────┘
+```
+
+Các thành phần quan trọng:
+
+* SessionFactory.
+* Session.
+* Transaction.
+* Persistence Context.
+* Entity.
+
+---
+
+# 5.1. SessionFactory
+
+`SessionFactory` là đối tượng chịu trách nhiệm tạo Hibernate Session.
+
+Đặc điểm:
+
+* Được tạo một lần trong Application.
+* Thread-safe.
+* Có chi phí khởi tạo tương đối cao.
+* Được sử dụng xuyên suốt vòng đời Application.
+
+Mô hình:
+
+```text
+Application
+     |
+     ↓
+SessionFactory
+     |
+     ├── Session
+     ├── Session
+     └── Session
+```
+
+Trong Spring Boot, phần lớn việc quản lý các thành phần này được Framework thực hiện tự động.
+
+---
+
+# 5.2. Session
+
+`Session` đại diện cho một đơn vị làm việc với Database trong Hibernate.
 
 Session được sử dụng để:
 
@@ -155,53 +257,64 @@ Session được sử dụng để:
 * Delete Entity.
 * Execute Query.
 
-Thông thường mỗi Database Operation hoặc Transaction sẽ sử dụng một Session phù hợp với Lifecycle của Operation.
-
-### c. Transaction
-
-Transaction đảm bảo một nhóm các Database Operation được thực hiện theo một đơn vị logic.
-
-Ví dụ:
+Có thể hình dung:
 
 ```text
-Transaction
+Session
    |
-   +---- Insert Order
-   |
-   +---- Insert Order Detail
-   |
-   +---- Update Product Stock
-   |
-   v
-Commit
+   ├── Load
+   ├── Save
+   ├── Update
+   └── Delete
 ```
 
-Nếu xảy ra lỗi:
-
-```text
-Transaction
-   |
-   +---- Operation 1
-   +---- Operation 2
-   +---- Error
-          |
-          v
-       Rollback
-```
-
-Transaction giúp đảm bảo tính nhất quán của dữ liệu.
+Session không nên được dùng chung tùy tiện giữa nhiều Thread.
 
 ---
 
-## 2.3. Entity Mapping
+# 5.3. Transaction
 
-### a. Entity
-
-Đã tìm hiểu cách Mapping Java Class với Database Table thông qua `@Entity`.
+Transaction đảm bảo một nhóm thao tác Database được thực hiện như một đơn vị logic.
 
 Ví dụ:
 
-```java id="h6r1zw"
+```text
+Transfer Money
+      |
+      ├── Debit Account A
+      |
+      └── Credit Account B
+```
+
+Nếu một thao tác thất bại:
+
+```text
+ROLLBACK
+```
+
+Nếu tất cả thành công:
+
+```text
+COMMIT
+```
+
+Trong Spring có thể sử dụng:
+
+```java
+@Transactional
+```
+
+để quản lý Transaction.
+
+---
+
+# 6. Entity
+
+Entity là Java Object được ánh xạ với Database Table.
+
+Ví dụ:
+
+```java
 @Entity
 @Table(name = "users")
 public class User {
@@ -216,243 +329,438 @@ public class User {
 }
 ```
 
-Trong ví dụ trên:
+Trong đó:
 
-* `User` là Entity.
-* `users` là Database Table.
-* `id` là Primary Key.
-* Các Field được Mapping với các Column tương ứng.
+* `@Entity`: Đánh dấu Class là Entity.
+* `@Table`: Xác định Table.
+* `@Id`: Xác định Primary Key.
+* `@GeneratedValue`: Cấu hình cách tạo ID.
 
-### b. Relationships
+---
 
-Đã tìm hiểu các Relationship phổ biến trong JPA/Hibernate:
+# 6.1. Entity Mapping
+
+Một Entity có thể ánh xạ:
+
+```text
+Java Class
+     ↓
+Database Table
+
+Java Field
+     ↓
+Database Column
+```
+
+Ví dụ:
+
+```text
+User.id
+    ↓
+users.id
+
+User.name
+    ↓
+users.name
+
+User.email
+    ↓
+users.email
+```
+
+Có thể sử dụng:
+
+* `@Column`
+* `@Id`
+* `@GeneratedValue`
+* `@Enumerated`
+* `@Temporal` hoặc các kiểu Date/Time phù hợp.
+
+---
+
+# 7. Entity Relationships
+
+Database thường chứa nhiều Table có quan hệ với nhau.
+
+Các loại Relationship:
 
 * One-to-One.
 * One-to-Many.
 * Many-to-One.
 * Many-to-Many.
 
+---
+
+# 7.1. One-to-One
+
+Một Entity liên kết với một Entity khác.
+
 Ví dụ:
 
 ```text
 User
- |
- | 1
- |
- | *
- v
-Order
+  |
+  | 1 - 1
+  |
+Profile
 ```
 
-Một User có thể có nhiều Order.
+Một User có một Profile.
 
-Trong JPA có thể Mapping:
+Trong JPA:
 
-```java id="apx7c1"
-@OneToMany(mappedBy = "user")
+```java
+@OneToOne
+private Profile profile;
+```
+
+---
+
+# 7.2. One-to-Many
+
+Một Entity có nhiều Entity khác.
+
+Ví dụ:
+
+```text
+Customer
+   |
+   ├── Order
+   ├── Order
+   └── Order
+```
+
+Một Customer có nhiều Order.
+
+```java
+@OneToMany
 private List<Order> orders;
 ```
 
-Relationship Mapping giúp Hibernate quản lý mối quan hệ giữa các Entity và Database Table.
+---
 
-### c. Repository Pattern
+# 7.3. Many-to-One
 
-Đã tìm hiểu Repository Pattern và cách sử dụng Repository trong Spring Data JPA.
+Nhiều Entity cùng thuộc về một Entity khác.
 
-Repository chịu trách nhiệm giao tiếp với Database và tách Database Access Logic khỏi Business Logic.
+Ví dụ:
+
+```text
+Order ─────┐
+Order ─────┼──→ Customer
+Order ─────┘
+```
+
+Trong JPA:
+
+```java
+@ManyToOne
+private Customer customer;
+```
+
+Trong thực tế, `ManyToOne` thường được sử dụng cùng với Foreign Key.
+
+---
+
+# 7.4. Many-to-Many
+
+Một Entity có thể liên kết với nhiều Entity khác và ngược lại.
+
+Ví dụ:
+
+```text
+Student
+  ↕
+Course
+```
+
+Một Student học nhiều Course và một Course có nhiều Student.
+
+JPA:
+
+```java
+@ManyToMany
+private Set<Course> courses;
+```
+
+Quan hệ Many-to-Many thường được triển khai thông qua một Join Table.
+
+Ví dụ:
+
+```text
+student_course
+---------------------
+student_id
+course_id
+```
+
+---
+
+# 8. Repository Pattern
+
+Repository Pattern tạo ra một lớp abstraction giữa Business Logic và Data Access Layer.
 
 Mô hình:
 
 ```text
 Controller
     |
-    v
+    ↓
 Service
     |
-    v
+    ↓
 Repository
     |
-    v
+    ↓
 Hibernate
     |
-    v
+    ↓
 Database
 ```
 
-Ví dụ:
+Trong Spring Data JPA có thể tạo:
 
-```java id="j8f7os"
-@Repository
+```java
 public interface UserRepository
         extends JpaRepository<User, Long> {
-
-    Optional<User> findByEmail(String email);
 }
 ```
 
-Spring Data JPA có thể tự động tạo implementation cho các Repository Interface.
+Spring Data JPA có thể tự cung cấp các thao tác:
+
+* `save()`
+* `findById()`
+* `findAll()`
+* `deleteById()`
+* `existsById()`
+
+Điều này giúp giảm Boilerplate Code.
 
 ---
 
-## 2.4. Entity Lifecycle
+# 9. Entity Lifecycle
 
-Đã tìm hiểu Entity Lifecycle trong Hibernate.
-
-Một Entity có thể trải qua các trạng thái:
+Entity trong Hibernate có các trạng thái chính:
 
 ```text
 Transient
-    |
-    v
+    ↓
 Persistent
-    |
-    v
+    ↓
 Detached
-    |
-    v
+    ↓
 Removed
 ```
-
-### a. Transient
-
-Entity vừa được tạo bằng `new` nhưng chưa được Hibernate quản lý.
-
-```java id="0e7y7k"
-User user = new User();
-user.setName("Nam");
-```
-
-Entity lúc này chưa được liên kết với Persistence Context.
-
-### b. Persistent
-
-Entity được Hibernate quản lý bởi Persistence Context.
-
-Ví dụ sau khi Entity được `persist` hoặc được Load từ Database, Entity có thể ở trạng thái Persistent.
-
-```text id="r0w7q3"
-Persistence Context
-        |
-        v
-     Entity
-```
-
-Các thay đổi trên Persistent Entity có thể được Hibernate theo dõi và đồng bộ xuống Database.
-
-### c. Detached
-
-Entity đã từng được quản lý bởi Persistence Context nhưng không còn được quản lý nữa.
-
-```text id="bq7y1j"
-Persistent
-    |
-    | Session closed
-    v
-Detached
-```
-
-### d. Removed
-
-Entity được đánh dấu để xóa khỏi Database.
-
-```text id="b9z1fu"
-Persistent
-    |
-    | remove()
-    v
-Removed
-```
-
-Entity sẽ được xóa khi Transaction được Flush/Commit phù hợp.
 
 ---
 
-## 2.5. Lazy Loading và Eager Loading
+# 9.1. Transient
 
-### a. Lazy Loading
+Object vừa được tạo bằng `new` nhưng chưa được Hibernate quản lý.
 
-Lazy Loading chỉ tải dữ liệu Relationship khi dữ liệu thực sự được truy cập.
+```java
+User user = new User();
+```
+
+Lúc này:
+
+```text
+Java Object
+    ↓
+Transient
+```
+
+Entity chưa thuộc Persistence Context.
+
+---
+
+# 9.2. Persistent
+
+Entity được Hibernate quản lý bởi Persistence Context.
+
+Ví dụ sau khi Entity được Persist:
+
+```text
+Entity
+  ↓
+Persistence Context
+  ↓
+Persistent
+```
+
+Hibernate có thể theo dõi thay đổi của Entity.
+
+---
+
+# 9.3. Detached
+
+Entity từng được quản lý bởi Persistence Context nhưng hiện tại không còn được quản lý.
+
+Ví dụ khi Persistence Context kết thúc:
+
+```text
+Persistent
+    ↓
+Session closed
+    ↓
+Detached
+```
+
+Các thay đổi trên Detached Entity không tự động được đồng bộ với Database.
+
+---
+
+# 9.4. Removed
+
+Entity được đánh dấu để xóa khỏi Database.
+
+```text
+Persistent
+    ↓
+remove()
+    ↓
+Removed
+    ↓
+DELETE
+```
+
+---
+
+# 10. Persistence Context
+
+Persistence Context là vùng quản lý các Entity đang được Hibernate theo dõi.
+
+Có thể hình dung:
+
+```text
+Persistence Context
+┌──────────────────────┐
+│ User #1              │
+│ User #2              │
+│ Order #10            │
+│ Order #11            │
+└──────────────────────┘
+```
+
+Hibernate có thể biết Entity nào đang được quản lý và phát hiện thay đổi.
 
 Ví dụ:
 
-```text id="m3x0ms"
-Load User
-    |
-    v
-User loaded
-    |
-    | Access orders
-    v
-Load Orders
+```java
+user.setName("Nam");
 ```
+
+Nếu `user` đang Persistent, Hibernate có thể phát hiện thay đổi và tạo SQL `UPDATE` khi Transaction Commit.
+
+Cơ chế này được gọi là **Dirty Checking**.
+
+---
+
+# 11. Lazy Loading và Eager Loading
+
+Một vấn đề quan trọng trong ORM là thời điểm Load Relationship.
+
+Có hai chiến lược:
+
+* Lazy Loading.
+* Eager Loading.
+
+---
+
+# 11.1. Lazy Loading
+
+Lazy Loading chỉ tải Relationship khi dữ liệu thực sự được truy cập.
+
+Ví dụ:
+
+```text
+User
+  |
+  └── orders
+```
+
+Khi load User:
+
+```text
+SELECT user
+```
+
+Chưa nhất thiết load Orders.
+
+Khi gọi:
+
+```java
+user.getOrders();
+```
+
+Hibernate mới thực hiện Query lấy Orders.
 
 Ưu điểm:
 
-* Giảm dữ liệu được Load ban đầu.
-* Giảm thời gian Query ban đầu.
-* Tiết kiệm Memory.
+* Giảm dữ liệu load không cần thiết.
+* Giảm số lượng dữ liệu ban đầu.
 
 Nhược điểm:
 
 * Có thể phát sinh nhiều Query.
-* Có thể dẫn đến N+1 Query Problem.
-* Có thể gặp lỗi khi truy cập Lazy Relationship ngoài Persistence Context.
-
-### b. Eager Loading
-
-Eager Loading tải Relationship ngay khi Entity được Load.
-
-```text id="k9x8cn"
-Load User
-    |
-    +---- Load User
-    |
-    +---- Load Orders
-```
-
-Ưu điểm:
-
-* Dữ liệu Relationship có sẵn ngay.
-* Tránh một số vấn đề liên quan đến Lazy Loading.
-
-Nhược điểm:
-
-* Có thể Load nhiều dữ liệu không cần thiết.
-* Tăng thời gian Query.
-* Tăng Memory Usage.
-
-### c. So sánh
-
-| Đặc điểm        | Lazy Loading           | Eager Loading                  |
-| --------------- | ---------------------- | ------------------------------ |
-| Load dữ liệu    | Khi cần                | Ngay lập tức                   |
-| Initial Query   | Nhẹ hơn                | Nặng hơn                       |
-| Memory          | Thấp hơn               | Cao hơn                        |
-| Query phát sinh | Có thể nhiều           | Thường ít hơn                  |
-| Performance     | Tốt nếu sử dụng hợp lý | Có thể giảm nếu Load quá nhiều |
-
-Việc lựa chọn Lazy hoặc Eager Loading cần dựa trên Use Case và cách Application truy cập dữ liệu.
+* Có thể gây N+1 Query.
+* Có thể gặp LazyInitializationException nếu truy cập ngoài Persistence Context phù hợp.
 
 ---
 
-## 2.6. N+1 Query Problem
+# 11.2. Eager Loading
 
-### a. Khái niệm
-
-Đã tìm hiểu N+1 Query Problem, một vấn đề phổ biến khi sử dụng ORM.
-
-N+1 xảy ra khi Application thực hiện:
-
-* 1 Query để lấy danh sách Entity.
-* N Query tiếp theo để lấy Relationship của từng Entity.
+Eager Loading tải Relationship ngay khi Entity được load.
 
 Ví dụ:
 
 ```text
-1 Query:
+SELECT User
++
+SELECT Orders
+```
+
+Ưu điểm:
+
+* Dữ liệu Relationship có sẵn.
+* Tránh một số vấn đề Lazy Loading.
+
+Nhược điểm:
+
+* Có thể load dữ liệu không cần thiết.
+* Tăng Memory Usage.
+* Query có thể phức tạp.
+* Có thể gây Performance Problem.
+
+Do đó không nên sử dụng Eager Loading một cách tùy tiện.
+
+---
+
+# 12. N+1 Query Problem
+
+N+1 Query là một trong những vấn đề Performance phổ biến khi sử dụng ORM.
+
+Ví dụ có:
+
+```text
+1 Query lấy Users
+
++
+
+N Query lấy Orders của từng User
+```
+
+Tổng cộng:
+
+```text
+1 + N Queries
+```
+
+Ví dụ:
+
+```text
 SELECT * FROM users;
 
-N Query:
 SELECT * FROM orders WHERE user_id = 1;
 SELECT * FROM orders WHERE user_id = 2;
 SELECT * FROM orders WHERE user_id = 3;
@@ -465,461 +773,483 @@ Nếu có 100 User:
 1 + 100 = 101 Queries
 ```
 
-Điều này có thể làm giảm Performance đáng kể.
+Điều này có thể gây Performance Problem nghiêm trọng.
 
-### b. Detection
+---
 
-Có thể phát hiện N+1 Query thông qua:
+# 12.1. Phát hiện N+1
+
+Có thể phát hiện thông qua:
 
 * SQL Logs.
 * Hibernate Statistics.
-* Application Monitoring.
-* Database Monitoring.
-* Kiểm tra số lượng Query được thực hiện trong một Request.
+* Monitoring.
+* Database Performance Tools.
+* Profiling.
 
-Ví dụ:
-
-```text
-Expected:
-1 - 2 Queries
-
-Actual:
-101 Queries
-```
-
-### c. Join Fetching
-
-Một phương pháp xử lý N+1 là sử dụng Join Fetch.
-
-Ví dụ:
-
-```java id="5ob1es"
-@Query("""
-    SELECT u
-    FROM User u
-    JOIN FETCH u.orders
-""")
-List<User> findUsersWithOrders();
-```
-
-Thay vì thực hiện nhiều Query, Hibernate có thể lấy User và Orders trong cùng một Query phù hợp.
+Ví dụ Log:
 
 ```text
-User + Orders
-      |
-      v
-   JOIN FETCH
-      |
-      v
-  Database
+SELECT users...
+SELECT orders WHERE user_id = 1
+SELECT orders WHERE user_id = 2
+SELECT orders WHERE user_id = 3
+...
 ```
 
-### d. Batch Fetching
-
-Một phương pháp khác là sử dụng Batch Fetching để giảm số lượng Query.
-
-Thay vì:
-
-```text
-User 1 → Query
-User 2 → Query
-User 3 → Query
-User 4 → Query
-```
-
-có thể gom nhiều Entity vào Batch:
-
-```text
-Batch
- |
- +---- User 1
- +---- User 2
- +---- User 3
- +---- User 4
-```
-
-Batch Fetching giúp giảm số lượng Database Round-trip và cải thiện Performance.
+Nếu thấy nhiều Query tương tự nhau được thực hiện lặp lại, cần kiểm tra khả năng N+1.
 
 ---
 
-## 2.7. Hibernate Caching
+# 12.2. Giải pháp N+1
 
-Đã tìm hiểu các cơ chế Caching trong Hibernate.
+Một số giải pháp:
 
-Các loại Cache chính:
+* Join Fetch.
+* Entity Graph.
+* Batch Fetching.
+* DTO Projection.
+* Query tối ưu.
 
-* First-level Cache.
-* Second-level Cache.
-* Query Cache.
+---
 
-### a. First-level Cache
+## Join Fetch
 
-First-level Cache nằm trong Persistence Context của một `Session`.
+JPQL có thể sử dụng:
+
+```sql
+SELECT u
+FROM User u
+JOIN FETCH u.orders
+```
+
+Mục tiêu là lấy User và Relationship trong một Query phù hợp.
+
+---
+
+## Batch Fetching
+
+Hibernate có thể nhóm các Entity cần load thành Batch thay vì Query từng Entity.
+
+Ví dụ:
+
+```text
+Load Order 1
+Load Order 2
+Load Order 3
+...
+```
+
+Có thể được tối ưu thành:
+
+```text
+WHERE user_id IN (1, 2, 3, ...)
+```
+
+Giảm số lượng Query.
+
+---
+
+# 13. Query Optimization
+
+ORM giúp giảm lượng SQL thủ công nhưng không đảm bảo Query luôn tối ưu.
+
+Một số nguyên tắc:
+
+* Tránh N+1.
+* Chỉ lấy Column cần thiết.
+* Sử dụng Pagination.
+* Sử dụng Index phù hợp.
+* Tối ưu JOIN.
+* Sử dụng DTO Projection khi phù hợp.
+* Kiểm tra SQL được Hibernate sinh ra.
+* Sử dụng `EXPLAIN` để phân tích Query.
+* Tránh Fetch quá nhiều Relationship cùng lúc.
+
+---
+
+# 13.1. Pagination
+
+Khi có hàng triệu bản ghi, không nên load toàn bộ dữ liệu.
+
+Thay vào đó sử dụng Pagination:
+
+```text
+Page 1 → 20 records
+Page 2 → 20 records
+Page 3 → 20 records
+```
+
+Trong Spring Data JPA:
+
+```java
+Page<User> findAll(Pageable pageable);
+```
+
+Pagination giúp:
+
+* Giảm Memory.
+* Giảm Database Load.
+* Giảm Network Traffic.
+* Tăng Response Performance.
+
+---
+
+# 14. Caching
+
+Caching giúp giảm số lần truy cập Database bằng cách lưu dữ liệu thường xuyên sử dụng ở một vùng nhớ nhanh hơn.
+
+Hibernate có nhiều tầng Cache.
+
+---
+
+# 14.1. First-level Cache
+
+First-level Cache được gắn với Persistence Context/Session.
+
+Mặc định Hibernate sử dụng First-level Cache.
+
+Ví dụ:
 
 ```text
 Session
-   |
-   +---- First-level Cache
-   |
-   +---- Entity
+  |
+  ├── User #1
+  └── User #2
 ```
 
-First-level Cache được bật mặc định trong Hibernate.
+Nếu cùng một Entity được truy cập nhiều lần trong cùng Persistence Context, Hibernate có thể sử dụng Object đã có thay vì thực hiện Query mới trong một số trường hợp phù hợp.
 
-Nếu cùng một Entity được truy cập nhiều lần trong cùng Session, Hibernate có thể sử dụng Entity đã được Cache thay vì thực hiện lại Query Database.
+Đặc điểm:
 
-### b. Second-level Cache
-
-Second-level Cache được chia sẻ giữa nhiều Session.
-
-```text
-        Session 1
-           |
-           |
-        Session 2
-           |
-           v
-   Second-level Cache
-```
-
-Second-level Cache có thể giúp giảm số lượng Database Query khi nhiều Session truy cập cùng dữ liệu.
-
-Tuy nhiên cần cân nhắc:
-
-* Cache Invalidation.
-* Memory Usage.
-* Dữ liệu thay đổi thường xuyên.
-* Cache Consistency.
-
-### c. Query Cache
-
-Query Cache lưu kết quả của Query để có thể sử dụng lại trong các trường hợp phù hợp.
-
-Query Cache cần được sử dụng cẩn thận vì dữ liệu Query có thể thay đổi và cần đảm bảo Cache được Invalidate đúng cách.
+* Mặc định được bật.
+* Scope thường gắn với Persistence Context.
+* Không dùng chung giữa các Session.
 
 ---
 
-## 2.8. Transaction Management
+# 14.2. Second-level Cache
 
-### a. `@Transactional`
+Second-level Cache có Scope lớn hơn First-level Cache.
 
-Đã tìm hiểu cách sử dụng `@Transactional` trong Spring để quản lý Transaction.
+Mô hình:
+
+```text
+Session A ─┐
+Session B ─┼──→ Second-level Cache
+Session C ─┘
+```
+
+Second-level Cache có thể được chia sẻ giữa nhiều Session.
+
+Một số Cache Provider có thể sử dụng:
+
+* Ehcache.
+* Infinispan.
+* Redis thông qua các giải pháp phù hợp.
+
+Mục tiêu:
+
+* Giảm Database Query.
+* Tăng Read Performance.
+
+Tuy nhiên Cache cần được sử dụng cẩn thận để tránh:
+
+* Stale Data.
+* Cache Invalidation Problem.
+* Memory Overhead.
+
+---
+
+# 14.3. Query Cache
+
+Query Cache lưu kết quả của Query.
+
+Có thể giúp giảm Database Access với các Query được thực hiện thường xuyên và dữ liệu thay đổi ít.
+
+Tuy nhiên Query Cache cần được cân nhắc vì:
+
+* Tốn Memory.
+* Cần Invalidation.
+* Không phải Query nào cũng phù hợp để Cache.
+
+---
+
+# 15. Transaction Management
+
+Transaction Management đảm bảo các thao tác Database được thực hiện nhất quán.
+
+Trong Spring Boot có thể sử dụng:
+
+```java
+@Transactional
+```
 
 Ví dụ:
 
-```java id="r5f0te"
+```java
 @Transactional
-public void createOrder(Order order) {
+public void transferMoney(
+        Long fromId,
+        Long toId,
+        BigDecimal amount) {
 
-    orderRepository.save(order);
+    // debit account
 
-    productService.updateStock(order);
+    // credit account
 }
 ```
 
-Các thao tác trong Method có thể được thực hiện trong cùng một Transaction.
-
-Nếu xảy ra lỗi phù hợp với Transaction Policy:
-
-```text
-Operation 1
-    |
-Operation 2
-    |
-  Error
-    |
-    v
-Rollback
-```
-
-### b. Transaction Propagation
-
-Đã tìm hiểu Transaction Propagation, quy định cách một Method tham gia vào Transaction hiện tại.
-
-Một số Propagation phổ biến:
-
-* `REQUIRED`.
-* `REQUIRES_NEW`.
-* `SUPPORTS`.
-* `MANDATORY`.
-* `NOT_SUPPORTED`.
-* `NEVER`.
-* `NESTED`.
-
-Trong đó `REQUIRED` thường được sử dụng để:
-
-* Tham gia Transaction hiện tại nếu tồn tại.
-* Tạo Transaction mới nếu chưa có.
-
-### c. Transaction Isolation
-
-Đã tìm hiểu Transaction Isolation và cách kiểm soát việc các Transaction đồng thời nhìn thấy dữ liệu của nhau.
-
-Các Isolation Level phổ biến:
-
-* Read Uncommitted.
-* Read Committed.
-* Repeatable Read.
-* Serializable.
-
-Việc lựa chọn Isolation Level cần cân bằng giữa:
-
-* Data Consistency.
-* Concurrency.
-* Database Performance.
+Nếu có Exception khiến Transaction Rollback theo cấu hình và quy tắc của Spring, các thay đổi trong Transaction có thể được hoàn tác.
 
 ---
 
-# 3. Connection Pool
+# 15.1. Transaction Propagation
 
-## 3.1. Connection Pool Fundamentals
+Propagation xác định cách một Transaction Method tham gia vào Transaction hiện tại.
 
-Đã tìm hiểu Connection Pool và vai trò của Connection Pool trong ứng dụng Backend.
+Một số loại:
 
-Thay vì mỗi Request tạo một Database Connection mới:
+* `REQUIRED`
+* `REQUIRES_NEW`
+* `SUPPORTS`
+* `NOT_SUPPORTED`
+* `MANDATORY`
+* `NEVER`
+* `NESTED`
+
+Trong đó `REQUIRED` là lựa chọn phổ biến.
+
+Ý nghĩa:
+
+```text
+Nếu có Transaction
+        ↓
+Tham gia Transaction hiện tại
+
+Nếu chưa có
+        ↓
+Tạo Transaction mới
+```
+
+---
+
+# 15.2. Transaction Isolation
+
+Isolation kiểm soát mức độ các Transaction nhìn thấy thay đổi của nhau.
+
+Các mức phổ biến:
+
+* READ UNCOMMITTED.
+* READ COMMITTED.
+* REPEATABLE READ.
+* SERIALIZABLE.
+
+Mục tiêu là cân bằng:
+
+```text
+Consistency
+     ↕
+Concurrency
+     ↕
+Performance
+```
+
+Isolation càng cao thường tăng mức độ kiểm soát nhưng có thể ảnh hưởng đến Concurrency và Performance.
+
+---
+
+# 16. Connection Pool
+
+Mỗi khi Application cần truy cập Database, việc tạo một Database Connection mới có thể tốn tài nguyên.
+
+Connection Pool giải quyết vấn đề này bằng cách duy trì một Pool gồm các Connection có thể tái sử dụng.
+
+Không sử dụng Pool:
 
 ```text
 Request
-   |
-   v
+  ↓
 Create Connection
-   |
-   v
-Database
-   |
-   v
+  ↓
+Execute Query
+  ↓
 Close Connection
 ```
 
-Connection Pool duy trì một tập hợp Connection có thể tái sử dụng:
+Sử dụng Pool:
 
 ```text
-          Application
-               |
-               v
-        +--------------+
-        | Connection   |
-        |    Pool      |
-        +--------------+
-         |  |  |  |  |
-         v  v  v  v  v
-        DB Connections
+             ┌── Connection 1
+             ├── Connection 2
+Application ─┼── Connection 3
+             ├── Connection 4
+             └── Connection 5
 ```
 
-Khi Application cần Database Connection:
-
-```text
-Pool
- |
- | Borrow
- v
-Connection
- |
- | Use
- v
-Database
- |
- | Return
- v
-Pool
-```
-
-Connection Pool giúp giảm chi phí tạo và đóng Connection liên tục.
+Application lấy Connection từ Pool, sử dụng xong trả lại Pool.
 
 ---
 
-## 3.2. HikariCP
+# 16.1. HikariCP
 
-Đã tìm hiểu HikariCP, một Connection Pool phổ biến trong các ứng dụng Spring Boot.
+HikariCP là một Connection Pool phổ biến và thường được sử dụng mặc định trong Spring Boot.
 
-HikariCP quản lý các Database Connection và cung cấp Connection cho Application khi cần.
+Flow:
 
-Một số Configuration quan trọng:
+```text
+Application
+    |
+    ↓
+HikariCP
+    |
+    ├── Connection 1
+    ├── Connection 2
+    ├── Connection 3
+    └── Connection N
+    |
+    ↓
+Database
+```
 
-* `maximumPoolSize`.
-* `minimumIdle`.
-* `connectionTimeout`.
-* `idleTimeout`.
-* `maxLifetime`.
+Lợi ích:
+
+* Connection Reuse.
+* Giảm Connection Creation Overhead.
+* Cải thiện Performance.
+* Quản lý Connection tập trung.
+
+---
+
+# 16.2. HikariCP Pool Size
+
+Pool Size xác định số lượng Connection tối đa mà Pool có thể quản lý.
 
 Ví dụ:
 
-```yaml id="4v8xbi"
-spring:
-  datasource:
-    hikari:
-      maximum-pool-size: 10
-      minimum-idle: 5
-      connection-timeout: 30000
-      idle-timeout: 600000
-      max-lifetime: 1800000
+```text
+maximumPoolSize = 10
 ```
+
+Có nghĩa Application có thể sử dụng tối đa số Connection theo cấu hình Pool trong phạm vi đó.
+
+Không nên đặt Pool Size quá lớn vì Database cũng có giới hạn Connection.
 
 ---
 
-## 3.3. HikariCP Pool Sizing
+# 16.3. Connection Timeout
 
-Đã tìm hiểu cách lựa chọn Pool Size phù hợp.
+Connection Timeout xác định thời gian Application chờ để lấy được Connection từ Pool.
 
-Nếu Pool Size quá nhỏ:
-
-```text
-Many Requests
-      |
-      v
-Small Pool
-      |
-      v
-Waiting for Connection
-```
-
-Có thể dẫn đến:
-
-* Connection Wait Time tăng.
-* Request Latency tăng.
-* Throughput giảm.
-
-Nếu Pool Size quá lớn:
-
-```text
-Large Pool
-    |
-    v
-Too many DB Connections
-    |
-    v
-Database Overload
-```
-
-Có thể gây:
-
-* Database quá tải.
-* Tăng Memory Usage.
-* Tăng Context Switching.
-* Giảm Performance.
-
-Do đó cần lựa chọn Pool Size phù hợp với Application và Database.
-
----
-
-## 3.4. Connection Timeout và Idle Timeout
-
-### Connection Timeout
-
-`connectionTimeout` xác định thời gian tối đa mà Application chờ để lấy Connection từ Pool.
-
-Nếu không có Connection khả dụng trong khoảng thời gian này, Request có thể nhận Timeout Exception.
+Ví dụ:
 
 ```text
 Request
    |
-   v
-Connection Pool
+   ↓
+Get Connection
    |
-   | Waiting
+   ↓
+Pool hết Connection
    |
-   +---- Connection available → Continue
+   ↓
+Wait
    |
-   +---- Timeout → Error
+   ├── Connection available → Continue
+   |
+   └── Timeout → Error
 ```
 
-### Idle Timeout
+Nếu Timeout quá thấp, Request có thể thất bại sớm.
 
-`idleTimeout` xác định thời gian một Connection không được sử dụng trước khi có thể bị loại khỏi Pool, tùy theo cấu hình Pool.
-
-Việc cấu hình hợp lý giúp cân bằng giữa:
-
-* Resource Usage.
-* Connection Availability.
-* Performance.
+Nếu quá cao, Thread có thể phải chờ lâu.
 
 ---
 
-## 3.5. Connection Pool Monitoring
+# 16.4. Idle Timeout
 
-Đã tìm hiểu việc Monitoring Connection Pool để phát hiện các vấn đề về Database Connection.
+Idle Timeout liên quan đến thời gian Connection không được sử dụng trước khi có thể bị loại khỏi Pool theo cấu hình.
 
-Một số Metrics cần theo dõi:
+Mục tiêu:
+
+* Không duy trì quá nhiều Connection không cần thiết.
+* Cân bằng Resource Usage.
+
+---
+
+# 16.5. Connection Leak
+
+Connection Leak xảy ra khi Application lấy Connection nhưng không trả lại Pool đúng cách.
+
+Ví dụ:
+
+```text
+Get Connection
+      ↓
+Execute Query
+      ↓
+Exception
+      ↓
+Không Release
+```
+
+Nếu tình trạng này xảy ra nhiều lần:
+
+```text
+Pool
+ ↓
+Connection giảm dần
+ ↓
+Pool exhausted
+ ↓
+Request phải chờ
+```
+
+Connection Leak có thể gây:
+
+* Timeout.
+* Request chậm.
+* Database Connection Exhaustion.
+* Application Failure.
+
+Trong Spring/JPA, việc sử dụng đúng Transaction và Resource Management giúp hạn chế vấn đề này.
+
+---
+
+# 16.6. Pool Monitoring
+
+Cần theo dõi các Metrics:
 
 * Active Connections.
 * Idle Connections.
 * Total Connections.
 * Pending Threads.
-* Connection Acquisition Time.
 * Connection Timeout.
-* Connection Leak.
+* Connection Acquisition Time.
 
-Mô hình:
+Mục tiêu:
 
 ```text
-Application
-    |
-    v
-HikariCP
-    |
-    +---- Active Connections
-    |
-    +---- Idle Connections
-    |
-    +---- Waiting Threads
-    |
-    +---- Timeout
-    |
-    v
-Database
+Monitor
+   ↓
+Detect Bottleneck
+   ↓
+Tune Pool
+   ↓
+Improve Performance
 ```
-
-Monitoring giúp phát hiện các vấn đề về Pool Size, Connection Leak và Database Performance.
 
 ---
 
-## 3.6. Connection Leak
+# 17. Deadlock Prevention và Connection Pool
 
-Connection Leak xảy ra khi Application lấy Connection từ Pool nhưng không trả lại Connection sau khi sử dụng.
+Khi sử dụng Connection Pool, việc xác định Pool Size cần dựa trên:
 
-Ví dụ:
+* Số lượng Thread.
+* Số Connection tối đa mà mỗi Thread có thể cần.
+* Cách Transaction hoạt động.
 
-```text
-Pool
- |
- | Borrow
- v
-Connection
- |
- | Application Error
- |
- X
- |
-Connection không được Return
-```
-
-Nếu xảy ra nhiều lần:
-
-```text
-Connection Pool
-      |
-      v
-Connections bị giữ
-      |
-      v
-Pool cạn Connection
-      |
-      v
-Requests phải chờ
-      |
-      v
-Timeout
-```
-
-Connection Leak có thể gây ảnh hưởng nghiêm trọng đến Performance và Availability của Application.
-
-Do đó cần Monitoring và đảm bảo Connection/Resource được quản lý đúng Lifecycle.
-
----
-
-## 3.7. Deadlock Prevention
-
-Đã tìm hiểu công thức lựa chọn Connection Pool Size để tránh Deadlock trong một số trường hợp:
+Một công thức được tìm hiểu:
 
 ```text
 pool_size = Tn × (Cm - 1) + 1
@@ -930,7 +1260,7 @@ Trong đó:
 * `Tn`: Maximum Threads.
 * `Cm`: Maximum Connections per Thread.
 
-Công thức đảm bảo Pool có số lượng Connection tối thiểu để tránh trường hợp các Thread đều giữ Connection và chờ thêm Connection mới.
+Công thức giúp xác định mức Pool Size tối thiểu trong một mô hình nhất định để tránh một số tình huống Connection Pool Deadlock.
 
 Ví dụ:
 
@@ -938,78 +1268,259 @@ Ví dụ:
 Tn = 10
 Cm = 2
 
-pool_size = 10 × (2 - 1) + 1
-          = 11
+pool_size
+= 10 × (2 - 1) + 1
+= 11
 ```
 
-Pool Size tối thiểu trong trường hợp này là `11`.
-
-Mục tiêu của công thức là đảm bảo ít nhất một Connection có thể được cấp phát để tránh tình trạng các Thread chờ lẫn nhau.
+Công thức này cần được áp dụng dựa trên mô hình truy cập Connection thực tế, không nên sử dụng máy móc cho mọi hệ thống.
 
 ---
 
-## 3.8. Connection Pool Performance Optimization
+# 18. Performance Optimization
 
-Đã tìm hiểu một công thức tham khảo để tối ưu số lượng Connection:
+Một công thức thường được tham khảo khi ước lượng Connection Pool Size:
 
 ```text
-pool_size = (core_count × 2) + effective_spindle_count
+(core_count * 2) + effective_spindle_count
 ```
 
 Trong đó:
 
 * `core_count`: Số CPU Core.
-* `effective_spindle_count`: Số lượng Disk Spindle hiệu dụng.
+* `effective_spindle_count`: Số lượng Storage Disk có khả năng xử lý I/O đồng thời.
 
-Công thức được sử dụng như một điểm bắt đầu để ước lượng Connection Pool Size.
+Mục đích là đưa ra một điểm bắt đầu để tuning Connection Pool.
 
-Tuy nhiên Pool Size thực tế cần được điều chỉnh dựa trên:
+Tuy nhiên Pool Size tối ưu phụ thuộc vào:
 
 * CPU.
-* Database Capacity.
-* Query Performance.
-* Number of Application Threads.
-* Request Throughput.
+* Database.
+* Query.
 * Transaction Duration.
-* Connection Usage.
-* Monitoring Metrics.
+* Disk I/O.
+* Network.
+* Application Concurrency.
+* Database Connection Limit.
 
-Do đó không nên chỉ dựa vào một công thức mà cần kiểm tra Performance thực tế của hệ thống.
+Do đó cần kết hợp Monitoring và Load Testing thay vì chỉ dựa vào một công thức cố định.
 
 ---
 
-## 4. Kết quả đạt được
+# 19. Các vấn đề Performance thường gặp trong ORM
 
-Sau khi hoàn thành tuần học thứ sáu, đã đạt được các kết quả sau:
+Một số vấn đề quan trọng:
 
-* Hiểu khái niệm ORM và vai trò của ORM trong Java Backend.
-* Phân biệt JPA Specification và Hibernate Implementation.
-* Hiểu kiến trúc Hibernate.
-* Nắm được vai trò của `SessionFactory`, `Session` và Transaction.
-* Hiểu Entity Mapping giữa Java Object và Database Table.
-* Nắm được các Relationship One-to-One, One-to-Many, Many-to-One và Many-to-Many.
-* Hiểu Repository Pattern và Spring Data JPA.
-* Nắm được Entity Lifecycle gồm Transient, Persistent, Detached và Removed.
-* Hiểu sự khác biệt giữa Lazy Loading và Eager Loading.
-* Hiểu Performance Implications của các Loading Strategies.
-* Nắm được N+1 Query Problem.
-* Biết cách phát hiện N+1 thông qua SQL Logs và Monitoring.
-* Hiểu các giải pháp xử lý N+1 như Join Fetching và Batch Fetching.
+### 1. N+1 Query
+
+```text
+1 + N Queries
+```
+
+Giải pháp:
+
+* Join Fetch.
+* Entity Graph.
+* Batch Fetching.
+
+### 2. Eager Loading quá mức
+
+Load quá nhiều Relationship không cần thiết.
+
+Giải pháp:
+
+* Ưu tiên Lazy Loading phù hợp.
+* Chỉ Fetch dữ liệu cần thiết.
+
+### 3. Query quá lớn
+
+Load quá nhiều dữ liệu cùng lúc.
+
+Giải pháp:
+
+* Pagination.
+* DTO Projection.
+* Filtering.
+
+### 4. Thiếu Index
+
+Query phải Scan nhiều dữ liệu.
+
+Giải pháp:
+
+* Phân tích `EXPLAIN`.
+* Tạo Index phù hợp.
+
+### 5. Connection Pool không phù hợp
+
+Pool quá nhỏ:
+
+```text
+Threads
+   ↓
+Waiting for Connection
+```
+
+Pool quá lớn:
+
+```text
+Too many Connections
+   ↓
+Database overload
+```
+
+Cần tìm mức cân bằng dựa trên Monitoring và Load Testing.
+
+---
+
+# 20. Kết quả đạt được
+
+Sau tuần thứ sáu, em đã đạt được các kết quả:
+
+## JPA/Hibernate
+
+* Hiểu khái niệm ORM.
+* Hiểu vai trò của JPA.
+* Hiểu Hibernate là một JPA Implementation.
+* Nắm được kiến trúc Hibernate.
+* Hiểu SessionFactory.
+* Hiểu Session.
+* Hiểu Transaction.
+* Hiểu Persistence Context.
+* Biết cách xây dựng Entity.
+* Hiểu Entity Mapping.
+* Biết Mapping các Relationship.
+* Hiểu One-to-One.
+* Hiểu One-to-Many.
+* Hiểu Many-to-One.
+* Hiểu Many-to-Many.
+
+## Entity Lifecycle
+
+* Hiểu Transient.
+* Hiểu Persistent.
+* Hiểu Detached.
+* Hiểu Removed.
+* Hiểu Dirty Checking.
+
+## Query Performance
+
+* Hiểu Lazy Loading.
+* Hiểu Eager Loading.
+* Nhận biết N+1 Query Problem.
+* Biết cách phát hiện N+1.
+* Biết Join Fetch.
+* Hiểu Batch Fetching.
+* Biết sử dụng Pagination.
+* Hiểu DTO Projection.
+* Biết kết hợp ORM với SQL Optimization.
+
+## Caching
+
 * Hiểu First-level Cache.
-* Nắm được Second-level Cache và Query Cache.
-* Hiểu Transaction Management với `@Transactional`.
-* Nắm được Transaction Propagation.
-* Hiểu Transaction Isolation Levels.
-* Hiểu vai trò của Connection Pool trong Backend Application.
-* Nắm được cách Hibernate tích hợp với HikariCP.
-* Hiểu các HikariCP Configuration như Pool Size, Connection Timeout và Idle Timeout.
-* Hiểu ảnh hưởng của Pool Size đến Application và Database Performance.
-* Nắm được các Metrics cần Monitoring trong Connection Pool.
-* Hiểu Connection Leak và ảnh hưởng của Connection Leak.
-* Nắm được công thức Deadlock Prevention `pool_size = Tn × (Cm - 1) + 1`.
-* Hiểu công thức tham khảo `(core_count × 2) + effective_spindle_count` trong Connection Pool Optimization.
-* Xây dựng được nền tảng về ORM, Hibernate và Connection Pool để tiếp tục tối ưu Database Access và Performance cho các Backend Application.
+* Hiểu Second-level Cache.
+* Hiểu Query Cache.
+* Hiểu ưu nhược điểm của Caching.
+* Nhận thức được vấn đề Cache Invalidation.
+
+## Transaction
+
+* Hiểu `@Transactional`.
+* Hiểu Transaction Propagation.
+* Hiểu Transaction Isolation.
+* Biết vai trò của Transaction trong việc đảm bảo Data Consistency.
+
+## Connection Pool
+
+* Hiểu Connection Pool.
+* Hiểu HikariCP.
+* Hiểu Pool Size.
+* Hiểu Connection Timeout.
+* Hiểu Idle Timeout.
+* Hiểu Connection Leak.
+* Biết các Metrics cần theo dõi.
+* Hiểu vấn đề Connection Pool Exhaustion.
+* Biết công thức Deadlock Prevention.
+* Hiểu các yếu tố ảnh hưởng đến Connection Pool Performance.
 
 ---
 
+# 21. Khó khăn và hướng khắc phục
 
+Trong quá trình học ORM, em gặp một số khó khăn:
+
+* Ban đầu khó phân biệt JPA và Hibernate.
+* Entity Lifecycle có nhiều trạng thái và cần hiểu rõ Persistence Context.
+* Lazy Loading và Eager Loading có ảnh hưởng trực tiếp đến Performance nên cần hiểu cách Hibernate thực hiện Query.
+* N+1 Query có thể không dễ phát hiện nếu chỉ nhìn vào Source Code.
+* Caching có nhiều tầng và cần hiểu Scope của từng loại Cache.
+* Transaction Propagation và Isolation có nhiều trường hợp sử dụng.
+* Connection Pool Size không có một giá trị cố định phù hợp với mọi Application.
+* Connection Pool Performance phụ thuộc đồng thời vào Application, Database, CPU, I/O và Network.
+
+Để khắc phục, em tập trung phân tích Flow từ Application đến Database, theo dõi SQL do Hibernate sinh ra và tìm hiểu cách các thao tác trên Entity được chuyển thành SQL.
+
+Đồng thời, em tìm hiểu các trường hợp Performance Problem như N+1 Query, Connection Pool Exhaustion và Query quá lớn để hiểu cách phát hiện và tối ưu.
+
+---
+
+# 22. Kế hoạch giai đoạn tiếp theo
+
+Sau khi hoàn thành giai đoạn kiến thức cơ bản trong 6 tuần đầu, em sẽ tiếp tục áp dụng các kiến thức đã học vào các nội dung Backend nâng cao.
+
+Các kiến thức đã tích lũy gồm:
+
+```text
+Java Core
+    ↓
+Collections
+    ↓
+Concurrency
+    ↓
+Docker
+    ↓
+Database
+    ↓
+Logging & I/O
+    ↓
+Spring Boot
+    ↓
+Authentication
+    ↓
+Rate Limiting
+    ↓
+JPA / Hibernate
+    ↓
+Connection Pool
+```
+
+Các nội dung này tạo nền tảng để tiếp tục tìm hiểu sâu hơn về:
+
+* Backend Architecture.
+* Spring Boot Advanced.
+* Microservices.
+* Distributed Systems.
+* Performance Optimization.
+* Monitoring.
+* Deployment.
+* System Design.
+
+---
+
+# 23. Kết luận
+
+Tuần thứ sáu giúp em hiểu sâu hơn về **ORM, JPA, Hibernate và Connection Pool**, là những thành phần quan trọng trong quá trình xây dựng Backend Application sử dụng Spring Boot.
+
+Về ORM, em đã hiểu cách ánh xạ Java Object với Database thông qua Entity, Relationship và Repository Pattern. Em cũng hiểu kiến trúc Hibernate gồm SessionFactory, Session, Persistence Context và Transaction.
+
+Bên cạnh đó, em tìm hiểu Entity Lifecycle gồm Transient, Persistent, Detached và Removed, đồng thời hiểu cơ chế Dirty Checking của Hibernate.
+
+Về Performance, em đã tìm hiểu Lazy Loading, Eager Loading và đặc biệt là **N+1 Query Problem**. Em biết một số phương pháp xử lý như Join Fetch, Batch Fetching, Pagination và DTO Projection.
+
+Về Caching, em đã phân biệt First-level Cache, Second-level Cache và Query Cache, đồng thời hiểu được lợi ích cũng như các vấn đề cần cân nhắc khi sử dụng Cache.
+
+Về Transaction, em đã hiểu `@Transactional`, Transaction Propagation và Isolation, qua đó hiểu rõ hơn cách đảm bảo tính nhất quán của dữ liệu trong các thao tác Database.
+
+Cuối cùng, em tìm hiểu **HikariCP Connection Pool**, Pool Sizing, Connection Timeout, Idle Timeout, Connection Leak, Pool Monitoring và các yếu tố ảnh hưởng đến Performance.
+
+Qua tuần thứ sáu, em đã hoàn thành giai đoạn kiến thức cơ bản trong roadmap và có nền tảng cần thiết để tiếp tục áp dụng Java, Spring Boot, Database, ORM, Concurrency và Docker vào các bài toán Backend thực tế.
