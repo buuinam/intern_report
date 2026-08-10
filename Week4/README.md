@@ -1,583 +1,1333 @@
-# BÁO CÁO THỰC TẬP TUẦN 4
+# 📘 BÁO CÁO THỰC TẬP TUẦN 4
 
-## Chủ đề: Database, Logging & I/O
+## Thông tin
 
-**Intern:** Bùi Văn Nam  
-**Team:** Platform - Adtech  
-**Gmail:** buivannam13032004@gmail.com  
-**Leader:** Nguyễn Văn Cương  
-
----
-
-## 1. Mục tiêu tuần
-
-Trong tuần thứ tư, theo roadmap mục tiêu là tìm hiểu các kiến thức về Database, Logging và I/O trong Java.
-
-Nội dung học tập tập trung vào việc tìm hiểu cách cài đặt và cấu hình hệ quản trị cơ sở dữ liệu MySQL/PostgreSQL, tối ưu hóa câu lệnh SQL bằng EXPLAIN, các chiến lược Indexing và Database Normalization. Bên cạnh đó, tìm hiểu các thuộc tính ACID và các mức độ cô lập của Transaction.
-
-Ngoài ra, đã nghiên cứu các Framework Logging phổ biến trong Java như SLF4J, Logback và Log4j2, cách sử dụng các Log Level, Structured Logging và các phương pháp quản lý Log tập trung.
-
-Đối với I/O, đã tìm hiểu sự khác biệt giữa Blocking I/O và Non-blocking I/O, Java NIO.2, Event-driven File Processing, các mô hình High-performance I/O, Memory-mapped Files và Zero-copy Techniques.
-
-### Lịch học Tuần 4
-
-| Ngày | Nội dung học | Kết quả đạt được |
-|---|---|---|
-| Thứ 2 | Database Installation, Configuration & SQL Optimization | Hiểu cách cài đặt Database, tối ưu câu lệnh SQL và sử dụng EXPLAIN Plans. |
-| Thứ 3 | Database Normalization, Indexing & Transactions | Hiểu Normalization, Indexing Strategies, ACID và Transaction Isolation Levels. |
-| Thứ 4 | Logging Frameworks & Log Levels | Hiểu SLF4J, Logback, Log4j2, Log Levels và Appenders. |
-| Thứ 5 | Structured Logging & Centralized Logging | Hiểu Structured Logging, JSON Format, Log Aggregation và Performance Impact. |
-| Thứ 6 | Java I/O, NIO.2 & Async I/O | Hiểu Blocking/Non-blocking I/O, Event Loop, NIO Selector, Async File I/O và Zero-copy. |
+* **Chủ đề:** Database, Logging & I/O
+* **Intern:** Bùi Văn Nam
+* **Team:** Platform - Adtech
+* **Gmail:** [buivannam13032004@gmail.com](mailto:buivannam13032004@gmail.com)
+* **Leader:** Nguyễn Văn Cương
 
 ---
 
-## 2. Chi tiết nội dung đã học
+# 1. Mục tiêu tuần
 
-## 2.1. Database
+Trong tuần thứ tư, theo roadmap, mục tiêu là tìm hiểu ba nhóm kiến thức quan trọng trong phát triển Backend gồm **Database, Logging và I/O**.
 
-### a. MySQL/PostgreSQL Installation và Configuration
+Đối với Database, tập trung tìm hiểu cách cài đặt và cấu hình MySQL/PostgreSQL, tối ưu câu lệnh SQL, phân tích Execution Plan bằng `EXPLAIN`, Database Normalization, Indexing và Transaction.
 
-Đã tìm hiểu về việc cài đặt và cấu hình các hệ quản trị cơ sở dữ liệu MySQL và PostgreSQL.
+Đối với Logging, tìm hiểu các Logging Framework phổ biến trong Java như:
 
-Database Management System được sử dụng để lưu trữ, quản lý và truy xuất dữ liệu cho các ứng dụng.
+* SLF4J.
+* Logback.
+* Log4j2.
 
-Một số nội dung cấu hình cơ bản:
+Đồng thời tìm hiểu cách phân loại Log Level, cấu hình Appender, Structured Logging, Log Aggregation và ảnh hưởng của Logging đến Performance.
 
-- Database Server.
-- Database Port.
-- Username và Password.
-- Database Schema.
-- Connection Configuration.
-- Database Connection Pool.
+Đối với I/O, tập trung tìm hiểu sự khác nhau giữa Blocking I/O và Non-blocking I/O, Java NIO.2, Asynchronous I/O, Event Loop, Reactive Streams, NIO Selector, Memory-mapped Files và Zero-copy.
 
-Việc cấu hình Database phù hợp giúp ứng dụng có thể kết nối và thao tác với dữ liệu một cách ổn định.
-
-### b. SQL Optimization và EXPLAIN Plans
-
-Đã tìm hiểu các phương pháp tối ưu câu lệnh SQL và sử dụng `EXPLAIN` để phân tích cách Database thực thi Query.
-
-`EXPLAIN` giúp cung cấp thông tin về Execution Plan của một câu lệnh SQL.
-
-Thông qua Execution Plan có thể phân tích:
-
-- Cách Database thực hiện Query.
-- Bảng được truy cập.
-- Index có được sử dụng hay không.
-- Loại Join được sử dụng.
-- Số lượng Row được quét.
-- Chi phí thực thi của Query.
-
-Việc sử dụng `EXPLAIN` giúp phát hiện các câu lệnh SQL có hiệu năng thấp và tìm ra hướng tối ưu phù hợp.
-
-Một số phương pháp tối ưu SQL:
-
-- Sử dụng Index phù hợp.
-- Chỉ lấy các cột cần thiết thay vì sử dụng `SELECT *`.
-- Tối ưu điều kiện `WHERE`.
-- Hạn chế các Query không cần thiết.
-- Tối ưu các câu lệnh JOIN.
-- Phân tích Execution Plan trước và sau khi tối ưu.
-
-### c. Database Normalization
-
-Đã tìm hiểu về Database Normalization và mục đích chuẩn hóa dữ liệu trong cơ sở dữ liệu.
-
-Normalization là quá trình tổ chức dữ liệu nhằm:
-
-- Giảm dữ liệu trùng lặp.
-- Hạn chế các vấn đề khi Insert, Update và Delete dữ liệu.
-- Đảm bảo tính nhất quán của dữ liệu.
-- Tổ chức các bảng và mối quan hệ một cách hợp lý.
-
-Một số mức Normal Form phổ biến:
-
-- **First Normal Form (1NF)**.
-- **Second Normal Form (2NF)**.
-- **Third Normal Form (3NF)**.
-
-Việc chuẩn hóa Database giúp giảm sự dư thừa dữ liệu và nâng cao tính nhất quán của hệ thống.
-
-### d. Indexing Strategies
-
-Đã tìm hiểu về Index và các chiến lược sử dụng Index trong Database.
-
-Index là một cấu trúc dữ liệu giúp Database tìm kiếm dữ liệu nhanh hơn mà không cần quét toàn bộ bảng.
-
-Index thường được sử dụng cho các cột thường xuyên xuất hiện trong:
-
-- `WHERE`.
-- `JOIN`.
-- `ORDER BY`.
-- `GROUP BY`.
-
-Một số lợi ích của Index:
-
-- Tăng tốc độ truy vấn.
-- Giảm số lượng dữ liệu cần quét.
-- Cải thiện hiệu năng tìm kiếm.
-
-Tuy nhiên, việc tạo quá nhiều Index cũng có thể làm tăng chi phí khi thực hiện các thao tác `INSERT`, `UPDATE` và `DELETE`.
-
-Do đó, cần lựa chọn các cột cần Index dựa trên cách ứng dụng thực hiện truy vấn dữ liệu.
-
-### e. ACID Properties
-
-Đã tìm hiểu các thuộc tính ACID của Database Transaction.
-
-ACID bao gồm:
-
-- **Atomicity**: Transaction được thực hiện toàn bộ hoặc không thực hiện phần nào.
-- **Consistency**: Dữ liệu luôn duy trì trạng thái hợp lệ trước và sau Transaction.
-- **Isolation**: Các Transaction đồng thời không ảnh hưởng không mong muốn đến nhau.
-- **Durability**: Dữ liệu đã Commit sẽ được đảm bảo lưu trữ kể cả khi hệ thống gặp sự cố.
-
-Các thuộc tính ACID giúp đảm bảo tính chính xác và đáng tin cậy của dữ liệu trong các hệ thống Database.
-
-### f. Transaction Isolation Levels
-
-Đã tìm hiểu các mức độ cô lập của Transaction.
-
-Transaction Isolation Level quy định mức độ mà một Transaction có thể nhìn thấy dữ liệu được thay đổi bởi các Transaction khác.
-
-Các mức Isolation Level phổ biến:
-
-- **Read Uncommitted**.
-- **Read Committed**.
-- **Repeatable Read**.
-- **Serializable**.
-
-Các vấn đề có thể xảy ra khi nhiều Transaction hoạt động đồng thời:
-
-- **Dirty Read**: Đọc dữ liệu chưa được Commit.
-- **Non-repeatable Read**: Cùng một Query nhưng trả về kết quả khác nhau trong cùng một Transaction.
-- **Phantom Read**: Xuất hiện thêm các bản ghi mới khi thực hiện lại Query.
-
-Việc lựa chọn Isolation Level phù hợp giúp cân bằng giữa tính nhất quán của dữ liệu và hiệu năng của hệ thống.
+Mục tiêu chung của tuần là hiểu cách Backend Application giao tiếp với Database, ghi nhận và quản lý Log, đồng thời xử lý I/O hiệu quả trong các hệ thống có yêu cầu cao về hiệu năng.
 
 ---
 
-## 2.2. Logging
+# 2. Lịch học Tuần 4
 
-### a. Logging Frameworks
-
-Đã tìm hiểu các Logging Framework phổ biến trong Java:
-
-- **SLF4J**.
-- **Logback**.
-- **Log4j2**.
-
-SLF4J cung cấp một Abstraction Layer cho Logging, cho phép ứng dụng sử dụng API Logging thống nhất và có thể thay đổi Implementation phía sau.
-
-Logback và Log4j2 là các Logging Framework được sử dụng để thực hiện việc ghi Log.
-
-Logging giúp theo dõi hoạt động của ứng dụng, phát hiện lỗi và hỗ trợ quá trình Debug cũng như Monitoring hệ thống.
-
-### b. Log Levels
-
-Đã tìm hiểu các Log Level và cách sử dụng phù hợp.
-
-Các Log Level phổ biến:
-
-- **TRACE**: Ghi lại thông tin chi tiết nhất để theo dõi quá trình xử lý.
-- **DEBUG**: Sử dụng trong quá trình Debug và phát triển ứng dụng.
-- **INFO**: Ghi lại các thông tin quan trọng trong quá trình hoạt động bình thường.
-- **WARN**: Cảnh báo các tình huống bất thường nhưng hệ thống vẫn có thể tiếp tục hoạt động.
-- **ERROR**: Ghi lại các lỗi xảy ra trong quá trình xử lý.
-
-Việc lựa chọn Log Level phù hợp giúp giảm lượng Log không cần thiết và hỗ trợ việc theo dõi hệ thống hiệu quả hơn.
-
-### c. Appenders
-
-Đã tìm hiểu về Appender và vai trò của Appender trong Logging.
-
-Appender xác định nơi mà Log được ghi tới.
-
-Một số Appender phổ biến:
-
-- **Console Appender**: Ghi Log ra Console.
-- **File Appender**: Ghi Log vào File.
-- **Rolling File Appender**: Tự động tạo File Log mới theo thời gian hoặc kích thước.
-- **Async Appender**: Xử lý việc ghi Log bất đồng bộ để giảm ảnh hưởng đến Application Thread.
-
-Việc lựa chọn Appender phụ thuộc vào mục đích sử dụng và yêu cầu của hệ thống.
-
-### d. Log Patterns
-
-Đã tìm hiểu về Log Pattern và cách định dạng nội dung Log.
-
-Một Log Entry thường có thể bao gồm:
-
-- Timestamp.
-- Log Level.
-- Thread Name.
-- Class Name.
-- Method Name.
-- Message.
-
-Ví dụ một Log Entry có thể chứa thông tin:
-
-```text
-2026-07-27 10:30:00 INFO [main] UserService - User login successfully
-```
-
-Việc chuẩn hóa Log Pattern giúp việc đọc, tìm kiếm và phân tích Log trở nên dễ dàng hơn.
-
-### e. Structured Logging
-
-Đã tìm hiểu về Structured Logging và cách biểu diễn Log dưới dạng các Key-Value Pair hoặc JSON Format.
-
-Thay vì ghi Log dưới dạng một đoạn Text không có cấu trúc, Structured Logging giúp các thông tin trong Log được tổ chức rõ ràng.
-
-Ví dụ:
-
-```json
-{
-  "timestamp": "2026-07-27T10:30:00",
-  "level": "INFO",
-  "service": "user-service",
-  "userId": "123",
-  "message": "User login successfully"
-}
-```
-
-Structured Logging giúp:
-
-- Dễ dàng tìm kiếm Log.
-- Dễ dàng phân tích dữ liệu.
-- Hỗ trợ Log Aggregation.
-- Phù hợp với các hệ thống Distributed System.
-
-### f. Log Aggregation và Centralized Logging
-
-Đã tìm hiểu về Log Aggregation và Centralized Logging.
-
-Trong các hệ thống có nhiều Service, mỗi Service có thể tạo ra Log riêng. Việc lưu trữ Log phân tán gây khó khăn cho quá trình theo dõi và Debug.
-
-Centralized Logging giúp thu thập Log từ nhiều Application hoặc Service về một hệ thống tập trung.
-
-Các lợi ích:
-
-- Theo dõi Log từ nhiều Service tại một nơi.
-- Tìm kiếm và phân tích Log dễ dàng hơn.
-- Hỗ trợ Debug các hệ thống Distributed.
-- Dễ dàng xây dựng Monitoring và Alerting.
-
-### g. Performance Impact của Logging
-
-Đã tìm hiểu ảnh hưởng của Logging đến hiệu năng của ứng dụng.
-
-Logging quá nhiều có thể gây:
-
-- Tăng I/O.
-- Tăng CPU Usage.
-- Tăng Memory Usage.
-- Tăng kích thước Log File.
-- Làm giảm hiệu năng của Application.
-
-Để hạn chế ảnh hưởng đến hiệu năng:
-
-- Sử dụng Log Level phù hợp.
-- Không ghi các thông tin không cần thiết.
-- Sử dụng Async Logging khi phù hợp.
-- Hạn chế việc tạo String không cần thiết khi Log Level không được bật.
-- Sử dụng Log Rotation để kiểm soát kích thước Log.
+| Ngày      | Nội dung học                             | Kết quả đạt được                                                                       |
+| --------- | ---------------------------------------- | -------------------------------------------------------------------------------------- |
+| **Thứ 2** | MySQL/PostgreSQL & Database Fundamentals | Hiểu cách cài đặt, cấu hình Database và các khái niệm cơ bản.                          |
+| **Thứ 3** | SQL Optimization, EXPLAIN & Indexing     | Hiểu Execution Plan, Index và các kỹ thuật tối ưu SQL.                                 |
+| **Thứ 4** | Normalization, ACID & Transactions       | Hiểu Normalization, Transaction và Isolation Levels.                                   |
+| **Thứ 5** | Logging Frameworks & Structured Logging  | Hiểu SLF4J, Logback, Log4j2, Log Levels, Appenders và JSON Logging.                    |
+| **Thứ 6** | I/O, Event Loop & Async I/O              | Phân biệt Blocking/Non-blocking I/O, tìm hiểu NIO.2, Selector, Async I/O và Zero-copy. |
 
 ---
 
-## 2.3. I/O và Java NIO.2
+# 3. Chi tiết nội dung đã học
 
-### a. Blocking I/O và Non-blocking I/O
+# 3.1. Database
 
-Đã tìm hiểu sự khác biệt giữa Blocking I/O và Non-blocking I/O.
+Database là thành phần quan trọng trong Backend Application, chịu trách nhiệm lưu trữ và quản lý dữ liệu.
 
-**Blocking I/O** là mô hình trong đó Thread phải chờ cho đến khi thao tác I/O hoàn thành.
+Trong tuần này, em tập trung tìm hiểu:
 
-Ví dụ:
-
-- Đọc File.
-- Ghi File.
-- Đọc dữ liệu từ Network.
-- Gửi dữ liệu qua Socket.
-
-Trong quá trình chờ, Thread có thể không thực hiện được các Task khác.
-
-**Non-blocking I/O** cho phép Thread tiếp tục xử lý các công việc khác trong khi thao tác I/O đang được thực hiện.
-
-So sánh:
-
-| Đặc điểm | Blocking I/O | Non-blocking I/O |
-|---|---|---|
-| Thread | Phải chờ thao tác I/O hoàn thành | Có thể tiếp tục xử lý Task khác |
-| Hiệu năng | Có thể giảm khi có nhiều Request | Phù hợp với nhiều kết nối đồng thời |
-| Mô hình | Đơn giản hơn | Phức tạp hơn |
-| Ứng dụng | Hệ thống đơn giản | Hệ thống có yêu cầu cao về Concurrency |
-
-### b. Java NIO.2
-
-Đã tìm hiểu Java NIO.2 và các API hỗ trợ xử lý I/O hiện đại trong Java.
-
-Một số thành phần:
-
-- `AsynchronousFileChannel`.
-- `AsynchronousSocketChannel`.
-
-`AsynchronousFileChannel` hỗ trợ thực hiện các thao tác đọc và ghi File bất đồng bộ.
-
-`AsynchronousSocketChannel` hỗ trợ giao tiếp Network theo hướng bất đồng bộ.
-
-Các API này giúp xây dựng các ứng dụng có khả năng xử lý nhiều thao tác I/O mà không cần Blocking Thread trong thời gian chờ.
-
-### c. Event-driven File Processing
-
-Đã tìm hiểu mô hình Event-driven File Processing.
-
-Trong mô hình này, hệ thống thực hiện xử lý dựa trên các Event thay vì liên tục kiểm tra trạng thái của File.
-
-Ví dụ:
-
-```text
-File Event
-    ↓
-Event Handler
-    ↓
-Process File
-    ↓
-Generate Result
-```
-
-Mô hình Event-driven giúp:
-
-- Giảm việc Polling liên tục.
-- Phản hồi nhanh hơn khi có Event.
-- Tối ưu việc sử dụng tài nguyên.
-- Phù hợp với các hệ thống xử lý dữ liệu theo Event.
-
-### d. High-performance I/O Patterns
-
-Đã tìm hiểu một số Pattern giúp nâng cao hiệu năng I/O.
-
-Một số phương pháp:
-
-- Sử dụng Non-blocking I/O.
-- Xử lý bất đồng bộ.
-- Sử dụng Buffer hiệu quả.
-- Giảm số lần đọc và ghi dữ liệu.
-- Sử dụng Batch Processing khi phù hợp.
-- Tối ưu việc sử dụng Thread.
-- Sử dụng Event-driven Architecture.
-
-Mục tiêu của các Pattern này là giảm thời gian chờ và nâng cao khả năng xử lý đồng thời của hệ thống.
-
-### e. Memory-mapped Files
-
-Đã tìm hiểu Memory-mapped Files và cách ánh xạ File vào vùng nhớ của Process.
-
-Memory-mapped File cho phép ứng dụng truy cập dữ liệu trong File thông qua vùng nhớ được ánh xạ.
-
-Một số ưu điểm:
-
-- Giảm số lần Copy dữ liệu.
-- Có thể cải thiện hiệu năng khi xử lý File lớn.
-- Cho phép truy cập dữ liệu giống như truy cập vùng nhớ.
-
-Memory-mapped Files phù hợp với các ứng dụng cần xử lý lượng dữ liệu lớn hoặc truy cập File thường xuyên.
-
-### f. Zero-copy Techniques
-
-Đã tìm hiểu về Zero-copy và mục tiêu giảm số lần Copy dữ liệu giữa các vùng nhớ.
-
-Trong quá trình xử lý I/O truyền thống, dữ liệu có thể phải được Copy qua nhiều vùng nhớ khác nhau trước khi đến nơi cần sử dụng.
-
-Zero-copy giúp giảm các thao tác Copy không cần thiết.
-
-Một ví dụ là cơ chế `sendfile()` trong hệ điều hành, cho phép truyền dữ liệu hiệu quả hơn giữa File và Network.
-
-Lợi ích của Zero-copy:
-
-- Giảm CPU Usage.
-- Giảm số lần Copy dữ liệu.
-- Giảm Memory Overhead.
-- Cải thiện hiệu năng I/O.
+* MySQL.
+* PostgreSQL.
+* SQL Optimization.
+* EXPLAIN.
+* Normalization.
+* Indexing.
+* Transaction.
+* ACID.
+* Transaction Isolation.
 
 ---
 
-## 2.4. Event Loop và Async I/O
+# 3.2. MySQL và PostgreSQL
 
-### a. Event Loop Implementation
+MySQL và PostgreSQL đều là các hệ quản trị cơ sở dữ liệu quan hệ phổ biến.
 
-Đã tìm hiểu mô hình Event Loop và cách xử lý các Event.
+Database sử dụng:
 
-Event Loop liên tục chờ và xử lý các Event phát sinh.
+* Table.
+* Row.
+* Column.
+* Primary Key.
+* Foreign Key.
+* Constraint.
+* Index.
 
 Mô hình cơ bản:
 
 ```text
-Event Loop
-    ↓
-Wait for Event
-    ↓
-Receive Event
-    ↓
-Process Event
-    ↓
-Wait for Next Event
+Database
+   |
+   ├── Table
+   │     ├── Row
+   │     └── Column
+   |
+   ├── Index
+   |
+   └── Constraint
 ```
 
-Event Loop có thể xử lý nhiều Event mà không cần tạo một Thread riêng cho từng Event.
+---
 
-Mô hình này giúp giảm chi phí tạo quá nhiều Thread và thường được sử dụng trong các hệ thống xử lý I/O bất đồng bộ.
+## MySQL
 
-### b. Callback Hell
+MySQL là hệ quản trị cơ sở dữ liệu quan hệ phổ biến, thường được sử dụng trong các ứng dụng Web và Backend.
 
-Đã tìm hiểu vấn đề Callback Hell trong lập trình bất đồng bộ.
+Các nội dung tìm hiểu:
 
-Callback Hell xảy ra khi nhiều Callback được lồng vào nhau, khiến Code:
+* Cài đặt Database Server.
+* Tạo Database.
+* Tạo User.
+* Phân quyền.
+* Tạo Table.
+* Thực hiện CRUD.
+* Kết nối Application với Database.
 
-- Khó đọc.
-- Khó bảo trì.
-- Khó Debug.
-- Khó xử lý Error.
+---
+
+## PostgreSQL
+
+PostgreSQL là hệ quản trị cơ sở dữ liệu quan hệ có nhiều tính năng mạnh về:
+
+* SQL.
+* Transaction.
+* Data Integrity.
+* Extensibility.
+* Complex Queries.
+
+Trong quá trình học, em tìm hiểu cách cài đặt, cấu hình và kết nối PostgreSQL với ứng dụng Backend.
+
+---
+
+# 3.3. SQL Optimization
+
+Khi dữ liệu trong Database tăng lên, các câu SQL đơn giản có thể trở nên chậm nếu không được thiết kế và tối ưu đúng cách.
+
+Một số nguyên nhân:
+
+* Query không sử dụng Index.
+* Quét quá nhiều dữ liệu.
+* JOIN không tối ưu.
+* SELECT quá nhiều Column.
+* Sử dụng điều kiện không phù hợp.
+* Index không phù hợp.
+* Thiết kế Database chưa tối ưu.
+
+Một số nguyên tắc:
+
+* Chỉ SELECT các column cần thiết.
+* Sử dụng WHERE phù hợp.
+* Tối ưu JOIN.
+* Sử dụng Index đúng trường hợp.
+* Phân tích Execution Plan.
+* Tránh truy vấn dữ liệu không cần thiết.
+
+---
+
+# 3.4. EXPLAIN Plans
+
+`EXPLAIN` được sử dụng để phân tích cách Database thực hiện một câu SQL.
+
+Ví dụ:
+
+```sql
+EXPLAIN
+SELECT *
+FROM users
+WHERE email = 'user@example.com';
+```
+
+Execution Plan có thể cung cấp thông tin về:
+
+* Access Type.
+* Index được sử dụng.
+* Số dòng dự kiến được scan.
+* Join strategy.
+* Estimated cost.
+
+Có thể sử dụng Execution Plan để xác định các vấn đề như:
+
+* Full Table Scan.
+* Index không được sử dụng.
+* Join không hiệu quả.
+* Quét quá nhiều dữ liệu.
+
+Qua đó, em hiểu rằng tối ưu SQL không chỉ dựa vào việc viết câu lệnh ngắn mà cần phân tích cách Database thực thi câu lệnh.
+
+---
+
+# 3.5. Database Indexing
+
+Index là cấu trúc dữ liệu giúp Database tìm kiếm dữ liệu nhanh hơn.
+
+Không có Index:
+
+```text
+Query
+  ↓
+Scan Table
+  ↓
+Check từng Row
+```
+
+Có Index:
+
+```text
+Query
+  ↓
+Index
+  ↓
+Find vị trí dữ liệu
+  ↓
+Table
+```
+
+Một số loại Index phổ biến:
+
+* B-Tree Index.
+* Composite Index.
+* Unique Index.
+
+Index đặc biệt hữu ích đối với các Column thường xuyên xuất hiện trong:
+
+* WHERE.
+* JOIN.
+* ORDER BY.
+* GROUP BY.
+
+---
+
+## Trade-off của Index
+
+Index giúp tăng tốc đọc dữ liệu nhưng cũng có chi phí:
+
+* Tốn Storage.
+* Tăng thời gian INSERT.
+* Tăng thời gian UPDATE.
+* Tăng thời gian DELETE.
+* Database phải duy trì Index khi dữ liệu thay đổi.
+
+Do đó không nên tạo Index một cách tùy tiện.
+
+---
+
+# 3.6. Database Normalization
+
+Normalization là quá trình tổ chức dữ liệu nhằm:
+
+* Giảm Duplicate Data.
+* Tránh Data Anomaly.
+* Cải thiện Data Integrity.
+
+Một số Normal Form quan trọng:
+
+* 1NF.
+* 2NF.
+* 3NF.
+
+---
+
+## First Normal Form - 1NF
+
+Dữ liệu phải có:
+
+* Giá trị Atomic.
+* Không chứa nhóm dữ liệu lặp trong một field.
+* Mỗi row có thể xác định rõ.
+
+---
+
+## Second Normal Form - 2NF
+
+Database cần thỏa mãn 1NF và các thuộc tính không khóa phải phụ thuộc đầy đủ vào toàn bộ khóa chính.
+
+---
+
+## Third Normal Form - 3NF
+
+Database cần thỏa mãn 2NF và các thuộc tính không khóa không được phụ thuộc bắc cầu vào khóa chính.
+
+---
+
+## Lợi ích của Normalization
+
+* Giảm dữ liệu trùng lặp.
+* Dễ duy trì dữ liệu.
+* Giảm các Data Anomaly.
+* Cải thiện tính nhất quán.
+
+Tuy nhiên, trong một số hệ thống yêu cầu hiệu năng đọc cao, có thể sử dụng Denormalization có kiểm soát.
+
+---
+
+# 3.7. Transaction
+
+Transaction là một nhóm các thao tác Database được thực hiện như một đơn vị logic.
+
+Ví dụ chuyển tiền:
+
+```text
+Transaction
+   |
+   ├── Trừ tiền tài khoản A
+   |
+   └── Cộng tiền tài khoản B
+```
+
+Hai thao tác cần được xử lý nhất quán.
+
+Nếu một bước thất bại, transaction có thể được Rollback.
+
+Các thao tác cơ bản:
+
+```text
+BEGIN
+COMMIT
+ROLLBACK
+```
+
+---
+
+# 3.8. ACID Properties
+
+ACID gồm:
+
+* Atomicity.
+* Consistency.
+* Isolation.
+* Durability.
+
+---
+
+## Atomicity
+
+Transaction được thực hiện toàn bộ hoặc không thực hiện.
+
+```text
+All
+ ↓
+Commit
+
+Hoặc
+
+None
+ ↓
+Rollback
+```
+
+---
+
+## Consistency
+
+Database phải chuyển từ một trạng thái hợp lệ sang một trạng thái hợp lệ khác.
+
+---
+
+## Isolation
+
+Các transaction đồng thời không được gây ra kết quả không hợp lệ do nhìn thấy trạng thái trung gian của nhau.
+
+---
+
+## Durability
+
+Sau khi transaction được Commit, dữ liệu phải được đảm bảo tồn tại ngay cả khi hệ thống gặp sự cố.
+
+---
+
+# 3.9. Transaction Isolation Levels
+
+Isolation Level quy định mức độ một transaction có thể nhìn thấy thay đổi của transaction khác.
+
+Các mức phổ biến:
+
+* READ UNCOMMITTED.
+* READ COMMITTED.
+* REPEATABLE READ.
+* SERIALIZABLE.
+
+Các vấn đề liên quan:
+
+### Dirty Read
+
+Một transaction đọc dữ liệu chưa được transaction khác commit.
+
+### Non-repeatable Read
+
+Cùng một query trong một transaction nhưng trả về kết quả khác nhau do transaction khác đã commit thay đổi.
+
+### Phantom Read
+
+Một query được thực hiện nhiều lần và xuất hiện thêm hoặc mất các row do transaction khác thay đổi dữ liệu.
+
+Có thể hình dung:
+
+```text
+READ UNCOMMITTED
+       ↓
+READ COMMITTED
+       ↓
+REPEATABLE READ
+       ↓
+SERIALIZABLE
+```
+
+Mức Isolation càng cao thường càng tăng tính nhất quán nhưng có thể làm giảm concurrency.
+
+---
+
+# 4. Logging
+
+Logging là quá trình ghi lại các thông tin về hoạt động của ứng dụng.
+
+Logging giúp:
+
+* Debug.
+* Monitoring.
+* Troubleshooting.
+* Audit.
+* Phân tích lỗi.
+* Theo dõi hệ thống Production.
+
+---
+
+# 4.1. SLF4J
+
+SLF4J là abstraction layer cho Java Logging.
+
+Có thể hình dung:
+
+```text
+Application
+     |
+     ↓
+   SLF4J
+     |
+     ├── Logback
+     └── Log4j2
+```
+
+Application sử dụng API của SLF4J thay vì phụ thuộc trực tiếp vào một Logging Implementation cụ thể.
+
+Điều này giúp giảm coupling và dễ thay đổi Logging Framework.
+
+---
+
+# 4.2. Logback
+
+Logback là một Logging Framework phổ biến trong Java.
+
+Các thành phần quan trọng:
+
+* Logger.
+* Appender.
+* Encoder.
+* Pattern.
+* Level.
+
+Logback thường được sử dụng cùng SLF4J trong các ứng dụng Java/Spring Boot.
+
+---
+
+# 4.3. Log4j2
+
+Log4j2 cũng là một Logging Framework phổ biến trong hệ sinh thái Java.
+
+Một số đặc điểm:
+
+* Hiệu năng tốt.
+* Có nhiều cấu hình.
+* Hỗ trợ Async Logging.
+* Hỗ trợ nhiều Appender.
+* Hỗ trợ Structured Logging.
+
+---
+
+# 4.4. Log Levels
+
+Các Log Level được tìm hiểu:
+
+```text
+TRACE
+  ↓
+DEBUG
+  ↓
+INFO
+  ↓
+WARN
+  ↓
+ERROR
+```
+
+---
+
+## TRACE
+
+Mức chi tiết rất cao.
+
+Thường sử dụng khi cần theo dõi flow rất chi tiết trong quá trình debug.
+
+---
+
+## DEBUG
+
+Thông tin phục vụ Debug và phân tích behavior của ứng dụng.
+
+---
+
+## INFO
+
+Thông tin về hoạt động bình thường của hệ thống.
+
+Ví dụ:
+
+```text
+Application started
+User logged in
+Order created
+```
+
+---
+
+## WARN
+
+Thông báo về tình huống bất thường nhưng hệ thống vẫn có thể tiếp tục hoạt động.
+
+---
+
+## ERROR
+
+Thông báo lỗi nghiêm trọng hoặc Exception xảy ra.
+
+---
+
+# 4.5. Appropriate Log Level
+
+Việc chọn Log Level phù hợp rất quan trọng.
+
+Không nên:
+
+* Ghi mọi thứ ở ERROR.
+* Ghi dữ liệu nhạy cảm.
+* Ghi quá nhiều thông tin ở INFO.
+* Sử dụng DEBUG/TRACE không kiểm soát trong Production.
+
+Nên sử dụng:
+
+```text
+TRACE → Chi tiết cực cao
+DEBUG → Debug
+INFO  → Hoạt động bình thường
+WARN  → Bất thường
+ERROR → Lỗi
+```
+
+---
+
+# 4.6. Appenders
+
+Appender xác định Log được ghi đi đâu.
+
+Các loại:
+
+* Console.
+* File.
+* Rolling File.
+* Async.
+
+---
+
+## Console Appender
+
+Ghi Log ra Console.
+
+Phù hợp:
+
+* Development.
+* Container environment.
+
+---
+
+## File Appender
+
+Ghi Log vào File.
+
+Phù hợp khi cần lưu trữ Log trên filesystem.
+
+---
+
+## Rolling File Appender
+
+Cho phép tạo File Log mới dựa trên:
+
+* Kích thước.
+* Thời gian.
+
+Ví dụ:
+
+```text
+application.log
+application.2026-08-01.log
+application.2026-08-02.log
+```
+
+Giúp tránh một Log File phát triển không giới hạn.
+
+---
+
+## Async Appender
+
+Logging được thực hiện bất đồng bộ.
+
+Mục tiêu:
+
+* Giảm ảnh hưởng của Logging lên thread xử lý request.
+* Cải thiện performance trong hệ thống có lượng Log lớn.
+
+---
+
+# 4.7. Log Patterns
+
+Log Pattern quy định format của Log.
+
+Một Log có thể chứa:
+
+```text
+Timestamp
+Thread
+Log Level
+Class
+Message
+Exception
+```
+
+Ví dụ:
+
+```text
+2026-08-10 10:20:30
+[http-nio-8080-exec-1]
+INFO
+UserService
+User created successfully
+```
+
+Các thông tin này giúp xác định:
+
+* Khi nào xảy ra lỗi.
+* Thread nào xử lý.
+* Class nào tạo Log.
+* Nội dung sự kiện.
+
+---
+
+# 4.8. Structured Logging
+
+Structured Logging lưu Log dưới dạng dữ liệu có cấu trúc thay vì chỉ là text tự do.
+
+Ví dụ JSON:
+
+```json
+{
+  "timestamp": "2026-08-10T10:20:30Z",
+  "level": "INFO",
+  "service": "user-service",
+  "userId": "123",
+  "event": "user_created"
+}
+```
+
+Ưu điểm:
+
+* Dễ parse.
+* Dễ tìm kiếm.
+* Dễ filter.
+* Phù hợp với Log Aggregation.
+* Phù hợp với hệ thống phân tán.
+
+---
+
+# 4.9. Key-Value Logging
+
+Structured Logging thường sử dụng các cặp:
+
+```text
+key = value
+```
+
+Ví dụ:
+
+```text
+service=user-service
+userId=123
+action=create
+status=success
+```
+
+Các trường dữ liệu có cấu trúc giúp hệ thống Logging dễ dàng:
+
+* Search.
+* Filter.
+* Aggregate.
+* Analyze.
+
+---
+
+# 4.10. Log Aggregation
+
+Trong hệ thống có nhiều Server/Container, việc đọc Log từ từng máy sẽ rất khó khăn.
+
+Mô hình:
+
+```text
+Application A ─┐
+Application B ─┼──→ Log Aggregation
+Application C ─┘          |
+                           ↓
+                    Centralized Storage
+                           |
+                           ↓
+                       Monitoring
+```
+
+Log Aggregation giúp tập trung Log từ nhiều Application/Server vào một hệ thống chung.
+
+Lợi ích:
+
+* Search Log tập trung.
+* Phân tích lỗi.
+* Monitoring.
+* Correlation giữa các Service.
+
+---
+
+# 4.11. Centralized Logging
+
+Centralized Logging đặc biệt quan trọng trong Microservices.
+
+Ví dụ:
+
+```text
+Service A ─┐
+Service B ─┼──→ Central Logging
+Service C ─┘
+```
+
+Thay vì phải truy cập từng Service để kiểm tra Log, Developer có thể tìm kiếm Log tại một hệ thống tập trung.
+
+---
+
+# 4.12. Performance Impact của Logging
+
+Logging cũng tiêu tốn tài nguyên.
+
+Các chi phí:
+
+* CPU.
+* Memory.
+* Disk I/O.
+* Network I/O.
+* Serialization.
+
+Nếu Logging quá nhiều có thể ảnh hưởng Performance của Application.
+
+Do đó cần:
+
+* Chọn Log Level phù hợp.
+* Không Log dữ liệu không cần thiết.
+* Sử dụng Async Logging khi phù hợp.
+* Sử dụng Structured Logging.
+* Quản lý Log Rotation.
+* Không ghi thông tin nhạy cảm.
+
+---
+
+# 5. I/O
+
+I/O là hoạt động trao đổi dữ liệu giữa Application và các resource bên ngoài như:
+
+* File.
+* Network.
+* Database.
+* Socket.
+
+Trong Backend, I/O thường là một trong những yếu tố ảnh hưởng đáng kể đến Performance.
+
+---
+
+# 5.1. Blocking I/O
+
+Trong Blocking I/O, Thread sẽ chờ cho đến khi thao tác I/O hoàn thành.
+
+Mô hình:
+
+```text
+Thread
+  |
+  ↓
+I/O Operation
+  |
+  | waiting
+  ↓
+Result
+```
+
+Trong thời gian chờ, Thread không thể thực hiện công việc khác theo flow đó.
+
+Ưu điểm:
+
+* Dễ hiểu.
+* Dễ lập trình.
+
+Nhược điểm:
+
+* Tốn Thread khi có nhiều I/O.
+* Khả năng scale có thể hạn chế.
+
+---
+
+# 5.2. Non-blocking I/O
+
+Non-blocking I/O cho phép Thread tiếp tục xử lý công việc khác trong khi I/O chưa hoàn thành.
+
+Mô hình:
+
+```text
+Thread
+  |
+  ├── Start I/O
+  |
+  ├── Process Task B
+  |
+  ├── Process Task C
+  |
+  └── Handle I/O Result
+```
+
+Ưu điểm:
+
+* Sử dụng Thread hiệu quả hơn.
+* Phù hợp với lượng lớn I/O operations.
+* Hỗ trợ high concurrency.
+
+Nhược điểm:
+
+* Kiến trúc phức tạp hơn.
+* Khó debug hơn.
+* Cần quản lý asynchronous flow.
+
+---
+
+# 5.3. Java NIO.2
+
+Java NIO.2 cung cấp API cho các thao tác I/O hiện đại hơn.
+
+Các thành phần:
+
+* `Path`
+* `Files`
+* `AsynchronousFileChannel`
+* `AsynchronousSocketChannel`
+
+NIO.2 hỗ trợ:
+
+* File I/O.
+* Network I/O.
+* Asynchronous Operations.
+
+---
+
+# 5.4. AsynchronousFileChannel
+
+`AsynchronousFileChannel` cho phép thực hiện các thao tác đọc/ghi File bất đồng bộ.
+
+Thay vì:
+
+```text
+Thread
+ ↓
+Read File
+ ↓
+Wait
+ ↓
+Result
+```
+
+Có thể:
+
+```text
+Thread
+ ↓
+Start Read
+ ↓
+Continue Other Work
+ ↓
+Callback / Completion
+```
+
+Điều này phù hợp với các ứng dụng cần xử lý nhiều File I/O.
+
+---
+
+# 5.5. AsynchronousSocketChannel
+
+`AsynchronousSocketChannel` hỗ trợ thao tác Socket bất đồng bộ.
+
+Có thể sử dụng cho các ứng dụng cần:
+
+* Network Communication.
+* High Concurrency.
+* Asynchronous Request Processing.
+
+---
+
+# 5.6. Event-driven File Processing
+
+Event-driven processing là mô hình xử lý dựa trên sự kiện.
+
+Ví dụ:
+
+```text
+File Created
+     ↓
+Event
+     ↓
+File Processor
+     ↓
+Read Data
+     ↓
+Process
+     ↓
+Save Result
+```
+
+Thay vì liên tục kiểm tra filesystem, application có thể phản ứng khi có event phù hợp.
+
+---
+
+# 5.7. Event Loop
+
+Event Loop là mô hình xử lý các Event trong một vòng lặp.
+
+Mô hình:
+
+```text
+        ┌───────────────┐
+        ↓               |
+   Event Queue          |
+        ↓               |
+   Event Loop ──────────┘
+        |
+        ↓
+   Process Event
+```
+
+Một Event Loop có thể xử lý nhiều Event trên một Thread hoặc một nhóm Thread nhỏ.
+
+Đặc điểm quan trọng:
+
+* Event được đưa vào Queue.
+* Event Loop lấy Event.
+* Xử lý Event.
+* Tiếp tục lấy Event tiếp theo.
+
+Mô hình này đặc biệt hữu ích trong hệ thống Event-driven và Non-blocking I/O.
+
+---
+
+# 5.8. Single-threaded Event Processing
+
+Trong mô hình Single-threaded Event Loop, một Thread chịu trách nhiệm xử lý tuần tự các Event.
+
+Ưu điểm:
+
+* Đơn giản hóa một số vấn đề concurrency.
+* Không cần lock cho mọi thao tác trong cùng Event Loop.
+
+Nhược điểm:
+
+* Một task blocking có thể làm toàn bộ Event Loop bị chậm.
+* Task CPU-intensive cần được xử lý cẩn thận.
+
+Do đó Event Loop thường cần kết hợp với Non-blocking I/O.
+
+---
+
+# 5.9. Callback Hell
+
+Khi các asynchronous operation được lồng vào nhau quá nhiều callback, code có thể trở nên khó đọc.
+
+Ví dụ mô hình:
+
+```text
+Callback A
+   |
+   └── Callback B
+          |
+          └── Callback C
+                 |
+                 └── Callback D
+```
+
+Đây được gọi là Callback Hell.
 
 Một số giải pháp:
 
-- Promises.
-- `CompletableFuture`.
-- Reactive Programming.
+* Promise/Future.
+* CompletableFuture.
+* Reactive Programming.
+* Async/Await ở các ngôn ngữ hỗ trợ.
 
-Việc sử dụng các mô hình xử lý bất đồng bộ hiện đại giúp cấu trúc Code rõ ràng và dễ quản lý hơn.
-
-### c. Reactive Streams và Backpressure
-
-Đã tìm hiểu Reactive Streams và khái niệm Backpressure.
-
-Trong một hệ thống xử lý Stream, Producer có thể tạo dữ liệu nhanh hơn tốc độ Consumer xử lý.
-
-Backpressure là cơ chế giúp Consumer thông báo khả năng xử lý của mình để kiểm soát tốc độ dữ liệu được truyền từ Producer.
-
-Mục tiêu của Backpressure:
-
-- Tránh Consumer bị quá tải.
-- Kiểm soát tốc độ dữ liệu.
-- Hạn chế Memory Overflow.
-- Giúp hệ thống ổn định hơn.
-
-### d. NIO Selector
-
-Đã tìm hiểu `NIO Selector` và cơ chế Multiplexing nhiều Channel.
-
-Selector cho phép một Thread theo dõi nhiều Channel và xử lý các Channel đã sẵn sàng cho các thao tác I/O.
-
-Thay vì sử dụng một Thread cho mỗi Connection, một Thread có thể quản lý nhiều Connection.
-
-Điều này giúp:
-
-- Giảm số lượng Thread.
-- Giảm Memory Usage.
-- Tăng khả năng xử lý nhiều Connection đồng thời.
-
-### e. Async File I/O
-
-Đã tìm hiểu Async File I/O và cách thực hiện các thao tác File theo hướng bất đồng bộ.
-
-Với Async File I/O, Application Thread không cần phải chờ trực tiếp cho đến khi thao tác đọc hoặc ghi File hoàn thành.
-
-Khi thao tác hoàn thành, hệ thống có thể trả về kết quả thông qua Callback hoặc Completion Handler.
-
-Điều này giúp cải thiện khả năng xử lý các tác vụ I/O trong các ứng dụng có yêu cầu cao về hiệu năng.
-
-### f. Zero-copy và `sendfile()`
-
-Đã tìm hiểu cơ chế Zero-copy và System Call `sendfile()`.
-
-`sendfile()` cho phép truyền dữ liệu trực tiếp từ File đến Network Socket với số lần Copy dữ liệu ít hơn so với mô hình truyền thống.
-
-Điều này giúp:
-
-- Giảm số lần chuyển dữ liệu giữa User Space và Kernel Space.
-- Giảm CPU Usage.
-- Giảm Memory Copy.
-- Tăng hiệu năng khi truyền File lớn.
+Trong Java, `CompletableFuture` có thể giúp xây dựng asynchronous flow dễ đọc hơn so với callback lồng nhau.
 
 ---
 
-## 3. Kết quả đạt được
+# 5.10. Reactive Streams
 
-Sau khi hoàn thành tuần học thứ tư, đã đạt được các kết quả sau:
+Reactive Streams là mô hình xử lý asynchronous stream dữ liệu.
 
-- Hiểu cách cài đặt và cấu hình MySQL/PostgreSQL.
-- Nắm được các phương pháp tối ưu SQL và sử dụng `EXPLAIN` để phân tích Execution Plan.
-- Hiểu Database Normalization và mục đích giảm dữ liệu trùng lặp.
-- Nắm được các Indexing Strategies và ảnh hưởng của Index đến hiệu năng Database.
-- Hiểu các thuộc tính ACID của Transaction.
-- Nắm được các Transaction Isolation Levels và các vấn đề Dirty Read, Non-repeatable Read và Phantom Read.
-- Hiểu vai trò của Logging trong việc theo dõi và Debug Application.
-- Nắm được các Logging Framework như SLF4J, Logback và Log4j2.
-- Hiểu các Log Level gồm TRACE, DEBUG, INFO, WARN và ERROR.
-- Nắm được các loại Appender như Console, File, Rolling File và Async.
-- Hiểu Log Pattern và các thông tin thường xuất hiện trong Log.
-- Nắm được Structured Logging và cách sử dụng JSON Format.
-- Hiểu Log Aggregation và Centralized Logging trong các hệ thống Distributed.
-- Nhận thức được ảnh hưởng của Logging đến Performance của Application.
-- Hiểu sự khác biệt giữa Blocking I/O và Non-blocking I/O.
-- Nắm được các thành phần cơ bản của Java NIO.2.
-- Hiểu cách sử dụng AsynchronousFileChannel và AsynchronousSocketChannel.
-- Nắm được khái niệm Event Loop và Event-driven Processing.
-- Hiểu Callback Hell và các giải pháp như Promises, CompletableFuture và Reactive Programming.
-- Nắm được khái niệm Reactive Streams và Backpressure.
-- Hiểu cơ chế Multiplexing của NIO Selector.
-- Nắm được Async File I/O và các High-performance I/O Patterns.
-- Hiểu Memory-mapped Files và Zero-copy Techniques.
-- Hiểu vai trò của `sendfile()` trong việc tối ưu truyền dữ liệu.
-- Xây dựng được nền tảng về Database, Logging và High-performance I/O để tiếp tục phát triển các ứng dụng Backend có hiệu năng cao và khả năng mở rộng tốt.
+Các khái niệm:
+
+* Publisher.
+* Subscriber.
+* Subscription.
+* Processor.
+* Backpressure.
+
+Mô hình:
+
+```text
+Publisher
+    |
+    ↓
+Subscription
+    |
+    ↓
+Subscriber
+```
 
 ---
-## 4. Thực hành
 
-Trong tuần này, em vừa đọc lý thuyết vừa thực hành một số nội dung để trực tiếp quan sát cách Database, Logging và Java I/O hoạt động trong thực tế.
+# 5.11. Backpressure
 
-- Database & SQL: Em tạo Database và một số bảng dữ liệu, thực hiện các câu lệnh SELECT, INSERT, UPDATE, DELETE và JOIN. Em sử dụng EXPLAIN trước và sau khi thêm Index để quan sát Execution Plan, số lượng Row được quét và cách Database sử dụng Index.
+Backpressure xảy ra khi Producer tạo dữ liệu nhanh hơn Consumer có thể xử lý.
 
-- Normalization & Indexing: Em thử thiết kế bảng dữ liệu theo 1NF, 2NF và 3NF để giảm dữ liệu trùng lặp. Sau đó tạo Index trên các cột thường xuyên được sử dụng trong WHERE và JOIN, rồi kiểm tra sự thay đổi trong quá trình thực thi Query.
+Ví dụ:
 
-- Transaction: Em thực hành một số Transaction gồm nhiều thao tác Database và thử COMMIT hoặc ROLLBACK để quan sát cách dữ liệu được thay đổi. Em cũng tìm hiểu các Isolation Level và các vấn đề như Dirty Read, Non-repeatable Read và Phantom Read.
+```text
+Producer
+  |
+  | 1000 events/s
+  ↓
+Queue
+  |
+  | 100 events/s
+  ↓
+Consumer
+```
 
-- Logging: Em tạo ứng dụng Java sử dụng SLF4J và Logback để ghi Log với các Level DEBUG, INFO, WARN và ERROR. Em thử ghi Log ra Console và File, đồng thời quan sát cách Rolling File Appender tạo File Log mới khi đạt điều kiện cấu hình.
+Nếu không có cơ chế kiểm soát, Queue có thể tăng kích thước và dẫn đến:
 
-- Structured Logging: Em thử ghi Log dưới dạng Key-Value/JSON thay vì Text thông thường, bao gồm các thông tin như timestamp, level, service và userId. Qua đó em thấy việc chuẩn hóa Log giúp việc tìm kiếm và phân tích dữ liệu thuận tiện hơn.
+* Memory pressure.
+* Latency tăng.
+* Out of Memory.
 
-- Java I/O & NIO.2: Em thực hành đọc và ghi File bằng Java, sau đó tìm hiểu cách xử lý bất đồng bộ với AsynchronousFileChannel. Em so sánh Blocking I/O và Non-blocking I/O để hiểu sự khác biệt về cách Thread xử lý trong khi chờ thao tác I/O hoàn thành.
+Backpressure giúp Consumer kiểm soát tốc độ dữ liệu được gửi đến.
 
-- Event Loop & NIO Selector: Em tìm hiểu và thử mô phỏng mô hình Event Loop, đồng thời quan sát cách NIO Selector có thể quản lý nhiều Channel trên một Thread thay vì tạo một Thread riêng cho từng Connection.
-- Memory-mapped Files & Zero-copy: Em tìm hiểu cách Memory-mapped File cho phép truy cập dữ liệu thông qua vùng nhớ và nghiên cứu cơ chế Zero-copy, đặc biệt là sendfile(), để hiểu cách giảm số lần Copy dữ liệu và cải thiện hiệu năng I/O.
+---
 
-Qua các bài thực hành, em đã có cơ hội kiểm chứng lại kiến thức lý thuyết và hiểu rõ hơn mối liên hệ giữa Database, Logging và I/O trong việc xây dựng ứng dụng Backend có hiệu năng và khả năng theo dõi tốt.
-## 5. Kế hoạch tuần 5
+# 5.12. NIO Selector
 
-### Tuần 5: Spring Boot, REST API & Database Integration
+`Selector` cho phép một Thread theo dõi nhiều Channel.
 
-#### Yêu cầu Spring Boot
+Mô hình:
 
-- Spring Framework và Dependency Injection.
-- Inversion of Control (IoC) và Application Context.
-- Spring Boot Auto-configuration và Starter Dependencies.
-- Spring MVC và RESTful API.
-- Controller, Service, Repository và Entity.
-- Spring Data JPA và Hibernate.
+```text
+              ┌── Channel A
+              |
+Selector ─────┼── Channel B
+              |
+              ├── Channel C
+              |
+              └── Channel D
+```
 
-#### Yêu cầu REST API
+Thay vì mỗi Connection cần một Thread riêng, một Thread có thể multiplex nhiều Channel.
 
-- HTTP Methods và Status Codes.
-- Request, Response và JSON.
-- RESTful API Design.
-- Exception Handling và Validation.
-- Pagination và Sorting.
-- API Documentation với Swagger/OpenAPI.
+Đây là nền tảng quan trọng của nhiều mô hình Non-blocking Network I/O.
 
-#### Yêu cầu Database Integration
+---
 
-- Kết nối Spring Boot với MySQL/PostgreSQL.
-- Spring Data JPA.
-- Entity Mapping.
-- Repository và Query Methods.
-- Transaction Management.
-- Database Migration.
+# 5.13. Multiplexing
+
+Multiplexing cho phép một Thread theo dõi nhiều I/O Channel.
+
+Thay vì:
+
+```text
+Thread A → Channel A
+Thread B → Channel B
+Thread C → Channel C
+Thread D → Channel D
+```
+
+Có thể:
+
+```text
+              ┌→ Channel A
+              ├→ Channel B
+Event Loop ───┼→ Channel C
+              └→ Channel D
+```
+
+Điều này giúp giảm số lượng Thread cần thiết trong các hệ thống có nhiều connection.
+
+---
+
+# 5.14. Memory-Mapped Files
+
+Memory-mapped File cho phép map nội dung File vào vùng nhớ của Process.
+
+Có thể hình dung:
+
+```text
+File
+  |
+  ↓
+Memory Mapping
+  |
+  ↓
+Process Memory Address Space
+```
+
+Application có thể truy cập dữ liệu thông qua memory mapping thay vì thực hiện các thao tác read/write truyền thống theo cách thông thường.
+
+Phù hợp với:
+
+* File lớn.
+* Random Access.
+* High-performance File Processing.
+
+---
+
+# 5.15. Zero-Copy
+
+Zero-copy là kỹ thuật giảm việc sao chép dữ liệu không cần thiết giữa các vùng memory trong quá trình truyền dữ liệu.
+
+Trong mô hình truyền thống có thể xảy ra nhiều bước:
+
+```text
+Disk
+ ↓
+Kernel Buffer
+ ↓
+User Space
+ ↓
+Kernel Buffer
+ ↓
+Network
+```
+
+Zero-copy cố gắng giảm các lần copy không cần thiết.
+
+Một cơ chế nổi tiếng trên Linux là:
+
+```text
+sendfile()
+```
+
+Mục tiêu:
+
+* Giảm CPU overhead.
+* Giảm Memory Copy.
+* Tăng Throughput.
+* Cải thiện hiệu năng truyền File.
+
+Zero-copy thường hữu ích trong:
+
+* File Server.
+* Web Server.
+* Network Applications.
+* High-throughput Systems.
+
+---
+
+# 6. Kết quả đạt được
+
+Sau tuần thứ tư, em đã đạt được các kết quả:
+
+## Database
+
+* Hiểu các khái niệm cơ bản của MySQL và PostgreSQL.
+* Biết cách cài đặt và cấu hình Database.
+* Hiểu SQL Optimization.
+* Biết sử dụng `EXPLAIN` để phân tích Query Plan.
+* Hiểu Database Index.
+* Biết các chiến lược Indexing cơ bản.
+* Hiểu Database Normalization.
+* Nắm được 1NF, 2NF và 3NF.
+* Hiểu Transaction.
+* Nắm được ACID Properties.
+* Hiểu Transaction Isolation Levels.
+* Biết các vấn đề Dirty Read, Non-repeatable Read và Phantom Read.
+
+## Logging
+
+* Hiểu vai trò của Logging trong Backend.
+* Hiểu SLF4J.
+* Hiểu Logback.
+* Hiểu Log4j2.
+* Nắm được các Log Level.
+* Biết cách lựa chọn Log Level phù hợp.
+* Hiểu Console, File, Rolling File và Async Appender.
+* Hiểu Log Pattern.
+* Hiểu Structured Logging.
+* Biết cách biểu diễn Log dưới dạng JSON.
+* Hiểu Log Aggregation và Centralized Logging.
+* Nhận thức được ảnh hưởng của Logging đến Performance.
+
+## I/O
+
+* Phân biệt Blocking I/O và Non-blocking I/O.
+* Hiểu Java NIO.2.
+* Biết vai trò của `AsynchronousFileChannel`.
+* Hiểu `AsynchronousSocketChannel`.
+* Hiểu Event-driven Processing.
+* Nắm được Event Loop.
+* Hiểu Callback Hell.
+* Biết vai trò của CompletableFuture trong Async Programming.
+* Hiểu Reactive Streams và Backpressure.
+* Hiểu NIO Selector và Multiplexing.
+* Biết khái niệm Memory-mapped Files.
+* Hiểu Zero-copy và `sendfile()`.
+
+Qua tuần thứ tư, em đã có nền tảng tốt hơn về Database, Logging và các cơ chế I/O hiệu năng cao, đây là những kiến thức quan trọng đối với Backend Developer.
+
+---
+
+# 7. Khó khăn và hướng khắc phục
+
+Trong quá trình học tập, em gặp một số khó khăn:
+
+* Execution Plan của Database có nhiều thông tin và cần thời gian để hiểu.
+* Việc lựa chọn Index phù hợp cần cân nhắc giữa tốc độ đọc và chi phí ghi dữ liệu.
+* Transaction Isolation có nhiều mức và các vấn đề như Dirty Read, Phantom Read khá khó phân biệt.
+* Logging Framework có nhiều thành phần như Logger, Appender, Pattern và Encoder.
+* Structured Logging và Centralized Logging cần kết hợp nhiều thành phần của hệ thống.
+* Non-blocking I/O có flow phức tạp hơn Blocking I/O.
+* Event Loop, Selector và Reactive Streams yêu cầu hiểu cả Concurrency và Asynchronous Programming.
+* Zero-copy và Memory-mapped Files liên quan đến cách hệ điều hành quản lý Memory và I/O nên cần nghiên cứu thêm.
+
+Để khắc phục, em tiếp tục đọc tài liệu, phân tích Execution Plan, tìm hiểu các mô hình I/O và so sánh giữa các phương pháp xử lý để hiểu rõ ưu nhược điểm của từng kỹ thuật.
+
+---
+
+# 8. Kế hoạch Tuần 5
+
+Trong tuần thứ năm, nội dung học tập sẽ tập trung vào **Spring Boot và Middleware**, đặc biệt là **Authentication và Rate Limiting**.
+
+## 8.1. Spring Boot
+
+Các nội dung dự kiến:
+
+* Spring Boot Architecture.
+* Auto-configuration.
+* Dependency Injection.
+* IoC Container.
+* Spring MVC.
+* Request Lifecycle.
+* RESTful API Design.
+* Configuration Properties.
+* Profiles.
+
+Mục tiêu:
+
+* Hiểu kiến trúc Spring Boot.
+* Hiểu IoC và Dependency Injection.
+* Nắm được Request Lifecycle.
+* Biết xây dựng RESTful API.
+* Biết quản lý Configuration.
+* Hiểu cách sử dụng Profiles cho các môi trường khác nhau.
+
+---
+
+## 8.2. Authentication
+
+Các nội dung dự kiến:
+
+* Session-based Authentication.
+* Cookie-based Authentication.
+* Token-based Authentication.
+* JWT.
+* OAuth2.
+* OIDC.
+* API Key.
+* mTLS.
+* Stateless vs Stateful Authentication.
+* Spring Security Filter Chain.
+* `SecurityFilterChain`.
+* Access Token.
+* Refresh Token.
+* Token Revocation.
+* Redis Blacklist.
+* RBAC.
+* ABAC.
+* `@PreAuthorize`.
+
+---
+
+## 8.3. Rate Limiting
+
+Các nội dung dự kiến:
+
+* Fixed Window.
+* Sliding Window.
+* Token Bucket.
+* Leaky Bucket.
+* Bucket4j.
+* Redis-based Distributed Rate Limiting.
+* API Gateway Rate Limiting.
+* Spring Cloud Gateway.
+* Nginx.
+* Kong.
+* Rate Limiting theo User/IP/API Key.
+* HTTP `429 Too Many Requests`.
+* `X-RateLimit-*` Headers.
+
+Mục tiêu là hiểu cách bảo vệ Backend API trước quá nhiều request, đồng thời đảm bảo hệ thống có khả năng scale trong môi trường nhiều instance.
+
+---
+
+# 9. Kết luận
+
+Tuần thứ tư giúp em hiểu sâu hơn về ba thành phần quan trọng trong Backend là **Database, Logging và I/O**.
+
+Về **Database**, em đã tìm hiểu cách cấu hình MySQL/PostgreSQL, tối ưu SQL bằng `EXPLAIN`, Indexing, Normalization, Transaction và ACID.
+
+Về **Logging**, em đã tìm hiểu SLF4J, Logback, Log4j2, Log Levels, Appenders, Log Patterns và Structured Logging. Đồng thời hiểu vai trò của Log Aggregation và Centralized Logging trong các hệ thống phân tán.
+
+Về **I/O**, em đã phân biệt Blocking và Non-blocking I/O, tìm hiểu Java NIO.2, Asynchronous I/O, Event Loop, Reactive Streams, Backpressure, NIO Selector, Memory-mapped Files và Zero-copy.
+
+Những kiến thức này là nền tảng quan trọng để bước sang tuần thứ năm, tập trung vào **Spring Boot, Spring Security, Authentication và Rate Limiting**, từ đó áp dụng các kiến thức đã học vào xây dựng Backend API có khả năng bảo mật và chịu tải tốt hơn.
