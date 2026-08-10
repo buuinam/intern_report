@@ -1,79 +1,147 @@
-# BÁO CÁO THỰC TẬP TUẦN 5
+# 📘 BÁO CÁO THỰC TẬP TUẦN 5
 
-## Chủ đề: Spring Boot & Middleware (Authentication + Rate Limiting)
+## Thông tin
 
-**Intern:** Bùi Văn Nam
-**Team:** Platform - Adtech
-**Gmail:** [buivannam13032004@gmail.com](mailto:buivannam13032004@gmail.com)
-**Leader:** Nguyễn Văn Cương
-
----
-
-## 1. Mục tiêu tuần
-
-Trong tuần thứ năm, theo roadmap mục tiêu là tìm hiểu các kiến thức về **Spring Boot và Middleware**, tập trung vào việc xây dựng Backend Application, Authentication, Authorization và Rate Limiting.
-
-Nội dung học tập tập trung vào kiến trúc Spring Boot, cơ chế Auto-configuration, Dependency Injection và IoC Container. Bên cạnh đó, tìm hiểu Spring MVC Pattern, Request Lifecycle, RESTful API Design và cách quản lý Configuration Properties cũng như Spring Profiles.
-
-Đối với Middleware - Authentication, đã tìm hiểu các chiến lược Authentication phổ biến như Session-based Authentication, Token-based Authentication, JWT, OAuth2/OIDC, API Key và mTLS. Đồng thời tìm hiểu sự khác biệt giữa Stateful và Stateless Authentication và các trade-off khi triển khai trong hệ thống có nhiều instance.
-
-Ngoài ra, đã nghiên cứu Spring Security, Security Filter Chain, `SecurityFilterChain`, JWT Access Token/Refresh Token, Token Revocation, Redis Blacklist và các mô hình Authorization như RBAC, ABAC cũng như Method-level Security với `@PreAuthorize`.
-
-Đối với Middleware - Rate Limiting, đã tìm hiểu các thuật toán Fixed Window, Sliding Window, Token Bucket và Leaky Bucket. Bên cạnh đó, nghiên cứu cách triển khai Rate Limiting bằng Bucket4j, Redis-based Distributed Rate Limiting và API Gateway như Spring Cloud Gateway, Nginx và Kong.
-
-### Lịch học Tuần 5
-
-| **Ngày** | **Nội dung học**                                   | **Kết quả đạt được**                                                                         |
-| -------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| Thứ 2    | Spring Boot Architecture, Auto-configuration & IoC | Hiểu kiến trúc Spring Boot, Auto-configuration, IoC Container và Dependency Injection.       |
-| Thứ 3    | Spring MVC, RESTful API & Configuration            | Hiểu Request Lifecycle, RESTful API Design, Configuration Properties và Spring Profiles.     |
-| Thứ 4    | Authentication, JWT & Spring Security              | Hiểu Session/Token-based Authentication, JWT, Access/Refresh Token và Security Filter Chain. |
-| Thứ 5    | Authorization, Redis & Token Revocation            | Hiểu RBAC, ABAC, `@PreAuthorize`, JWT Revocation và Redis Blacklist.                         |
-| Thứ 6    | Rate Limiting & Distributed Rate Limiting          | Hiểu các Rate Limiting Algorithms, Bucket4j, Redis Rate Limiting, API Gateway và HTTP 429.   |
+* **Chủ đề:** Spring Boot & Middleware - Authentication + Rate Limiting
+* **Intern:** Bùi Văn Nam
+* **Team:** Platform - Adtech
+* **Gmail:** [buivannam13032004@gmail.com](mailto:buivannam13032004@gmail.com)
+* **Leader:** Nguyễn Văn Cương
 
 ---
 
-## 2. Chi tiết nội dung đã học
+# 1. Mục tiêu tuần
 
-## 2.1. Spring Boot
+Trong tuần thứ năm, theo roadmap, nội dung tập trung vào **Spring Boot và Middleware**, trong đó hai nội dung trọng tâm là **Authentication** và **Rate Limiting**.
 
-### a. Spring Boot Architecture và Auto-configuration
+Đối với Spring Boot, em tìm hiểu kiến trúc Spring Boot, cơ chế Auto-configuration, Dependency Injection, IoC Container, Spring MVC, Request Lifecycle, RESTful API và Configuration Profiles.
 
-Đã tìm hiểu về kiến trúc Spring Boot và các thành phần cơ bản được sử dụng để xây dựng ứng dụng Backend.
+Đối với Authentication, em tìm hiểu các phương thức xác thực phổ biến như Session-based Authentication, JWT, OAuth2/OIDC, API Key và mTLS. Đồng thời tìm hiểu cách Spring Security xử lý request thông qua Filter Chain, cách triển khai JWT Access Token/Refresh Token và các cơ chế Authorization như RBAC, ABAC.
 
-Spring Boot được xây dựng trên nền tảng Spring Framework và cung cấp các cơ chế giúp giảm lượng Configuration cần thiết khi phát triển Application.
+Đối với Rate Limiting, em tìm hiểu các thuật toán Fixed Window, Sliding Window, Token Bucket và Leaky Bucket. Ngoài ra, em tìm hiểu cách triển khai Rate Limiting trong ứng dụng, sử dụng Redis cho môi trường nhiều instance và triển khai tại API Gateway.
 
-Một số thành phần quan trọng:
+Mục tiêu của tuần là xây dựng nền tảng để phát triển Backend API bằng Spring Boot có khả năng **xác thực người dùng, phân quyền và kiểm soát lưu lượng request**.
 
-* Spring Boot Starter.
+---
+
+# 2. Lịch học Tuần 5
+
+| Ngày      | Nội dung học                                  | Kết quả đạt được                                                                         |
+| --------- | --------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Thứ 2** | Spring Boot Architecture & Auto-configuration | Hiểu kiến trúc Spring Boot và cơ chế Auto-configuration.                                 |
+| **Thứ 3** | Dependency Injection, IoC & Spring MVC        | Hiểu IoC Container, DI và Request Lifecycle.                                             |
+| **Thứ 4** | RESTful API & Configuration                   | Biết thiết kế REST API và quản lý Configuration/Profiles.                                |
+| **Thứ 5** | Authentication & Spring Security              | Hiểu JWT, Security Filter Chain, Authorization và các chiến lược Authentication.         |
+| **Thứ 6** | Rate Limiting                                 | Hiểu các thuật toán Rate Limiting và cách triển khai với Bucket4j, Redis và API Gateway. |
+
+---
+
+# 3. Chi tiết nội dung đã học
+
+# 3.1. Spring Boot
+
+Spring Boot là framework được xây dựng trên Spring Framework, giúp đơn giản hóa quá trình phát triển và triển khai ứng dụng Java Backend.
+
+Spring Boot cung cấp:
+
 * Auto-configuration.
+* Starter Dependencies.
 * Embedded Server.
-* Application Context.
-* IoC Container.
 * Dependency Injection.
 * Spring MVC.
+* Configuration Management.
+* Production-ready features.
 
-Spring Boot sử dụng Auto-configuration để tự động cấu hình các thành phần dựa trên Dependencies có trong Project và các Configuration hiện tại.
+Mô hình tổng quát:
 
-Ví dụ, khi sử dụng `spring-boot-starter-web`, Spring Boot có thể tự động cấu hình các thành phần cần thiết cho Spring MVC và Embedded Tomcat.
+```text
+Client
+   |
+   ↓
+Spring Boot Application
+   |
+   ├── Controller
+   |
+   ├── Service
+   |
+   ├── Repository
+   |
+   └── Database
+```
 
-Việc sử dụng Auto-configuration giúp giảm Configuration thủ công và tăng tốc quá trình phát triển Application.
+---
 
-### b. Dependency Injection và IoC Container
+# 3.2. Spring Boot Architecture
 
-Đã tìm hiểu về Inversion of Control (IoC) và Dependency Injection (DI).
+Một ứng dụng Spring Boot thường được tổ chức thành nhiều Layer.
 
-IoC là nguyên lý trong đó quyền quản lý việc tạo và kết nối các Object được chuyển từ Developer sang Spring IoC Container.
+```text
+┌─────────────────────────┐
+│       Controller        │
+│   HTTP Request/Response │
+└────────────┬────────────┘
+             ↓
+┌─────────────────────────┐
+│         Service         │
+│     Business Logic      │
+└────────────┬────────────┘
+             ↓
+┌─────────────────────────┐
+│       Repository        │
+│      Data Access        │
+└────────────┬────────────┘
+             ↓
+┌─────────────────────────┐
+│        Database         │
+└─────────────────────────┘
+```
 
-IoC Container chịu trách nhiệm:
+Việc chia Layer giúp:
 
-* Tạo Bean.
-* Quản lý Bean Lifecycle.
-* Inject Dependency.
-* Quản lý Bean Scope.
-* Kết nối các thành phần trong Application.
+* Giảm coupling.
+* Dễ bảo trì.
+* Dễ testing.
+* Dễ mở rộng.
+* Phân tách trách nhiệm giữa các thành phần.
 
-Dependency Injection cho phép một Class nhận Dependency từ bên ngoài thay vì tự tạo Dependency.
+---
+
+# 3.3. Auto-configuration
+
+Một trong những tính năng quan trọng của Spring Boot là **Auto-configuration**.
+
+Spring Boot dựa trên:
+
+* Dependencies trong Classpath.
+* Configuration.
+* Beans đã tồn tại.
+
+để tự động cấu hình các thành phần phù hợp.
+
+Ví dụ khi thêm Spring Web dependency, Spring Boot có thể tự động cấu hình các thành phần cần thiết cho Web Application.
+
+Điều này giúp giảm lượng Configuration thủ công.
+
+Có thể hình dung:
+
+```text
+Dependencies
+     |
+     ↓
+Spring Boot
+     |
+     ↓
+Auto-configuration
+     |
+     ↓
+Application Context
+```
+
+---
+
+# 3.4. Dependency Injection
+
+Dependency Injection (DI) là cơ chế Spring cung cấp Dependency cho Object thay vì Object tự tạo Dependency.
 
 Ví dụ:
 
@@ -89,68 +157,151 @@ public class UserService {
 }
 ```
 
-Trong trường hợp trên, `UserService` phụ thuộc vào `UserRepository`. Spring Container sẽ tạo và Inject `UserRepository` vào `UserService`.
+Trong trường hợp này, `UserService` không trực tiếp tạo `UserRepository`.
 
-Constructor Injection được ưu tiên vì:
+Spring Container sẽ chịu trách nhiệm tạo và inject dependency.
 
-* Dependency được khai báo rõ ràng.
-* Có thể sử dụng `final`.
+Lợi ích:
+
+* Loose Coupling.
 * Dễ Unit Test.
-* Giảm sự phụ thuộc trực tiếp giữa các Class.
+* Dễ thay đổi Implementation.
+* Quản lý Object Lifecycle tập trung.
 
-### c. Spring MVC và Request Lifecycle
+---
 
-Đã tìm hiểu Spring MVC Pattern và vòng đời xử lý HTTP Request trong Spring Boot.
+# 3.5. IoC Container
 
-Một Request thường được xử lý theo mô hình:
+IoC là viết tắt của **Inversion of Control**.
+
+Trong ứng dụng thông thường:
+
+```text
+Application
+    |
+    ↓
+new Object()
+    |
+    ↓
+Manage Object
+```
+
+Với Spring:
+
+```text
+Spring Container
+      |
+      ├── Create Bean
+      ├── Configure Bean
+      ├── Inject Dependency
+      └── Manage Lifecycle
+```
+
+Spring IoC Container chịu trách nhiệm quản lý các Object được gọi là **Bean**.
+
+Các Annotation thường gặp:
+
+* `@Component`
+* `@Service`
+* `@Repository`
+* `@Controller`
+* `@RestController`
+
+---
+
+# 3.6. Spring MVC
+
+Spring MVC là framework dùng để xây dựng Web Application và REST API.
+
+Mô hình:
 
 ```text
 Client
-   |
-   v
-Filter
-   |
-   v
+  |
+  ↓
 DispatcherServlet
-   |
-   v
+  |
+  ↓
 Controller
-   |
-   v
+  |
+  ↓
 Service
-   |
-   v
+  |
+  ↓
 Repository
-   |
-   v
+  |
+  ↓
 Database
 ```
 
-Các bước xử lý:
+Trong Spring MVC, `DispatcherServlet` đóng vai trò Front Controller, tiếp nhận request và điều phối request đến Controller phù hợp.
 
-* Client gửi HTTP Request.
-* Request đi qua các Filter.
-* `DispatcherServlet` tiếp nhận Request.
-* DispatcherServlet xác định Controller phù hợp.
-* Controller gọi Service.
-* Service thực hiện Business Logic.
-* Repository thực hiện thao tác với Database.
-* Kết quả được trả về Controller.
-* Spring chuyển kết quả thành HTTP Response.
+---
 
-Việc hiểu Request Lifecycle giúp xác định được vai trò của từng thành phần trong Spring MVC và vị trí phù hợp để xử lý các logic như Authentication, Logging và Validation.
+# 3.7. Request Lifecycle
 
-### d. RESTful API Design
+Một HTTP Request trong Spring Boot có thể được xử lý theo flow:
 
-Đã tìm hiểu các nguyên tắc thiết kế RESTful API trong Spring Boot.
+```text
+Client
+  |
+  ↓
+HTTP Request
+  |
+  ↓
+Servlet Container
+  |
+  ↓
+Filter
+  |
+  ↓
+DispatcherServlet
+  |
+  ↓
+Controller
+  |
+  ↓
+Service
+  |
+  ↓
+Repository
+  |
+  ↓
+Database
+  |
+  ↓
+Response
+```
 
-Các HTTP Method phổ biến:
+Các bước chính:
 
-* `GET`: Lấy dữ liệu.
-* `POST`: Tạo dữ liệu.
-* `PUT`: Cập nhật toàn bộ Resource.
-* `PATCH`: Cập nhật một phần Resource.
-* `DELETE`: Xóa Resource.
+1. Client gửi HTTP Request.
+2. Request đi vào Servlet Container.
+3. Request có thể đi qua các Filter.
+4. `DispatcherServlet` tiếp nhận request.
+5. Spring tìm Controller phù hợp.
+6. Controller gọi Service.
+7. Service xử lý Business Logic.
+8. Repository tương tác Database.
+9. Kết quả được trả về Controller.
+10. Spring tạo HTTP Response.
+11. Response được trả về Client.
+
+---
+
+# 3.8. RESTful API
+
+REST là một architectural style thường được sử dụng để xây dựng Web API.
+
+Một số HTTP Method:
+
+| Method   | Mục đích          |
+| -------- | ----------------- |
+| `GET`    | Lấy dữ liệu       |
+| `POST`   | Tạo dữ liệu       |
+| `PUT`    | Cập nhật toàn bộ  |
+| `PATCH`  | Cập nhật một phần |
+| `DELETE` | Xóa dữ liệu       |
 
 Ví dụ:
 
@@ -159,36 +310,50 @@ GET    /api/users
 GET    /api/users/{id}
 POST   /api/users
 PUT    /api/users/{id}
-PATCH  /api/users/{id}
 DELETE /api/users/{id}
 ```
 
-Một số HTTP Status Code thường sử dụng:
+---
 
-* `200 OK`.
-* `201 Created`.
-* `204 No Content`.
-* `400 Bad Request`.
-* `401 Unauthorized`.
-* `403 Forbidden`.
-* `404 Not Found`.
-* `409 Conflict`.
-* `429 Too Many Requests`.
-* `500 Internal Server Error`.
+# 3.9. REST API Best Practices
 
-Một số nguyên tắc khi thiết kế REST API:
+Một số nguyên tắc:
 
 * Sử dụng HTTP Method đúng mục đích.
-* URL biểu diễn Resource.
-* Sử dụng Status Code phù hợp.
-* Response có cấu trúc thống nhất.
-* API nên Stateless.
-* Có Authentication và Authorization phù hợp.
-* Validate dữ liệu đầu vào.
+* URL sử dụng Resource thay vì Action.
+* Sử dụng HTTP Status Code phù hợp.
+* Chuẩn hóa Response.
+* Validate Request.
+* Xử lý Exception tập trung.
+* Không trả về dữ liệu không cần thiết.
+* Version API khi cần thiết.
+* Sử dụng Pagination với danh sách lớn.
 
-### e. Configuration Properties và Profiles
+Một số HTTP Status Code:
 
-Đã tìm hiểu cách quản lý Configuration trong Spring Boot thông qua `application.properties` và `application.yml`.
+```text
+200 OK
+201 Created
+204 No Content
+400 Bad Request
+401 Unauthorized
+403 Forbidden
+404 Not Found
+409 Conflict
+429 Too Many Requests
+500 Internal Server Error
+```
+
+---
+
+# 3.10. Configuration Properties
+
+Spring Boot hỗ trợ quản lý Configuration thông qua:
+
+* `application.properties`
+* `application.yml`
+* Environment Variables.
+* Command Line Arguments.
 
 Ví dụ:
 
@@ -198,20 +363,17 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/demo
+    url: jdbc:mysql://localhost:3306/app
     username: root
-    password: password
 ```
 
-Configuration giúp quản lý các thông tin như:
+Configuration nên được tách khỏi Source Code để dễ thay đổi giữa các môi trường.
 
-* Server Port.
-* Database Connection.
-* Application Settings.
-* External Service Configuration.
-* Security Configuration.
+---
 
-Đã tìm hiểu Spring Profiles để sử dụng Configuration khác nhau cho từng Environment.
+# 3.11. Spring Profiles
+
+Spring Profiles cho phép cấu hình ứng dụng theo từng môi trường.
 
 Ví dụ:
 
@@ -222,360 +384,516 @@ application-test.yml
 application-prod.yml
 ```
 
-Việc sử dụng Profiles giúp Application có thể sử dụng Configuration phù hợp với từng môi trường Development, Testing và Production.
+Có thể sử dụng:
 
-Các thông tin nhạy cảm như Password, API Key và JWT Secret không nên Hard-code trực tiếp trong Source Code mà nên sử dụng Environment Variables hoặc Secret Management.
+```text
+dev
+test
+prod
+```
+
+Ví dụ:
+
+```yaml
+spring:
+  profiles:
+    active: dev
+```
+
+Lợi ích:
+
+* Tách Configuration giữa các môi trường.
+* Không cần sửa Source Code.
+* Dễ triển khai.
+* Hạn chế cấu hình nhầm Production.
 
 ---
 
-## 2.2. Middleware - Authentication
+# 4. Middleware - Authentication
 
-### a. Authentication Strategies
+Authentication là quá trình xác định **người dùng là ai**.
 
-Đã tìm hiểu các chiến lược Authentication phổ biến trong Backend System.
+Authorization là quá trình xác định **người dùng được phép làm gì**.
 
-Các phương pháp gồm:
+Có thể phân biệt:
 
-* Session-based Authentication.
-* Token-based Authentication.
-* JWT.
-* OAuth2/OIDC.
-* API Key.
-* mTLS.
+```text
+Authentication
+      ↓
+Who are you?
 
-Authentication là quá trình xác định danh tính của User hoặc Client khi truy cập vào hệ thống.
+Authorization
+      ↓
+What can you do?
+```
 
-### b. Session-based Authentication
+---
 
-Session-based Authentication lưu trạng thái đăng nhập của User trên Server.
+# 4.1. Session-based Authentication
 
-Flow cơ bản:
+Session-based Authentication thường sử dụng Cookie.
+
+Flow:
 
 ```text
 Client
-   |
-   | Login
-   v
+  |
+  | Login
+  ↓
 Server
-   |
-   v
+  |
+  | Create Session
+  ↓
 Session Store
+  |
+  ↓
+Cookie
+  |
+  ↓
+Client
 ```
 
-Sau khi đăng nhập thành công, Server tạo Session và Client lưu Session ID, thường thông qua Cookie.
+Client gửi Cookie trong các request tiếp theo.
+
+Server sử dụng Session ID để xác định user.
 
 Ưu điểm:
 
-* Dễ quản lý Session.
-* Dễ Revoke Session.
-* Phù hợp với các ứng dụng truyền thống.
+* Dễ triển khai.
+* Có thể dễ dàng revoke Session.
+* Server kiểm soát Session.
 
 Nhược điểm:
 
-* Server phải lưu trạng thái Session.
-* Khi chạy nhiều Instance cần Shared Session Store.
-* Tăng độ phức tạp khi Scale hệ thống.
+* Server phải quản lý Session.
+* Khó scale nếu không có Shared Session Store.
+* Có thể cần Redis hoặc Session Store tập trung.
 
-### c. Token-based Authentication
+---
 
-Token-based Authentication sử dụng Token để xác thực Request.
+# 4.2. Token-based Authentication
 
-Sau khi Login thành công:
+Trong Token-based Authentication, Server cấp Token cho Client sau khi Login.
 
-```text
-Client
-   |
-   | Login
-   v
-Server
-   |
-   v
-Access Token
-```
-
-Client gửi Token trong các Request tiếp theo:
-
-```http
-Authorization: Bearer <access_token>
-```
-
-Ưu điểm:
-
-* Có thể triển khai Stateless.
-* Dễ Scale nhiều Instance.
-* Phù hợp với REST API và Distributed System.
-
-Nhược điểm:
-
-* Cần quản lý Token.
-* Việc Revoke Token phức tạp hơn Session.
-* Cần đảm bảo Token được bảo vệ an toàn.
-
-### d. Stateful và Stateless Authentication
-
-Đã tìm hiểu sự khác biệt giữa Stateful và Stateless Authentication.
-
-**Stateful Authentication** yêu cầu Server lưu trạng thái Authentication.
+Flow:
 
 ```text
 Client
   |
-  v
+  | Username + Password
+  ↓
 Server
   |
-  v
-Session Store
-```
-
-**Stateless Authentication** không yêu cầu Server lưu Session State. Thông tin Authentication được chứa trong Token.
-
-```text
+  | Generate Token
+  ↓
 Client
   |
-  | JWT
-  v
+  | Authorization: Bearer Token
+  ↓
 Server
 ```
 
-So sánh:
+JWT là một trong những Token Format phổ biến.
 
-| Đặc điểm           | Stateful | Stateless |
-| ------------------ | -------- | --------- |
-| Server lưu Session | Có       | Không     |
-| Scalability        | Khó hơn  | Dễ hơn    |
-| Revoke             | Dễ       | Khó hơn   |
-| Shared State       | Cần      | Không cần |
-| Ví dụ              | Session  | JWT       |
+---
 
-Stateless Authentication phù hợp với các hệ thống cần Scale nhiều Instance, trong khi Stateful Authentication có lợi thế trong việc quản lý và Revoke Session.
+# 4.3. JWT
 
-### e. JWT
-
-Đã tìm hiểu JSON Web Token (JWT) và cách sử dụng JWT trong Authentication.
-
-JWT có cấu trúc:
+JWT gồm ba thành phần chính:
 
 ```text
 Header.Payload.Signature
 ```
 
-JWT Payload có thể chứa các thông tin như:
-
-```json
-{
-  "sub": "123",
-  "role": "USER",
-  "exp": 1780000000
-}
-```
-
-Trong đó:
-
-* `sub`: Subject/User ID.
-* `role`: Role của User.
-* `exp`: Expiration Time.
-
-JWT thường được sử dụng để Server xác thực Request mà không cần lưu Session.
-
-### f. Access Token và Refresh Token
-
-Đã tìm hiểu mô hình sử dụng Access Token và Refresh Token.
+Ví dụ cấu trúc:
 
 ```text
-Login
-  |
-  v
-Access Token + Refresh Token
-  |
-  +----> Access Token ----> API
-  |
-  +----> Refresh Token ---> New Access Token
+xxxxx.yyyyy.zzzzz
 ```
 
-**Access Token:**
+Payload có thể chứa:
 
-* Có thời gian sống ngắn.
-* Được sử dụng để truy cập API.
+* `sub`
+* `iat`
+* `exp`
+* `roles`
 
-**Refresh Token:**
+JWT được ký bằng Secret Key hoặc Private Key để đảm bảo tính toàn vẹn.
 
-* Có thời gian sống dài hơn.
-* Dùng để lấy Access Token mới khi Access Token hết hạn.
+---
 
-Việc sử dụng Access Token có thời gian sống ngắn giúp giảm thời gian sử dụng của Token nếu Token bị lộ.
+# 4.4. Access Token và Refresh Token
 
-### g. Spring Security và Security Filter Chain
+Một hệ thống Authentication thường sử dụng hai loại Token:
 
-Đã tìm hiểu Spring Security và Security Filter Chain.
+```text
+Access Token
+    ↓
+Thời gian sống ngắn
+    ↓
+Dùng gọi API
+
+Refresh Token
+    ↓
+Thời gian sống dài hơn
+    ↓
+Dùng lấy Access Token mới
+```
+
+Flow:
+
+```text
+Client
+  |
+  | Access Token expired
+  ↓
+Refresh Token
+  |
+  ↓
+Authentication Server
+  |
+  ↓
+New Access Token
+```
+
+Việc sử dụng Access Token có thời gian sống ngắn giúp giảm rủi ro khi Token bị lộ.
+
+---
+
+# 4.5. Token Revocation
+
+JWT thường có đặc điểm Stateless nên Server không nhất thiết lưu Session.
+
+Tuy nhiên điều này gây khó khăn khi cần revoke Token trước thời gian hết hạn.
+
+Một số giải pháp:
+
+* Token Blacklist.
+* Short-lived Access Token.
+* Refresh Token Rotation.
+* Lưu trạng thái Token trong Redis.
+
+---
+
+# 4.6. JWT Blacklist với Redis
+
+Redis có thể lưu những Token đã bị revoke.
+
+Mô hình:
+
+```text
+Client
+  |
+  ↓
+Spring Security
+  |
+  ↓
+Check JWT
+  |
+  ↓
+Redis
+  |
+  ├── Token exists → Reject
+  |
+  └── Token absent → Continue
+```
+
+Khi Logout hoặc Token bị revoke, Token có thể được thêm vào Redis với TTL tương ứng với thời gian còn lại của Token.
+
+---
+
+# 4.7. OAuth2 và OIDC
+
+OAuth2 là framework cho Authorization.
+
+OIDC xây dựng trên OAuth2 và bổ sung Authentication.
+
+Có thể sử dụng với các Identity Provider bên ngoài.
+
+Flow cơ bản:
+
+```text
+User
+  |
+  ↓
+Client Application
+  |
+  ↓
+Authorization Server
+  |
+  ↓
+Authentication
+  |
+  ↓
+Authorization Code
+  |
+  ↓
+Access Token
+```
+
+---
+
+# 4.8. API Key
+
+API Key là một chuỗi định danh được cấp cho Client.
+
+Ví dụ:
+
+```text
+X-API-Key: abc123
+```
+
+Thường được sử dụng cho:
+
+* Internal API.
+* Service-to-service communication.
+* Public API.
+* Developer API.
+
+API Key đơn giản nhưng cần được bảo vệ và quản lý vòng đời.
+
+---
+
+# 4.9. mTLS
+
+mTLS là Mutual TLS.
+
+Trong HTTPS thông thường:
+
+```text
+Client → Server
+Server xác thực Client
+```
+
+Với mTLS:
+
+```text
+Client ↔ Server
+```
+
+Cả Client và Server đều xác thực Certificate của nhau.
+
+mTLS thường phù hợp với:
+
+* Service-to-service communication.
+* Internal systems.
+* High-security environments.
+
+---
+
+# 4.10. Stateless vs Stateful Authentication
+
+## Stateful
+
+Server lưu trạng thái Authentication.
+
+Ví dụ:
+
+```text
+Client
+  ↓
+Session ID
+  ↓
+Server Session Store
+```
+
+Ưu điểm:
+
+* Dễ revoke.
+* Quản lý Session tập trung.
+
+Nhược điểm:
+
+* Cần Session Store.
+* Scale phức tạp hơn.
+
+---
+
+## Stateless
+
+Server không cần lưu Session cho từng Client.
+
+Ví dụ:
+
+```text
+Client
+  ↓
+JWT
+  ↓
+Server verifies token
+```
+
+Ưu điểm:
+
+* Dễ scale.
+* Không phụ thuộc Session Store.
+* Phù hợp với Microservices.
+
+Nhược điểm:
+
+* Khó revoke Token.
+* Token có thể chứa nhiều thông tin.
+* Cần quản lý Token Expiration.
+
+---
+
+# 5. Spring Security
 
 Spring Security cung cấp các cơ chế:
 
 * Authentication.
 * Authorization.
-* Password Encoding.
+* Password Management.
 * Security Filter.
-* JWT Authentication.
 * Method-level Security.
+* CSRF Protection.
+* OAuth2/JWT Support.
 
-Request khi đi vào Application có thể được xử lý qua Security Filter Chain trước khi đến Controller.
+---
+
+# 5.1. Security Filter Chain
+
+Spring Security xử lý HTTP Request thông qua một chuỗi Filter.
 
 ```text
 HTTP Request
      |
-     v
-Security Filter Chain
+     ↓
+Security Filters
      |
-     +---- Authentication
+     ├── Authentication
+     ├── Authorization
+     ├── CSRF
+     └── Exception Handling
      |
-     +---- Authorization
-     |
-     v
+     ↓
 Controller
 ```
 
-Security Filter Chain giúp kiểm tra Security của Request trước khi Request được xử lý bởi Business Logic.
+Mỗi Filter đảm nhiệm một phần công việc liên quan đến Security.
 
 ---
 
-## 2.3. Authorization
+# 5.2. SecurityFilterChain
 
-### a. Authentication và Authorization
+Spring Security cho phép cấu hình Security bằng `SecurityFilterChain`.
 
-Đã tìm hiểu sự khác biệt giữa Authentication và Authorization.
+Ví dụ khái quát:
 
-**Authentication** trả lời câu hỏi:
-
-> Người dùng là ai?
-
-**Authorization** trả lời câu hỏi:
-
-> Người dùng được phép làm gì?
-
-Ví dụ:
-
-```text
-Authentication
-      |
-      v
-User = Nam
-      |
-      v
-Authorization
-      |
-      +---- USER  → READ
-      |
-      +---- ADMIN → READ / WRITE / DELETE
+```java
+@Bean
+SecurityFilterChain securityFilterChain(HttpSecurity http) {
+    return http
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/public/**").permitAll()
+            .anyRequest().authenticated()
+        )
+        .build();
+}
 ```
 
-### b. RBAC
+Qua đó có thể định nghĩa:
 
-Đã tìm hiểu Role-Based Access Control (RBAC).
+* Endpoint Public.
+* Endpoint yêu cầu Authentication.
+* Authorization Rules.
+* Security Policies.
 
-RBAC phân quyền dựa trên Role của User.
+---
+
+# 5.3. Authorization
+
+Authorization xác định quyền của User sau khi Authentication thành công.
+
+Có hai mô hình được tìm hiểu:
+
+* RBAC.
+* ABAC.
+
+---
+
+# 5.4. RBAC
+
+RBAC là **Role-Based Access Control**.
+
+Quyền được xác định dựa trên Role.
 
 Ví dụ:
 
 ```text
-ADMIN
- ├── CREATE
- ├── READ
- ├── UPDATE
- └── DELETE
-
 USER
- └── READ
+ ├── READ_PROFILE
+ └── CREATE_ORDER
+
+ADMIN
+ ├── READ_PROFILE
+ ├── CREATE_ORDER
+ ├── DELETE_USER
+ └── MANAGE_SYSTEM
 ```
 
 Ưu điểm:
 
 * Dễ triển khai.
 * Dễ quản lý.
-* Phù hợp với các hệ thống có Role rõ ràng.
+* Phù hợp với nhiều hệ thống.
 
-### c. ABAC
+---
 
-Đã tìm hiểu Attribute-Based Access Control (ABAC).
+# 5.5. ABAC
 
-ABAC sử dụng các Attribute của User, Resource và Action để đưa ra quyết định Authorization.
+ABAC là **Attribute-Based Access Control**.
+
+Quyền được xác định dựa trên nhiều Attribute:
+
+* User.
+* Resource.
+* Action.
+* Environment.
 
 Ví dụ:
 
 ```text
-User:
-  role = MANAGER
-  department = IT
-
-Resource:
-  department = IT
-
-Action:
-  UPDATE
+User.department = "Finance"
+AND
+Resource.department = "Finance"
+AND
+Action = "READ"
 ```
 
-ABAC có tính linh hoạt cao hơn RBAC nhưng Logic Authorization phức tạp hơn.
+ABAC linh hoạt hơn RBAC nhưng phức tạp hơn trong việc thiết kế Policy.
 
-### d. Method-level Security
+---
 
-Spring Security hỗ trợ phân quyền trực tiếp trên Method.
+# 5.6. Method-level Security
+
+Spring Security hỗ trợ Authorization ở Method Level.
 
 Ví dụ:
 
 ```java
 @PreAuthorize("hasRole('ADMIN')")
 public void deleteUser(Long id) {
-    // Delete user
+    // ...
 }
 ```
 
-Chỉ User có Role `ADMIN` mới có thể thực hiện Method này.
-
-Method-level Security giúp kiểm soát quyền truy cập gần với Business Logic của Application.
-
-### e. Token Revocation và Redis Blacklist
-
-Đã tìm hiểu vấn đề Revoke JWT Token trước khi Token hết hạn.
-
-Do JWT thường được xử lý theo Stateless Model nên Server không lưu trạng thái của Token. Khi cần Logout hoặc Revoke Token, có thể sử dụng Redis để lưu các Token đã bị Blacklist.
-
-Flow:
-
-```text
-Logout
-   |
-   v
-JWT Token
-   |
-   v
-Redis Blacklist
-```
-
-Khi Request mới được gửi:
-
-```text
-Request
-   |
-   v
-Validate JWT
-   |
-   v
-Check Redis
-   |
-   +---- Blacklisted → Reject
-   |
-   +---- Valid       → Allow
-```
-
-Redis phù hợp với trường hợp này nhờ khả năng truy cập nhanh và hỗ trợ TTL.
+Điều này giúp kiểm soát quyền trực tiếp tại Business Method.
 
 ---
 
-## 2.4. Middleware - Rate Limiting
+# 6. Middleware - Rate Limiting
 
-### a. Rate Limiting
+Rate Limiting là cơ chế giới hạn số lượng Request mà một Client có thể gửi trong một khoảng thời gian.
 
-Đã tìm hiểu Rate Limiting và vai trò của Rate Limiting trong việc kiểm soát Traffic.
+Mục tiêu:
 
-Rate Limiting giới hạn số lượng Request mà một User, IP hoặc API Key có thể gửi trong một khoảng thời gian.
+* Chống Abuse.
+* Chống Brute Force.
+* Bảo vệ API.
+* Bảo vệ Database.
+* Kiểm soát Resource.
+* Ổn định hệ thống khi Traffic tăng đột biến.
 
 Ví dụ:
 
@@ -583,60 +901,68 @@ Ví dụ:
 100 requests / minute / user
 ```
 
-Khi Client vượt quá giới hạn:
+Nếu vượt quá giới hạn:
 
-```http
-HTTP/1.1 429 Too Many Requests
+```text
+HTTP 429 Too Many Requests
 ```
 
-Rate Limiting giúp:
+---
 
-* Chống API Abuse.
-* Kiểm soát Traffic.
-* Bảo vệ Backend.
-* Bảo vệ Database.
-* Hạn chế việc một Client gửi quá nhiều Request.
-
-### b. Fixed Window
+# 6.1. Fixed Window
 
 Fixed Window chia thời gian thành các khoảng cố định.
 
 Ví dụ:
 
 ```text
-10:00:00 → 10:00:59
-10:01:00 → 10:01:59
-10:02:00 → 10:02:59
+10:00:00 ───── 10:01:00
+             100 requests
 ```
 
-Nếu giới hạn là:
+Rule:
 
 ```text
 100 requests / minute
 ```
 
-thì mỗi Window có một Counter riêng.
-
 Ưu điểm:
 
 * Dễ triển khai.
-* Ít tốn Memory.
-* Hiệu năng tốt.
+* Chi phí thấp.
+* Dễ hiểu.
 
 Nhược điểm:
 
-* Có thể xảy ra Burst ở ranh giới giữa hai Window.
+* Có Boundary Problem.
 
-Ví dụ Client có thể gửi nhiều Request gần cuối Window và tiếp tục gửi nhiều Request ngay đầu Window tiếp theo.
+Ví dụ Client có thể gửi:
 
-### c. Sliding Window
+```text
+100 requests
+59 giây cuối Window A
 
-Sliding Window sử dụng một khoảng thời gian trượt để tính số lượng Request.
++
+
+100 requests
+đầu Window B
+```
+
+Có thể tạo Burst lớn tại Boundary.
+
+---
+
+# 6.2. Sliding Window
+
+Sliding Window xem xét một khoảng thời gian liên tục thay vì Window cố định.
 
 Ví dụ:
 
 ```text
-100 requests / 60 seconds
+Current Time
+     |
+     ↓
+<---- 60 seconds ---->
 ```
 
 Có thể triển khai bằng:
@@ -647,36 +973,30 @@ Có thể triển khai bằng:
 Ưu điểm:
 
 * Chính xác hơn Fixed Window.
-* Hạn chế Burst tại Boundary.
+* Giảm Boundary Problem.
 
 Nhược điểm:
 
-* Có thể tốn nhiều Memory hơn.
-* Implementation phức tạp hơn.
+* Tốn tài nguyên hơn.
+* Sliding Window Log có thể cần lưu nhiều request timestamps.
 
-### d. Token Bucket
+---
+
+# 6.3. Token Bucket
 
 Token Bucket sử dụng một Bucket chứa Token.
 
-Ví dụ:
+Mỗi Request cần tiêu thụ một Token.
 
 ```text
-Capacity = 100 tokens
-Refill = 10 tokens/second
-```
-
-Mỗi Request cần sử dụng một Token.
-
-```text
-        Refill
-          ↓
-   +-------------+
-   | Token Token |
-   | Token Token |
-   +-------------+
-          |
-          v
-       Request
+       Token refill
+            ↓
+      ┌───────────┐
+      │  ● ● ● ●  │
+      │  ● ● ●    │
+      └─────┬─────┘
+            ↓
+         Request
 ```
 
 Nếu Bucket còn Token:
@@ -685,139 +1005,162 @@ Nếu Bucket còn Token:
 Request → Allow
 ```
 
-Nếu Bucket hết Token:
+Nếu hết Token:
 
 ```text
-Request → Rate Limited
+Request → Reject / Wait
 ```
 
 Ưu điểm:
 
-* Hỗ trợ Burst tốt.
-* Có thể kiểm soát tốc độ Request.
+* Hỗ trợ Burst.
+* Kiểm soát Average Rate.
 * Phù hợp với API Rate Limiting.
-
-### e. Leaky Bucket
-
-Leaky Bucket xử lý Request với tốc độ tương đối ổn định.
-
-```text
-Requests
-    |
-    v
-+---------+
-| Bucket  |
-+---------+
-    |
-    | Fixed Rate
-    v
-Processing
-```
-
-Ưu điểm:
-
-* Giữ tốc độ xử lý ổn định.
-* Hạn chế Burst.
-
-Nhược điểm:
-
-* Khả năng xử lý Burst kém linh hoạt hơn Token Bucket.
-
-### f. So sánh các Rate Limiting Algorithms
-
-| Algorithm      | Độ chính xác | Memory         | Burst Handling | Độ phức tạp |
-| -------------- | ------------ | -------------- | -------------- | ----------- |
-| Fixed Window   | Thấp         | Thấp           | Kém            | Thấp        |
-| Sliding Window | Cao          | Trung bình/Cao | Tốt            | Trung bình  |
-| Token Bucket   | Cao          | Thấp           | Tốt            | Trung bình  |
-| Leaky Bucket   | Cao          | Thấp           | Hạn chế        | Trung bình  |
-
-Việc lựa chọn Algorithm phụ thuộc vào yêu cầu về Accuracy, Memory, Performance và khả năng xử lý Burst của hệ thống.
 
 ---
 
-## 2.5. Triển khai Rate Limiting
+# 6.4. Leaky Bucket
 
-### a. Bucket4j
+Leaky Bucket có thể hình dung giống như một Bucket có tốc độ xử lý cố định.
 
-Đã tìm hiểu Bucket4j, một thư viện Java hỗ trợ triển khai Token Bucket Rate Limiting.
-
-Ví dụ:
-
-```java
-Bandwidth limit = Bandwidth.builder()
-        .capacity(100)
-        .refillGreedy(100, Duration.ofMinutes(1))
-        .build();
-
-Bucket bucket = Bucket.builder()
-        .addLimit(limit)
-        .build();
+```text
+Requests
+   ↓↓↓↓↓
+┌─────────┐
+│         │
+│ Bucket  │
+│         │
+└────┬────┘
+     ↓
+ Fixed Rate
 ```
 
-Kiểm tra Request:
+Request được xử lý với tốc độ tương đối ổn định.
 
-```java
-if (bucket.tryConsume(1)) {
-    // Allow request
-} else {
-    // Reject request
-}
+Ưu điểm:
+
+* Kiểm soát Output Rate.
+* Giảm Burst.
+
+Nhược điểm:
+
+* Có thể làm tăng latency.
+* Burst không được xử lý linh hoạt như Token Bucket.
+
+---
+
+# 6.5. So sánh các thuật toán
+
+| Thuật toán     | Ưu điểm             | Nhược điểm          |
+| -------------- | ------------------- | ------------------- |
+| Fixed Window   | Đơn giản, ít memory | Boundary Problem    |
+| Sliding Window | Chính xác hơn       | Tốn tài nguyên hơn  |
+| Token Bucket   | Hỗ trợ Burst        | Cần quản lý Token   |
+| Leaky Bucket   | Output ổn định      | Có thể tăng latency |
+
+Việc lựa chọn thuật toán phụ thuộc vào:
+
+* Traffic Pattern.
+* Độ chính xác yêu cầu.
+* Memory.
+* Burst Handling.
+* Số lượng Instance.
+
+---
+
+# 6.6. Rate Limiting bằng Bucket4j
+
+Bucket4j là thư viện Java hỗ trợ Token Bucket Rate Limiting.
+
+Mô hình:
+
+```text
+Request
+   |
+   ↓
+Bucket4j
+   |
+   ├── Token available → Allow
+   |
+   └── No token → Reject
 ```
 
-Bucket4j phù hợp với Rate Limiting được triển khai trực tiếp trong Application.
+Phù hợp khi Rate Limiting được triển khai trực tiếp trong Application.
 
-### b. Redis-based Distributed Rate Limiting
+Ưu điểm:
 
-Trong hệ thống có nhiều Application Instance:
+* Dễ tích hợp.
+* Không cần Redis cho trường hợp Single Instance.
+* Hiệu năng tốt.
+
+Nhược điểm:
+
+* Nếu có nhiều Application Instance, mỗi Instance có Bucket riêng.
+* Không đảm bảo giới hạn toàn hệ thống nếu không có Shared State.
+
+---
+
+# 6.7. Distributed Rate Limiting với Redis
+
+Trong hệ thống có nhiều Instance:
 
 ```text
              Load Balancer
                   |
-        +---------+---------+
+        ┌─────────┼─────────┐
+        ↓         ↓         ↓
+    Instance A Instance B Instance C
         |         |         |
-      App 1     App 2     App 3
-        |         |         |
-        +---------+---------+
-                  |
+        └─────────┼─────────┘
+                  ↓
                 Redis
 ```
 
-Nếu mỗi Instance tự quản lý Counter riêng, Rate Limit có thể không chính xác.
+Redis được sử dụng làm Shared State.
 
-Redis có thể được sử dụng làm Shared Storage:
+Ví dụ:
 
 ```text
-App 1 ─┐
-App 2 ─┼──> Redis
-App 3 ─┘
+user:123:rate_limit
 ```
+
+Các Instance cùng kiểm tra và cập nhật Rate Limit tại Redis.
 
 Ưu điểm:
 
-* Shared State giữa các Instance.
-* Tốc độ truy cập cao.
-* Hỗ trợ Atomic Operations.
-* Hỗ trợ TTL.
-* Phù hợp với Distributed System.
+* Rate Limit nhất quán giữa nhiều Instance.
+* Phù hợp Microservices.
+* Có thể scale Application.
 
-### c. API Gateway-level Rate Limiting
+Nhược điểm:
 
-Rate Limiting có thể được triển khai tại API Gateway thay vì trực tiếp trong từng Backend Service.
+* Có thêm Network I/O.
+* Phụ thuộc Redis.
+* Cần xử lý Redis failure.
+
+---
+
+# 6.8. API Gateway Rate Limiting
+
+Rate Limiting có thể triển khai tại API Gateway.
+
+Mô hình:
 
 ```text
 Client
   |
-  v
+  ↓
 API Gateway
   |
-  | Rate Limiting
-  |
-  v
+  ├── Authentication
+  ├── Rate Limiting
+  └── Routing
+        |
+        ↓
 Backend Services
 ```
 
-Một số giải pháp:
+Các công cụ có thể sử dụng:
 
 * Spring Cloud Gateway.
 * Nginx.
@@ -826,124 +1169,219 @@ Một số giải pháp:
 Ưu điểm:
 
 * Chặn Request trước khi vào Backend.
-* Giảm tải cho Backend.
-* Quản lý Policy tập trung.
-* Phù hợp với Microservices Architecture.
+* Bảo vệ toàn bộ hệ thống.
+* Centralized Policy.
 
-### d. Rate Limit theo User / IP / API Key
+---
 
-Rate Limit có thể được áp dụng theo nhiều Identifier.
+# 6.9. Rate Limit theo User/IP/API Key
 
-**Theo IP:**
+Có thể áp dụng Rate Limit dựa trên:
 
-```text
-IP: 192.168.1.10
-Limit: 100 requests/minute
-```
-
-**Theo User:**
+### User
 
 ```text
-User ID: 123
-Limit: 1000 requests/minute
+user:123 → 100 requests/minute
 ```
 
-**Theo API Key:**
+### IP
 
 ```text
-API Key A
-Limit: 10000 requests/hour
+192.168.1.10 → 100 requests/minute
 ```
 
-Việc lựa chọn Identifier phụ thuộc vào loại API và yêu cầu của hệ thống.
+### API Key
 
-### e. HTTP 429 và Rate Limit Headers
+```text
+api-key-abc → 1000 requests/hour
+```
 
-Khi Client vượt quá Rate Limit, Server có thể trả về:
+Việc lựa chọn Key phụ thuộc vào mô hình Authentication và yêu cầu của hệ thống.
+
+---
+
+# 6.10. HTTP 429
+
+Khi Client vượt quá Rate Limit, Server có thể trả:
 
 ```http
 HTTP/1.1 429 Too Many Requests
 ```
 
-Có thể cung cấp thêm các Header:
+Response có thể cung cấp thêm thông tin về giới hạn.
 
-```http
-X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 0
-X-RateLimit-Reset: 1780000000
+Ví dụ:
+
+```text
+X-RateLimit-Limit
+X-RateLimit-Remaining
+X-RateLimit-Reset
 ```
 
-Ý nghĩa:
+Các Header này giúp Client biết:
 
-* `X-RateLimit-Limit`: Giới hạn Request tối đa.
-* `X-RateLimit-Remaining`: Số Request còn lại.
-* `X-RateLimit-Reset`: Thời điểm Rate Limit được Reset.
-
-Các thông tin này giúp Client biết trạng thái Rate Limit và điều chỉnh tốc độ gửi Request.
+* Giới hạn hiện tại.
+* Số Request còn lại.
+* Thời điểm Rate Limit được reset.
 
 ---
 
-## 3. Kết quả đạt được
+# 7. So sánh Authentication và Authorization
 
-Sau khi hoàn thành tuần học thứ năm, đã đạt được các kết quả sau:
+| Nội dung  | Authentication      | Authorization      |
+| --------- | ------------------- | ------------------ |
+| Mục đích  | Xác định User       | Xác định quyền     |
+| Câu hỏi   | Who are you?        | What can you do?   |
+| Ví dụ     | Login, JWT          | RBAC, ABAC         |
+| Thời điểm | Trước Authorization | Sau Authentication |
 
-* Hiểu kiến trúc cơ bản của Spring Boot.
+Flow tổng quát:
+
+```text
+Client
+   |
+   ↓
+Authentication
+   |
+   ↓
+Identity
+   |
+   ↓
+Authorization
+   |
+   ↓
+Access Resource
+```
+
+---
+
+# 8. So sánh Stateful và Stateless
+
+| Tiêu chí           | Stateful     | Stateless        |
+| ------------------ | ------------ | ---------------- |
+| Server lưu Session | Có           | Không nhất thiết |
+| Scale              | Phức tạp hơn | Dễ hơn           |
+| Revoke             | Dễ           | Khó hơn          |
+| Shared Store       | Thường cần   | Không nhất thiết |
+| Ví dụ              | Session      | JWT              |
+
+---
+
+# 9. Kết quả đạt được
+
+Sau tuần thứ năm, em đã đạt được các kết quả:
+
+## Spring Boot
+
+* Hiểu kiến trúc Spring Boot.
 * Hiểu cơ chế Auto-configuration.
-* Nắm được IoC Container và Dependency Injection.
-* Hiểu Spring MVC và Request Lifecycle.
-* Nắm được cách thiết kế RESTful API.
-* Hiểu HTTP Methods và HTTP Status Codes.
-* Nắm được Configuration Properties và Spring Profiles.
-* Hiểu các chiến lược Session-based và Token-based Authentication.
+* Nắm được Dependency Injection.
+* Hiểu IoC Container.
+* Hiểu Spring MVC.
+* Nắm được Request Lifecycle.
+* Hiểu cách thiết kế RESTful API.
+* Biết các HTTP Method và Status Code.
+* Hiểu Configuration Properties.
+* Biết sử dụng Spring Profiles.
+
+## Authentication
+
+* Hiểu Session-based Authentication.
+* Hiểu Token-based Authentication.
+* Hiểu JWT.
+* Phân biệt Access Token và Refresh Token.
+* Hiểu OAuth2/OIDC.
+* Biết khái niệm API Key.
+* Hiểu mTLS.
 * Phân biệt Stateful và Stateless Authentication.
-* Hiểu cấu trúc và cơ chế hoạt động của JWT.
-* Nắm được Access Token và Refresh Token.
-* Hiểu OAuth2/OIDC, API Key và mTLS.
-* Hiểu Spring Security và Security Filter Chain.
-* Nắm được `SecurityFilterChain`.
-* Phân biệt Authentication và Authorization.
+* Hiểu Spring Security Filter Chain.
+* Biết cấu hình `SecurityFilterChain`.
+* Hiểu Token Revocation.
+* Biết cách sử dụng Redis làm Token Blacklist.
 * Hiểu RBAC và ABAC.
-* Nắm được Method-level Security với `@PreAuthorize`.
-* Hiểu Token Revocation và Redis Blacklist.
-* Hiểu khái niệm Rate Limiting và mục đích sử dụng.
-* Nắm được Fixed Window và Sliding Window.
-* Hiểu Token Bucket và Leaky Bucket.
-* Biết các Trade-off giữa Accuracy, Memory và Burst Handling.
-* Hiểu cách triển khai Rate Limiting với Bucket4j.
-* Hiểu Distributed Rate Limiting sử dụng Redis.
+* Biết Method-level Security với `@PreAuthorize`.
+
+## Rate Limiting
+
+* Hiểu mục đích của Rate Limiting.
+* Nắm được Fixed Window.
+* Nắm được Sliding Window.
+* Hiểu Token Bucket.
+* Hiểu Leaky Bucket.
+* Biết so sánh ưu nhược điểm của từng thuật toán.
+* Hiểu cách triển khai Bucket4j.
+* Hiểu Distributed Rate Limiting với Redis.
 * Hiểu Rate Limiting tại API Gateway.
-* Nắm được Rate Limit theo User, IP và API Key.
-* Hiểu HTTP `429 Too Many Requests`.
-* Nắm được các `X-RateLimit-*` Response Headers.
-* Xây dựng được nền tảng về Spring Boot, Authentication, Authorization và Rate Limiting để tiếp tục phát triển các Backend Application có tính bảo mật, khả năng mở rộng và kiểm soát Traffic tốt.
+* Biết Rate Limit theo User/IP/API Key.
+* Hiểu HTTP 429.
+* Biết vai trò của các `X-RateLimit-*` Headers.
 
 ---
 
-## 4. Kế hoạch tuần 6
+# 10. Khó khăn và hướng khắc phục
 
-**Yêu cầu ORM:**
+Trong quá trình học tập, em gặp một số khó khăn:
 
-- JPA/Hibernate fundamentals
-- Entity mapping và relationships
-- Repository pattern implementation
-- Query optimization và performance tuning
+* Spring Boot có nhiều cơ chế tự động nên ban đầu khó hiểu cách các Bean được tạo và quản lý.
+* Dependency Injection và IoC yêu cầu thay đổi cách tư duy so với việc tự tạo Object bằng `new`.
+* Request Lifecycle của Spring MVC có nhiều thành phần như Filter, DispatcherServlet, Controller và Service.
+* JWT có ưu điểm Stateless nhưng việc Revoke Token và Logout cần thiết kế thêm cơ chế quản lý trạng thái.
+* RBAC đơn giản nhưng không linh hoạt bằng ABAC trong các hệ thống có Policy phức tạp.
+* Các thuật toán Rate Limiting có cách hoạt động và Trade-off khác nhau.
+* Distributed Rate Limiting cần xử lý vấn đề đồng bộ State giữa nhiều Application Instance.
+* Việc lựa chọn vị trí triển khai Rate Limiting giữa Application và API Gateway cần dựa trên yêu cầu thực tế.
 
-**Lý thuyết về ORM:**
+Để khắc phục, em tập trung xây dựng sơ đồ Flow cho từng cơ chế, so sánh các phương pháp theo ưu nhược điểm và thực hành cấu hình từng thành phần để hiểu rõ cách chúng hoạt động.
 
-- **Hibernate Architecture**: SessionFactory, Session, Transaction
-- **Entity Lifecycle**: Transient, Persistent, Detached, Removed
-- **Lazy vs Eager Loading**: Performance implications và strategies
-- **N+1 Query Problem**: Detection và solutions (batch fetching, join fetching)
-- **Caching**: First-level, Second-level, Query cache
-- **Connection Pool Integration**: Hibernate + HikariCP configuration
-- **Transaction Management**: @Transactional, propagation, isolation
+---
 
-**Lý thuyết về Connection Pool:**
+# 11. Kế hoạch Tuần 6
 
-- **HikariCP Configuration**: Pool sizing, connection timeout, idle timeout
-- **Pool Monitoring**: Connection leaks, performance metrics
-- **Deadlock Prevention**: `pool_size = Tn × (Cm - 1) + 1`
-    - Tn = Maximum threads
-    - Cm = Max connections per thread
-    - Formula ensures minimum pool size to avoid deadlock
-- **Performance Optimization**: `(core_count * 2) + effective_spindle_count`
+Trong tuần thứ sáu, nội dung tiếp theo sẽ tập trung vào **ORM với JPA/Hibernate**.
+
+## JPA/Hibernate
+
+Các nội dung dự kiến:
+
+* JPA Fundamentals.
+* Hibernate Architecture.
+* Entity Mapping.
+* Entity Relationships.
+* Repository Pattern.
+* Entity Lifecycle.
+* Lazy Loading.
+* Eager Loading.
+* N+1 Query Problem.
+* Query Optimization.
+* Caching.
+* Transaction Management.
+
+## Connection Pool
+
+Tiếp tục tìm hiểu:
+
+* HikariCP.
+* Connection Pool Configuration.
+* Pool Sizing.
+* Connection Timeout.
+* Idle Timeout.
+* Connection Leak Detection.
+* Performance Metrics.
+* Deadlock Prevention.
+* Connection Pool Performance Optimization.
+
+Mục tiêu là hiểu cách ORM hoạt động bên dưới Application Layer và biết cách tối ưu việc truy cập Database trong ứng dụng Spring Boot.
+
+---
+
+# 12. Kết luận
+
+Tuần thứ năm giúp em xây dựng nền tảng quan trọng về **Spring Boot, Authentication và Rate Limiting**.
+
+Về Spring Boot, em đã hiểu kiến trúc ứng dụng, Auto-configuration, IoC, Dependency Injection, Spring MVC, Request Lifecycle và RESTful API.
+
+Về Authentication, em đã tìm hiểu nhiều phương thức xác thực từ Session-based, JWT, OAuth2/OIDC, API Key đến mTLS. Đồng thời hiểu cách Spring Security sử dụng Filter Chain để xử lý Authentication và Authorization.
+
+Về Rate Limiting, em đã tìm hiểu các thuật toán Fixed Window, Sliding Window, Token Bucket và Leaky Bucket. Bên cạnh đó, em hiểu cách triển khai Rate Limiting trong Application bằng Bucket4j, sử dụng Redis cho Distributed Rate Limiting và triển khai tại API Gateway.
+
+Những kiến thức trong tuần là nền tảng quan trọng để tiếp tục tìm hiểu **JPA/Hibernate, ORM, Transaction và Connection Pool** trong tuần thứ sáu, từ đó nâng cao khả năng xây dựng và tối ưu Backend Application bằng Spring Boot.
